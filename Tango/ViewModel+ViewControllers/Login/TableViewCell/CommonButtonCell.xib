@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="CommonButtonCell" rowHeight="89" id="KGk-i7-Jjw" customClass="CommonButtonCell" customModule="Tango" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymv-o2-i9M">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="obw-Si-Cmc" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
+                                <rect key="frame" x="15" y="12" width="290" height="65"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3lH-3z-3CW">
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="65"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <state key="normal" title="Sign In">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="buttonLoginAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="k7f-rk-BuS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.047058823529411764" green="0.21568627450980393" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="3lH-3z-3CW" firstAttribute="top" secondItem="obw-Si-Cmc" secondAttribute="top" id="DjW-g1-DTc"/>
+                                    <constraint firstAttribute="bottom" secondItem="3lH-3z-3CW" secondAttribute="bottom" id="HzA-Po-stc"/>
+                                    <constraint firstAttribute="trailing" secondItem="3lH-3z-3CW" secondAttribute="trailing" id="JUq-mO-0kZ"/>
+                                    <constraint firstItem="3lH-3z-3CW" firstAttribute="leading" secondItem="obw-Si-Cmc" secondAttribute="leading" id="Mz3-P1-voG"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="obw-Si-Cmc" firstAttribute="leading" secondItem="Ymv-o2-i9M" secondAttribute="leading" constant="15" id="0SY-Rb-37d"/>
+                            <constraint firstAttribute="bottom" secondItem="obw-Si-Cmc" secondAttribute="bottom" constant="12" id="AvA-CU-xdq"/>
+                            <constraint firstAttribute="trailing" secondItem="obw-Si-Cmc" secondAttribute="trailing" constant="15" id="a43-Qn-nM5"/>
+                            <constraint firstItem="obw-Si-Cmc" firstAttribute="top" secondItem="Ymv-o2-i9M" secondAttribute="top" constant="12" id="kDd-2h-R1r"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Ymv-o2-i9M" secondAttribute="trailing" id="5gU-N8-n3M"/>
+                    <constraint firstAttribute="bottom" secondItem="Ymv-o2-i9M" secondAttribute="bottom" id="7WS-SK-O2M"/>
+                    <constraint firstItem="Ymv-o2-i9M" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="KCj-pF-caK"/>
+                    <constraint firstItem="Ymv-o2-i9M" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="du0-AC-lBs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnCommonOutlet" destination="3lH-3z-3CW" id="MZp-hg-8kX"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="130.91517857142856"/>
+        </tableViewCell>
+    </objects>
+</document>

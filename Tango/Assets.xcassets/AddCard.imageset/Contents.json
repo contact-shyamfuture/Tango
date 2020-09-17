@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "kissclipart-credit-cards-vector-clipart-credit-card-clip-art-9760c8f205a5f819.png",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "kissclipart-credit-cards-vector-clipart-credit-card-clip-art-9760c8f205a5f819@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "kissclipart-credit-cards-vector-clipart-credit-card-clip-art-9760c8f205a5f819@3x.png",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

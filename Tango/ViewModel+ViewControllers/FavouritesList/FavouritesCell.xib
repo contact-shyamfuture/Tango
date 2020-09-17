@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FavouritesCell" rowHeight="153" id="KGk-i7-Jjw" customClass="FavouritesCell" customModule="Tango" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="153"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="357" height="153"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tOL-lF-CIL">
+                        <rect key="frame" x="0.0" y="0.0" width="357" height="153"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BannerImg" translatesAutoresizingMaskIntoConstraints="NO" id="gXj-mO-5NK">
+                                <rect key="frame" x="8" y="26.5" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="G8X-Bc-RWF"/>
+                                    <constraint firstAttribute="width" constant="100" id="S5f-fn-z1S"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24 AVE PIZZA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaL-ZZ-mES">
+                                <rect key="frame" x="120" y="26.5" width="237" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="fiC-Hk-Df2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="Dcy-N6-czR">
+                                <rect key="frame" x="120" y="57.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="GH2-Qm-Mx1"/>
+                                    <constraint firstAttribute="width" constant="20" id="TyO-GZ-UQN"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="232a,Basanta lal saha Rd, Mahabirtala,kalabagan, Tollygunge, Kolkata,Westbengal" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ErZ-YG-NjM">
+                                <rect key="frame" x="148" y="57.5" width="201" height="87.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ue1-PY-uRX">
+                                <rect key="frame" x="8" y="152.5" width="341" height="0.5"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="bIj-HV-B5a"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Dcy-N6-czR" firstAttribute="top" secondItem="JaL-ZZ-mES" secondAttribute="bottom" constant="5" id="2RK-0O-VM1"/>
+                            <constraint firstItem="ErZ-YG-NjM" firstAttribute="leading" secondItem="Dcy-N6-czR" secondAttribute="trailing" constant="8" id="5qF-iQ-NvE"/>
+                            <constraint firstAttribute="bottom" secondItem="ue1-PY-uRX" secondAttribute="bottom" id="9xI-E6-rgz"/>
+                            <constraint firstAttribute="bottom" secondItem="ErZ-YG-NjM" secondAttribute="bottom" constant="8" id="DpJ-u9-SUO"/>
+                            <constraint firstItem="ErZ-YG-NjM" firstAttribute="top" secondItem="Dcy-N6-czR" secondAttribute="top" id="Ebg-7h-5gi"/>
+                            <constraint firstItem="ue1-PY-uRX" firstAttribute="leading" secondItem="tOL-lF-CIL" secondAttribute="leading" constant="8" id="FIo-VT-7vA"/>
+                            <constraint firstItem="Dcy-N6-czR" firstAttribute="leading" secondItem="JaL-ZZ-mES" secondAttribute="leading" id="I4r-lG-l9Y"/>
+                            <constraint firstItem="JaL-ZZ-mES" firstAttribute="top" secondItem="gXj-mO-5NK" secondAttribute="top" id="IMz-ux-XTs"/>
+                            <constraint firstAttribute="trailing" secondItem="JaL-ZZ-mES" secondAttribute="trailing" id="Opl-qk-geb"/>
+                            <constraint firstItem="gXj-mO-5NK" firstAttribute="centerY" secondItem="tOL-lF-CIL" secondAttribute="centerY" id="QOa-as-9ks"/>
+                            <constraint firstItem="JaL-ZZ-mES" firstAttribute="leading" secondItem="gXj-mO-5NK" secondAttribute="trailing" constant="12" id="WD4-L8-NxO"/>
+                            <constraint firstAttribute="trailing" secondItem="ue1-PY-uRX" secondAttribute="trailing" constant="8" id="Xxf-ee-eQa"/>
+                            <constraint firstItem="gXj-mO-5NK" firstAttribute="leading" secondItem="tOL-lF-CIL" secondAttribute="leading" constant="8" id="f2D-W3-ZJC"/>
+                            <constraint firstAttribute="trailing" secondItem="ErZ-YG-NjM" secondAttribute="trailing" constant="8" id="mvi-Fq-0Ms"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="tOL-lF-CIL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="1OU-iL-kab"/>
+                    <constraint firstItem="tOL-lF-CIL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9UX-rh-pgX"/>
+                    <constraint firstAttribute="trailing" secondItem="tOL-lF-CIL" secondAttribute="trailing" id="aS1-XS-Bld"/>
+                    <constraint firstAttribute="bottom" secondItem="tOL-lF-CIL" secondAttribute="bottom" id="c0P-d2-1De"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="lblShopName" destination="JaL-ZZ-mES" id="d6n-2k-bYT"/>
+                <outlet property="shopImage" destination="gXj-mO-5NK" id="hPT-II-aa4"/>
+                <outlet property="txtViewAddress" destination="ErZ-YG-NjM" id="oUG-EA-WIe"/>
+            </connections>
+            <point key="canvasLocation" x="163.04347826086959" y="142.96875"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="BannerImg" width="385" height="216"/>
+        <image name="location" width="22" height="30"/>
+    </resources>
+</document>

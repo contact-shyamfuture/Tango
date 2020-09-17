@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PromoCodeCell" rowHeight="227" id="KGk-i7-Jjw" customClass="PromoCodeCell" customModule="Tango" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="227"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="227"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdT-VH-6n6">
+                        <rect key="frame" x="0.0" y="0.0" width="385" height="227"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UQK-OR-aIB" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
+                                <rect key="frame" x="10" y="5" width="365" height="212"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="promotiondetails" translatesAutoresizingMaskIntoConstraints="NO" id="60a-f3-K0P">
+                                        <rect key="frame" x="20" y="30" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="1EI-Gz-YiU"/>
+                                            <constraint firstAttribute="width" constant="25" id="vRe-2a-d5e"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FLAT 50 %  OFF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPq-Cy-r6p">
+                                        <rect key="frame" x="55" y="30" width="300" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="W8j-yX-Q28"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.84313725490000002" green="0.1960784314" blue="0.098510641016901421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CODE : 0606" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMU-0u-Dsv">
+                                        <rect key="frame" x="20" y="75" width="101.5" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="Dfl-uY-i79"/>
+                                            <constraint firstAttribute="width" priority="250" constant="42" id="qq9-pd-xdo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apply Promo Code to avail exciting offers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSV-xF-Fse">
+                                        <rect key="frame" x="20" y="116" width="335" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="56f-WT-a1i"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpm-GH-DIS">
+                                        <rect key="frame" x="20" y="157" width="120" height="40"/>
+                                        <color key="backgroundColor" red="0.058823529411764705" green="0.23529411764705882" blue="0.64313725490196072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="0pN-ar-Z3k"/>
+                                            <constraint firstAttribute="height" constant="40" id="UfN-qY-zd5"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Apply">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnApplyAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ofb-jV-rbc"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.99556225538253784" green="0.96285313367843628" blue="0.91215485334396362" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IPq-Cy-r6p" secondAttribute="trailing" constant="10" id="6h1-im-aAh"/>
+                                    <constraint firstItem="uSV-xF-Fse" firstAttribute="top" secondItem="fMU-0u-Dsv" secondAttribute="bottom" constant="20" id="9i3-9t-77s"/>
+                                    <constraint firstItem="fMU-0u-Dsv" firstAttribute="leading" secondItem="60a-f3-K0P" secondAttribute="leading" id="BER-Pk-1jJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="uSV-xF-Fse" secondAttribute="trailing" constant="10" id="EaI-Ge-lpA"/>
+                                    <constraint firstItem="60a-f3-K0P" firstAttribute="top" secondItem="UQK-OR-aIB" secondAttribute="top" constant="30" id="Fbf-v9-SWR"/>
+                                    <constraint firstItem="IPq-Cy-r6p" firstAttribute="centerY" secondItem="60a-f3-K0P" secondAttribute="centerY" id="Nk4-7t-lsA"/>
+                                    <constraint firstItem="60a-f3-K0P" firstAttribute="leading" secondItem="UQK-OR-aIB" secondAttribute="leading" constant="20" id="NzG-v9-t8g"/>
+                                    <constraint firstItem="Wpm-GH-DIS" firstAttribute="leading" secondItem="uSV-xF-Fse" secondAttribute="leading" id="O67-Wv-7Dd"/>
+                                    <constraint firstItem="uSV-xF-Fse" firstAttribute="leading" secondItem="fMU-0u-Dsv" secondAttribute="leading" id="aGw-HG-JB3"/>
+                                    <constraint firstItem="IPq-Cy-r6p" firstAttribute="leading" secondItem="60a-f3-K0P" secondAttribute="trailing" constant="10" id="ocs-J3-XpG"/>
+                                    <constraint firstItem="Wpm-GH-DIS" firstAttribute="top" secondItem="uSV-xF-Fse" secondAttribute="bottom" constant="20" id="sPb-6m-Ln3"/>
+                                    <constraint firstItem="fMU-0u-Dsv" firstAttribute="top" secondItem="60a-f3-K0P" secondAttribute="bottom" constant="20" id="usc-5b-HaS"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="UQK-OR-aIB" secondAttribute="bottom" constant="10" id="8VJ-Ft-T6U"/>
+                            <constraint firstItem="UQK-OR-aIB" firstAttribute="top" secondItem="FdT-VH-6n6" secondAttribute="top" constant="5" id="DpX-MU-0RA"/>
+                            <constraint firstAttribute="trailing" secondItem="UQK-OR-aIB" secondAttribute="trailing" constant="10" id="d2i-I4-BJr"/>
+                            <constraint firstItem="UQK-OR-aIB" firstAttribute="leading" secondItem="FdT-VH-6n6" secondAttribute="leading" constant="10" id="tws-e2-xID"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="FdT-VH-6n6" secondAttribute="bottom" id="E5h-Tl-3SU"/>
+                    <constraint firstItem="FdT-VH-6n6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XdC-V2-MPu"/>
+                    <constraint firstItem="FdT-VH-6n6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bUV-L0-Kqf"/>
+                    <constraint firstAttribute="trailing" secondItem="FdT-VH-6n6" secondAttribute="trailing" id="y4I-ya-tOZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnApplyOulet" destination="Wpm-GH-DIS" id="KLy-mC-Vct"/>
+                <outlet property="lblAmoutOffer" destination="IPq-Cy-r6p" id="d3k-rW-uiI"/>
+                <outlet property="lblCode" destination="fMU-0u-Dsv" id="Hbg-RP-lma"/>
+            </connections>
+            <point key="canvasLocation" x="184.78260869565219" y="144.30803571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="promotiondetails" width="31" height="31"/>
+    </resources>
+</document>

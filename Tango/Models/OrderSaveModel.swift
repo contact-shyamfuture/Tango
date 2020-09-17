@@ -1,0 +1,22 @@
+//
+//  OrderSaveModel.swift
+//  Tango
+//
+//  Created by Samir Samanta on 28/08/20.
+//  Copyright © 2020 Samir Samanta. All rights reserved.
+//
+
+import UIKit
+
+class OrderSaveModel: NSObject {
+
+    var note = String()
+    var payment_mode = String()
+    var wallet = Int()
+    var delivery_charge = String()
+    var packaging_charge = String()
+    var user_address_id : Int?
+    var user_address = String()
+    var tips_amount = String()
+    var totalAmount = Int()
+}
