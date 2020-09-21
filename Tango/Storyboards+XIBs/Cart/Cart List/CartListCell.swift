@@ -54,7 +54,9 @@ class CartListCell: UITableViewCell {
     
     func intializecelletails(cellDic : CategoriesProducts , cartDetails : ProfiledetailsModel){
         lblItemMenu.text = cellDic.name
-        imgItemView.sd_setImage(with: URL(string: cellDic.categoriesProductsImages![0].url!))
+        if cellDic.categoriesProductsImages != nil && cellDic.categoriesProductsImages!.count > 0 {
+            imgItemView.sd_setImage(with: URL(string: cellDic.categoriesProductsImages![0].url ?? ""))
+        }
         lblPrice.text = "\(cellDic.pricesprice!)"
         cartAddView.isHidden = false
         if let cartList = cartDetails.userCart {
@@ -71,7 +73,10 @@ class CartListCell: UITableViewCell {
     func initializecellDetails(cellDic : ProfileCartModel){
         
         lblItemMenu.text = cellDic.CartProduct!.name
-        imgItemView.sd_setImage(with: URL(string: cellDic.CartProduct!.categoriesProductsImages![0].url!))
+        if cellDic.CartProduct!.categoriesProductsImages != nil && cellDic.CartProduct!.categoriesProductsImages!.count > 0 {
+            imgItemView.sd_setImage(with: URL(string: cellDic.CartProduct!.categoriesProductsImages![0].url!))
+        }
+        
         lblPrice.text = "\(cellDic.CartProduct!.cartItemPrice!.price! * cellDic.quantity!)"
        // cartAddView.isHidden = false
         cartAddView.isHidden = true

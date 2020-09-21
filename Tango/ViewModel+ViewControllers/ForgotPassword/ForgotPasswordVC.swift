@@ -1,8 +1,8 @@
 //
-//  LoginVC.swift
+//  ForgotPasswordVC.swift
 //  Tango
 //
-//  Created by Samir Samanta on 05/08/20.
+//  Created by Samir Samanta on 19/09/20.
 //  Copyright © 2020 Samir Samanta. All rights reserved.
 //
 
@@ -10,27 +10,27 @@ import UIKit
 import CoreLocation
 import CoreTelephony
 
-class LoginVC: UIViewController {
-    
-    @IBOutlet weak var loginTableView: UITableView!
+class ForgotPasswordVC: UIViewController {
+
+    @IBOutlet weak var tbRegisterMobileNumber: UITableView!
+    var saveObj = LoginModel()
     lazy var viewModel: SignUpVM = {
         return SignUpVM()
     }()
     var loginObj = LoginParam()
-    var saveObj = LoginModel()
-    
     var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loginTableView.delegate = self
-        self.loginTableView.dataSource = self
-        self.loginTableView.register(UINib(nibName: "LoginCommonCell", bundle: Bundle.main), forCellReuseIdentifier: "LoginCommonCell")
-        self.loginTableView.register(UINib(nibName: "CommonButtonCell", bundle: Bundle.main), forCellReuseIdentifier: "CommonButtonCell")
+        self.tbRegisterMobileNumber.delegate = self
+        self.tbRegisterMobileNumber.dataSource = self
+        self.tbRegisterMobileNumber.register(UINib(nibName: "LoginCommonCell", bundle: Bundle.main), forCellReuseIdentifier: "LoginCommonCell")
+        self.tbRegisterMobileNumber.register(UINib(nibName: "CommonButtonCell", bundle: Bundle.main), forCellReuseIdentifier: "CommonButtonCell")
         initializeViewModel()
+
+        // Do any additional setup after loading the view.
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        // navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -55,7 +55,6 @@ class LoginVC: UIViewController {
             print("ISO country code is: " + carrier.isoCountryCode!);
         }
     }
-    
     func getFlag(country:String) -> String {
         let base = 127397
         var usv = String.UnicodeScalarView()
@@ -65,92 +64,68 @@ class LoginVC: UIViewController {
         return String(usv)
     }
     
-    func loginAction(){
-        if loginObj.username != nil {
-            loginObj.username = self.saveObj.countryCode! + loginObj.username!
-        }
-        loginObj.password = loginObj.password
-        loginObj.client_id = "2"
-        loginObj.grant_type = "password"
-        loginObj.client_secret = "aMRXNeDgf8kq9izvggI3gAykX0cu46mAJIXN6w2j"
-        viewModel.sendLoginCredentialsToAPIService(user: loginObj)
-    }
-    
     func initializeViewModel() {
-        
-        viewModel.showAlertClosure = {[weak self]() in
-            DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
-                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: message, okButtonText: okText, completion: nil)
+            
+            viewModel.showAlertClosure = {[weak self]() in
+                DispatchQueue.main.async {
+                    if let message = self?.viewModel.alertMessage {
+                        self?.showAlertWithSingleButton(title: commonAlertTitle, message: message, okButtonText: okText, completion: nil)
+                    }
+                }
+            }
+            
+            viewModel.updateLoadingStatus = {[weak self]() in
+                DispatchQueue.main.async {
+                    
+                    let isLoading = self?.viewModel.isLoading ?? false
+                    if isLoading {
+                        self?.addLoaderView()
+                    } else {
+                        self?.removeLoaderView()
+                    }
+                }
+            }
+            
+            viewModel.refreshViewClosure = {[weak self]() in
+                DispatchQueue.main.async {
+                    
+                    if  (self?.viewModel.otpResponse.otp) != nil {
+                       
+                        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "OtpVerifyVC") as? OtpVerifyVC
+                        vc?.otpValue = self?.viewModel.otpResponse.otp
+                        vc?.phoneNumbr = self!.saveObj.username!
+                        self?.navigationController?.pushViewController(vc!, animated: false)
+                        
+                    }else{
+                        self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                    }
                 }
             }
         }
-        
-        viewModel.updateLoadingStatus = {[weak self]() in
-            DispatchQueue.main.async {
-                
-                let isLoading = self?.viewModel.isLoading ?? false
-                if isLoading {
-                    self?.addLoaderView()
-                } else {
-                    self?.removeLoaderView()
-                }
-            }
-        }
-        
-        viewModel.refreshViewClosure = {[weak self]() in
-            DispatchQueue.main.async {
-                
-                if  (self?.viewModel.userDetails.token_type) != nil {
-                    
-                    AppPreferenceService.setInteger(IS_LOGGED_IN, key: PreferencesKeys.loggedInStatus)
-                    
-                    AppPreferenceService.setString(String((self?.viewModel.userDetails.access_token)!), key: PreferencesKeys.userAccessToken)
-                    AppPreferenceService.setString(String((self?.viewModel.userDetails.refresh_token)!), key: PreferencesKeys.userrefreshToken)
-                    AppPreferenceService.setString(String((self?.viewModel.userDetails.token_type!)!), key: PreferencesKeys.userTokentype)
-                    
-                    
-                    let mainView = UIStoryboard(name:"Dashboard", bundle: nil)
-                    let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "DashboardVC") as! DashboardVC
-                    self?.navigationController?.pushViewController (viewcontroller, animated: true)
-                    
-                }else{
-                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
-                }
-            }
-        }
-    }
-    
-    @IBAction func btnFacebookLoginAction(_ sender: Any) {
-    }
-    
     
     @IBAction func btnRegisterAction(_ sender: Any) {
-        let mainView = UIStoryboard(name:"Main", bundle: nil)
-        let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "RegisterWithMobileVC") as! RegisterWithMobileVC
-        self.navigationController?.pushViewController (viewcontroller, animated: true)
+        navigationController?.popViewController(animated: true)
     }
     
-    
-    @IBAction func btnForgotAction(_ sender: Any) {
-        let mainView = UIStoryboard(name:"Main", bundle: nil)
-        let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "ForgotPasswordVC") as! ForgotPasswordVC
-        self.navigationController?.pushViewController (viewcontroller, animated: true)
+    @IBAction func btnFacebookAction(_ sender: Any) {
+        
     }
     
     func loginRegisttration(){
-        loginAction()
+        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ForgotPasswordOTPVC") as? ForgotPasswordOTPVC
+        vc?.otpValue = 0
+        vc?.phoneNumbr = self.saveObj.username!
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
 
-extension LoginVC : UITableViewDelegate, UITableViewDataSource  , CommonButtonAction{
+extension ForgotPasswordVC : UITableViewDelegate, UITableViewDataSource , CommonButtonAction {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 3
+        return 2
     }
     
     //"leftmenu-icon-messages.png"
@@ -172,31 +147,29 @@ extension LoginVC : UITableViewDelegate, UITableViewDataSource  , CommonButtonAc
             Cell.lblCountryCode.text = saveObj.countryCode
             return Cell
         case 1:
-            let Cell = tableView.dequeueReusableCell(withIdentifier: "LoginCommonCell") as! LoginCommonCell
-            Cell.txtField.text = saveObj.password
-            Cell.txtField.placeholder = "Password"
-            Cell.txtField.keyboardType = .default
-            Cell.txtField.isSecureTextEntry = true
-            Cell.txtField.tag = indexPath.row
-            Cell.txtField.delegate = self
-            Cell.codeConstraint.constant = 0
-            Cell.imgIcon.image = UIImage(named: "passwordIcon")
-            return Cell
-        case 2:
             let buttonCell = tableView.dequeueReusableCell(withIdentifier: "CommonButtonCell") as! CommonButtonCell
-            buttonCell.btnCommonOutlet.setTitle("SIGN IN", for: .normal)
             buttonCell.delegate = self
+            buttonCell.btnCommonOutlet.setTitle("NEXT", for: .normal)
             return buttonCell
+       
         default:
             return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        
+        switch indexPath.row {
+         case 0:
+             return 65
+         case 1:
+             return 70
+         default:
+             return 0
+         }
     }
 }
-extension LoginVC : UITextFieldDelegate {
+extension ForgotPasswordVC : UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
@@ -208,9 +181,7 @@ extension LoginVC : UITextFieldDelegate {
         print("Updated TextField:: \(updateText)")
         switch textField.tag {
             case 0:
-                loginObj.username = updateText as String
-            case 1:
-                loginObj.password = updateText as String
+                saveObj.username = updateText as String
             default:
                 break
         }
@@ -227,7 +198,7 @@ extension LoginVC : UITextFieldDelegate {
     }
 }
 
-extension LoginVC : CLLocationManagerDelegate {
+extension ForgotPasswordVC : CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -285,7 +256,7 @@ extension LoginVC : CLLocationManagerDelegate {
                         let s = self.flag(country: pm.isoCountryCode!)
                         print(s)
                         self.saveObj.coutryFlag = s
-                        self.loginTableView.reloadData()
+                        self.tbRegisterMobileNumber.reloadData()
                     }
                 }
         })
@@ -545,18 +516,5 @@ extension LoginVC : CLLocationManagerDelegate {
             return countryCode
         }
         return ""
-    }
-}
-extension String {
-    func image() -> UIImage? {
-        let size = CGSize(width: 40, height: 40)
-        UIGraphicsBeginImageContextWithOptions(size, false, 0)
-        UIColor.white.set()
-        let rect = CGRect(origin: .zero, size: size)
-        UIRectFill(CGRect(origin: .zero, size: size))
-        (self as AnyObject).draw(in: rect, withAttributes: [.font: UIFont.systemFont(ofSize: 40)])
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
     }
 }

@@ -34,6 +34,7 @@ class OrderListVC: BaseViewController {
         tblVwOrderList.register(OrderListCell.nib(), forCellReuseIdentifier: OrderListCell.identifier)
         tblVwOrderList.tableFooterView = UIView()
     }
+    
     func initializeViewModel() {
         viewModel.showAlertClosure = {[weak self]() in
             DispatchQueue.main.async {

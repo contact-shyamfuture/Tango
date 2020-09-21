@@ -106,9 +106,9 @@ class ProfileVC: BaseViewController {
     
     @IBAction func btnActionEdit(_ sender: Any) {
         
-        let mainView = UIStoryboard(name:"Profile", bundle: nil)
-        let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "ProfileEditVC") as! ProfileEditVC
-        self.navigationController?.pushViewController (viewcontroller, animated: true)
+        let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProfileEditVC") as? ProfileEditVC
+        vc?.userdetails = self.userdetails
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func btnLogOutAction(_ sender: Any) {
@@ -180,12 +180,14 @@ extension ProfileVC : UITableViewDelegate,UITableViewDataSource{
         switch indexPath.row {
         case 0:
             let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddressListVC") as? AddressListVC
+            vc?.isSelected = false
             self.navigationController?.pushViewController(vc!, animated: true)
         case 1:
             let vc = UIStoryboard.init(name: "Cart", bundle: Bundle.main).instantiateViewController(withIdentifier: "FavouritesVC") as? FavouritesVC
             self.navigationController?.pushViewController(vc!, animated: true)
         case 2:
             let vc = UIStoryboard.init(name: "Cart", bundle: Bundle.main).instantiateViewController(withIdentifier: "WalletVC") as? WalletVC
+            vc?.wallet_balance = self.userdetails.wallet_balance
             self.navigationController?.pushViewController(vc!, animated: true)
         case 3:
             let vc = UIStoryboard.init(name: "Cart", bundle: Bundle.main).instantiateViewController(withIdentifier: "OrderListVC") as? OrderListVC

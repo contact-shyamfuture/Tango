@@ -45,6 +45,7 @@ class OrderListCell: UITableViewCell {
         lblOrderDate.text = getFormattedDate(string: model.shopList?.created_at ?? "")
         lblTotalAmount.text = "₹\(model.invoiceDetails?.payable ?? 0)"
     }
+    
     func getFormattedDate(string: String) -> String{
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss" //2020-05-12T08:09:46.930608Z

@@ -11,6 +11,7 @@ import UIKit
 class WalletVC: BaseViewController {
 
     @IBOutlet weak var walletsTableView: UITableView!
+    var wallet_balance : Int?
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.imgLogo.isHidden = true
@@ -24,6 +25,7 @@ class WalletVC: BaseViewController {
         walletsTableView.dataSource = self
     }
 }
+
 extension WalletVC : UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -39,6 +41,7 @@ extension WalletVC : UITableViewDelegate,UITableViewDataSource{
             return Cell
         case 1:
             let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletsList") as! WalletsList
+            Cell.lblAmount.text = "\(wallet_balance ?? 0)"
             return Cell
         default:
             return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
@@ -58,6 +61,7 @@ extension WalletVC : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard.init(name: "Cart", bundle: Bundle.main).instantiateViewController(withIdentifier: "WalletsHistoryVC") as? WalletsHistoryVC
+        vc!.wallet_balance = wallet_balance
         self.navigationController?.pushViewController(vc!, animated: true)
     }
 }

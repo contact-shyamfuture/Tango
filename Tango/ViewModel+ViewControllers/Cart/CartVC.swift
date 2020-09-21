@@ -127,6 +127,7 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
     func selectAddress(){
         let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddressListVC") as? AddressListVC
         vc?.delegate = self
+        vc?.isSelected = true
         self.navigationController?.pushViewController(vc!, animated: false)
     }
     

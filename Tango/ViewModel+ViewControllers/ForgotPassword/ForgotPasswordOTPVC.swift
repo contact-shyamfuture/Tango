@@ -1,27 +1,27 @@
 //
-//  OtpVerifyVC.swift
+//  ForgotPasswordOTPVC.swift
 //  Tango
 //
-//  Created by Samir Samanta on 05/08/20.
+//  Created by Samir Samanta on 19/09/20.
 //  Copyright © 2020 Samir Samanta. All rights reserved.
 //
 
 import UIKit
+import UIKit
 import SVPinView
 
-class OtpVerifyVC: UIViewController {
+class ForgotPasswordOTPVC: UIViewController {
 
-    @IBOutlet weak var lblPhoneNumber: UILabel!
     @IBOutlet weak var otpView: SVPinView!
+    @IBOutlet weak var lblPhoneNumber: UILabel!
     @IBOutlet weak var otpTableView: UITableView!
     var otpValue : Int?
     var pinValue : String?
     var phoneNumbr : String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("OTP Value : \(pinValue)")
-        
+
         self.otpTableView.delegate = self
         self.otpTableView.dataSource = self
         self.lblPhoneNumber.text = phoneNumbr
@@ -30,18 +30,21 @@ class OtpVerifyVC: UIViewController {
         otpView.didChangeCallback = { pin in
             print("The entered pin is \(pin)")
         }
-        // Do any additional setup after loading the view.
     }
     
     func loginRegisttration(){
-        let data = String (otpValue!)
+      /*  let data = String (otpValue!)
         if pinValue != nil && data == pinValue {
             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RegisterVC") as? RegisterVC
             vc?.phoneNumbr = self.phoneNumbr
             self.navigationController?.pushViewController(vc!, animated: false)
         }else{
             
-        }
+        } */
+        
+        let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ForgotChangePasswordVC") as? ForgotChangePasswordVC
+        vc?.phoneNumbr = self.phoneNumbr
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func didFinishEnteringPin(pin:String) {
@@ -76,9 +79,12 @@ class OtpVerifyVC: UIViewController {
         gradientLayer.name = "gradientLayer"
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    @IBAction func btnResendOtp(_ sender: Any) {
+    }
+    
 }
 
-extension OtpVerifyVC : UITableViewDelegate, UITableViewDataSource , CommonButtonAction {
+extension ForgotPasswordOTPVC : UITableViewDelegate, UITableViewDataSource , CommonButtonAction {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

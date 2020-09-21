@@ -13,6 +13,9 @@ protocol DeliveryLocationSaved {
 }
 class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
     
+    @IBOutlet weak var txtFieldOther: UITextField!
+    @IBOutlet weak var otherMainView: RoundUIView!
+    @IBOutlet weak var otherBgView: UIView!
     //properties outlet.
     @IBOutlet weak var tblVw : UITableView!
     var locationManager = CLLocationManager()
@@ -32,6 +35,13 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         configureUI()
         initializeViewModel()
         
+        otherMainView.isHidden = true
+        otherBgView.isHidden = true
+        
+        txtFieldOther.delegate = self
+        headerView.imgLogo.isHidden = true
+        tabBarView.isHidden = true
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -42,7 +52,7 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         hostMapView.mapType = MKMapType.standard
         hostMapView.showsUserLocation = true
         // Do any additional setup after loading the view.
-        param.type = "Shop"
+        
         let longTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         hostMapView.addGestureRecognizer(longTapGesture)
     }
@@ -179,9 +189,25 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         tblVw.register(DeliveryDetailsCell.nib(), forCellReuseIdentifier: DeliveryDetailsCell.identifier)
     }
     @IBAction func btnSaveAction(_ sender : UIButton){
-        
         viewModel.getAddressSaveResponse(param: param)
     }
+    
+    @IBAction func btnOtherViewCancel(_ sender: Any) {
+        otherMainView.isHidden = true
+        otherBgView.isHidden = true
+    }
+    
+    @IBAction func btnOtherSave(_ sender: Any) {
+        if txtFieldOther.text  == "" {
+            self.showAlertWithSingleButton(title: commonAlertTitle, message: "Please enter type", okButtonText: okText, completion: nil)
+        }else{
+            param.type = txtFieldOther.text
+            otherMainView.isHidden = true
+            otherBgView.isHidden = true
+            tblVw.reloadData()
+        }
+    }
+    
     
     func initializeViewModel() {
         viewModel.showAlertClosure = {[weak self]() in
@@ -209,18 +235,36 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
                 if self?.viewModel.addressSave.type != nil {
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: (self?.viewModel.addressSave.type![0])!, okButtonText: okText, completion: nil)
                 }else{
-                    if self?.viewModel.addressSave.message != nil {
-                        self?.showAlertWithSingleButton(title: commonAlertTitle, message: (self?.viewModel.addressSave.message)!, okButtonText: okText, completion: {
-                            self?.navigationController?.popViewController(animated: true)
-                        })
-                    }
+//                    if self?.viewModel.addressSave.message != nil {
+//
+//                    }
+//                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "AD", okButtonText: okText, completion: {
+//
+//                    })
+                    
+                    self?.navigationController?.popViewController(animated: true)
                 }
             }
         }
     }
+    
+    func selectedType(type : String){
+        switch type {
+        case "Home":
+            param.type = "Home"
+        case "Office":
+            param.type = "Office"
+        case "Other":
+            otherMainView.isHidden = false
+            otherBgView.isHidden = false
+        default:
+            break
+        }
+        tblVw.reloadData()
+    }
 }
 
-extension DeliveryLocationVC : UITableViewDataSource,UITableViewDelegate{
+extension DeliveryLocationVC : UITableViewDataSource,UITableViewDelegate , addressTypeSelected{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -243,7 +287,28 @@ extension DeliveryLocationVC : UITableViewDataSource,UITableViewDelegate{
             Cell.txtFldlandmark.text = param.landmark
             Cell.txtFldHouseNo.tag = 1
             Cell.txtFldlandmark.tag = 2
+            Cell.delegate = self
+            
+            switch param.type {
+            case "Home":
+                Cell.homebgView.backgroundColor = .yellow
+                Cell.officebgView.backgroundColor = .clear
+                Cell.otherBgView.backgroundColor = .clear
+            case "Office":
+                Cell.officebgView.backgroundColor = .yellow
+                Cell.homebgView.backgroundColor = .clear
+                Cell.otherBgView.backgroundColor = .clear
+            case txtFieldOther.text:
+                Cell.otherBgView.backgroundColor = .yellow
+                Cell.homebgView.backgroundColor = .clear
+                Cell.officebgView.backgroundColor = .clear
+            default:
+                Cell.homebgView.backgroundColor = .clear
+                Cell.officebgView.backgroundColor = .clear
+                Cell.otherBgView.backgroundColor = .clear
+            }
             return Cell
+            
         default:
             return UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "Cell")
         }

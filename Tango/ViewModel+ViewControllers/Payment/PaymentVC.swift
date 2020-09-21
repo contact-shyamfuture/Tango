@@ -92,11 +92,25 @@ class PaymentVC: BaseViewController {
         let param = OrderParam()
         param.note = orderSave.note
         param.payment_mode = "cash"
-        param.wallet = Int(orderSave.wallet)
-        param.delivery_charge = Int(userCartList.delivery_charges!)
-        param.packaging_charge = Int(userCartList.packaging_charge!)
-        param.user_address_id = orderSave.user_address_id
-        param.tips_amount =  Double(orderSave.tips_amount)
+        param.wallet = String(orderSave.wallet)
+        param.delivery_charge = String(userCartList.delivery_charges!)
+        param.packaging_charge = String(userCartList.packaging_charge!)
+        param.user_address_id = String(orderSave.user_address_id!)
+        param.tips_amount =  String(orderSave.tips_amount)
+        viewModel.postOrderToAPIService(user: param)
+    }
+    func orderOnline(paymet_status : String , paymetID : String){
+        
+        let param = OrderParam()
+        param.note = orderSave.note
+        param.payment_mode = "payu"
+        param.wallet = String(orderSave.wallet)
+        param.delivery_charge = String(userCartList.delivery_charges!)
+        param.packaging_charge = String(userCartList.packaging_charge!)
+        param.user_address_id = String(orderSave.user_address_id!)
+        param.tips_amount =  String(orderSave.tips_amount)
+        param.payment_id = paymetID
+        param.paymet_status = paymet_status
         viewModel.postOrderToAPIService(user: param)
     }
     
@@ -168,7 +182,7 @@ class PaymentVC: BaseViewController {
         paymentParams.key = "266Medoj"
         paymentParams.merchantid = "6891096"
         paymentParams.txnID = txnId
-        paymentParams.amount = "500"
+        paymentParams.amount = "\(orderSave.totalAmount)"
         paymentParams.productInfo = "Tango"
         paymentParams.firstname = userdetails.name
         paymentParams.email = userdetails.email
@@ -195,6 +209,10 @@ class PaymentVC: BaseViewController {
                 var message = ""
                 if paymentResponse?["result"] != nil && (paymentResponse?["result"] is [AnyHashable : Any]) {
                     print(paymentResponse!)
+                    let resultDic = paymentResponse!["result"] as! Dictionary<String,Any>
+                    let payemtnID = resultDic["paymentId"] as? Int ?? 0
+                    let payemtnStatus = resultDic["status"] as? String ?? ""
+                    self.orderOnline(paymet_status: payemtnStatus , paymetID: "\(payemtnID)")
                 } else {
                     message = paymentResponse?["status"] as? String ?? ""
                 }
@@ -304,6 +322,15 @@ extension PaymentVC : UITableViewDelegate,UITableViewDataSource , selectPaymentO
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                selectOption(index : 1)
+            }else{
+                selectOption(index : 2)
+            }
+        }else{
+            selectOption(index : 3)
+        }
         
     }
     

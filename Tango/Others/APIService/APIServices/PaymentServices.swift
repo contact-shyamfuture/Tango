@@ -17,10 +17,10 @@ class PaymentServices: PaymentServicesProtocol {
     
     func postOrderDetails(params : [String: Any], completion: RequestCompletionHandler?) {
         let loginApi = APIConstants.orderApi()
+        //application/x-www-form-urlencoded  encoding: JSONEncoding.default,
+        let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/json" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
         
-        let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
-        
-        Alamofire.request(loginApi, method: .post, parameters: params, headers: header).responseObject {(response: DataResponse<OrderDetailsModel>) in
+        Alamofire.request(loginApi, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header).responseObject {(response: DataResponse<OrderDetailsModel>) in
             print("loginApi==>\(loginApi)")
             let loginApiResponse : Response!
             

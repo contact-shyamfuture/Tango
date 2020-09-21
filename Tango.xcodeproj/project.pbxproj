@@ -71,6 +71,7 @@
 		9E55780724FD170700096314 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55780624FD170700096314 /* SearchVC.swift */; };
 		9E55780A24FD3EE600096314 /* SearchRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55780824FD3EE600096314 /* SearchRestaurantCell.swift */; };
 		9E55780B24FD3EE600096314 /* SearchRestaurantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E55780924FD3EE600096314 /* SearchRestaurantCell.xib */; };
+		9E7526D42515E28D00C42E9C /* ChatUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7526D32515E28D00C42E9C /* ChatUsVC.swift */; };
 		9E99E27F250901C7003B00C7 /* TopBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E99E27E250901C7003B00C7 /* TopBannerModel.swift */; };
 		9E99E2822509092C003B00C7 /* SafetyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E99E2802509092C003B00C7 /* SafetyCollectionCell.swift */; };
 		9E99E2832509092C003B00C7 /* SafetyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E99E2812509092C003B00C7 /* SafetyCollectionCell.xib */; };
@@ -132,6 +133,10 @@
 		9EEA4B9624F44A420087C0F9 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EEA4B9524F44A420087C0F9 /* RegisterModel.swift */; };
 		9EECB0632505F92800F6C054 /* DishesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EECB0612505F92800F6C054 /* DishesCell.swift */; };
 		9EECB0642505F92800F6C054 /* DishesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EECB0622505F92800F6C054 /* DishesCell.xib */; };
+		9EF3E2C42514D94D00A0D397 /* WalletsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF3E2C32514D94D00A0D397 /* WalletsModel.swift */; };
+		9EF3E2C72515C0FB00A0D397 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF3E2C62515C0FB00A0D397 /* ForgotPasswordVC.swift */; };
+		9EF3E2C92515C32E00A0D397 /* ForgotPasswordOTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF3E2C82515C32E00A0D397 /* ForgotPasswordOTPVC.swift */; };
+		9EF3E2CB2515C99300A0D397 /* ForgotChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF3E2CA2515C99300A0D397 /* ForgotChangePasswordVC.swift */; };
 		D02C8624A927CC3A72B2B349 /* Pods_Tango_TangoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A477DFDA8663E82A1BF6D5B9 /* Pods_Tango_TangoUITests.framework */; };
 		EF0DA46924E7C73A00B6BACA /* Other.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF0DA46824E7C73A00B6BACA /* Other.storyboard */; };
 		EF0DA46C24E7C91A00B6BACA /* DeliveryLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF0DA46B24E7C91A00B6BACA /* DeliveryLocationVC.swift */; };
@@ -263,6 +268,7 @@
 		9E55780624FD170700096314 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		9E55780824FD3EE600096314 /* SearchRestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestaurantCell.swift; sourceTree = "<group>"; };
 		9E55780924FD3EE600096314 /* SearchRestaurantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRestaurantCell.xib; sourceTree = "<group>"; };
+		9E7526D32515E28D00C42E9C /* ChatUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsVC.swift; sourceTree = "<group>"; };
 		9E99E27E250901C7003B00C7 /* TopBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBannerModel.swift; sourceTree = "<group>"; };
 		9E99E2802509092C003B00C7 /* SafetyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyCollectionCell.swift; sourceTree = "<group>"; };
 		9E99E2812509092C003B00C7 /* SafetyCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SafetyCollectionCell.xib; sourceTree = "<group>"; };
@@ -332,6 +338,10 @@
 		9EEA4B9524F44A420087C0F9 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		9EECB0612505F92800F6C054 /* DishesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesCell.swift; sourceTree = "<group>"; };
 		9EECB0622505F92800F6C054 /* DishesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DishesCell.xib; sourceTree = "<group>"; };
+		9EF3E2C32514D94D00A0D397 /* WalletsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletsModel.swift; sourceTree = "<group>"; };
+		9EF3E2C62515C0FB00A0D397 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		9EF3E2C82515C32E00A0D397 /* ForgotPasswordOTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordOTPVC.swift; sourceTree = "<group>"; };
+		9EF3E2CA2515C99300A0D397 /* ForgotChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotChangePasswordVC.swift; sourceTree = "<group>"; };
 		A477DFDA8663E82A1BF6D5B9 /* Pods_Tango_TangoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tango_TangoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6257FD7D50C4BBB7C4682A4 /* Pods-TangoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TangoTests.debug.xcconfig"; path = "Target Support Files/Pods-TangoTests/Pods-TangoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C5B0B3207DD9B780AAA2BAB4 /* Pods-Tango.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tango.debug.xcconfig"; path = "Target Support Files/Pods-Tango/Pods-Tango.debug.xcconfig"; sourceTree = "<group>"; };
@@ -732,6 +742,7 @@
 		9EE7218F24C96800006D0F19 /* ViewModel+ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9EF3E2C52515C0DB00A0D397 /* ForgotPassword */,
 				9E55780524FD143C00096314 /* Search */,
 				9E311F0F24FCDC93000941B7 /* ChangePassword */,
 				9E311F0824FCD6AA000941B7 /* PromoCode */,
@@ -808,6 +819,7 @@
 				9EAE480A250771ED0044E350 /* SearchModel.swift */,
 				9E99E27E250901C7003B00C7 /* TopBannerModel.swift */,
 				9E99E28425090EB0003B00C7 /* SafetyModel.swift */,
+				9EF3E2C32514D94D00A0D397 /* WalletsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -978,6 +990,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		9EF3E2C52515C0DB00A0D397 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				9EF3E2C62515C0FB00A0D397 /* ForgotPasswordVC.swift */,
+				9EF3E2C82515C32E00A0D397 /* ForgotPasswordOTPVC.swift */,
+				9EF3E2CA2515C99300A0D397 /* ForgotChangePasswordVC.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 		C79515793A5DEEC472DB2467 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1002,6 +1024,7 @@
 			children = (
 				EF0DEDD024E97DA800BA4161 /* DeliveryDetailsVC.swift */,
 				EFD35AB524FF9EEF00AE95E6 /* DeliveryDetailsVM.swift */,
+				9E7526D32515E28D00C42E9C /* ChatUsVC.swift */,
 			);
 			path = DeliveryDetails;
 			sourceTree = "<group>";
@@ -1488,6 +1511,7 @@
 			files = (
 				9E1318A224F92B8200B21CE2 /* UserCartServices.swift in Sources */,
 				9E311F0A24FCD6D0000941B7 /* PromoCodeVC.swift in Sources */,
+				9EF3E2C72515C0FB00A0D397 /* ForgotPasswordVC.swift in Sources */,
 				EF6E6D9124E6BBEA0046618A /* CartAddressCell.swift in Sources */,
 				9EEA4B8E24F43BF70087C0F9 /* SignUpServices.swift in Sources */,
 				9EE721BC24C977CD006D0F19 /* AppStrings.swift in Sources */,
@@ -1507,7 +1531,10 @@
 				9EE721A624C96991006D0F19 /* IQDropDownTextField.m in Sources */,
 				EFD35AAC24FF612E00AE95E6 /* AddressListVM.swift in Sources */,
 				9EE721C024C97803006D0F19 /* APIConstants.swift in Sources */,
+				9EF3E2CB2515C99300A0D397 /* ForgotChangePasswordVC.swift in Sources */,
 				9E0DE86024F4D47E00B0E83B /* RestaurantModel.swift in Sources */,
+				9E7526D42515E28D00C42E9C /* ChatUsVC.swift in Sources */,
+				9EF3E2C42514D94D00A0D397 /* WalletsModel.swift in Sources */,
 				9EE7219424C96847006D0F19 /* CapsPageMenu.swift in Sources */,
 				9E1318AA24F9792000B21CE2 /* OrderDetailsModel.swift in Sources */,
 				9E01C5F924EEA1860089470D /* ItemCell.swift in Sources */,
@@ -1570,6 +1597,7 @@
 				9EE7219824C96873006D0F19 /* CustomLoaderView.swift in Sources */,
 				9E0DE86424F4ED6300B0E83B /* DashboardVM.swift in Sources */,
 				9E0DE87024F533A500B0E83B /* ProfileSettingCell.swift in Sources */,
+				9EF3E2C92515C32E00A0D397 /* ForgotPasswordOTPVC.swift in Sources */,
 				9E0DE87A24F6B56000B0E83B /* ProfiledetailsModel.swift in Sources */,
 				EFD35ABC24FFD95800AE95E6 /* OrderListModel.swift in Sources */,
 				9EAE480B250771ED0044E350 /* SearchModel.swift in Sources */,
@@ -1774,15 +1802,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 85MWHQDG4T;
 				INFOPLIST_FILE = Tango/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.Tango;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tangoeateries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = TangoUserAdhok;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/09.09.2020/Samir/Tango/Tango/Others/HelperClasses/Lib/IQTextField/Tango-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1796,15 +1827,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 85MWHQDG4T;
 				INFOPLIST_FILE = Tango/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.Tango;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tangoeateries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = TangoUserAdhok;
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/09.09.2020/Samir/Tango/Tango/Others/HelperClasses/Lib/IQTextField/Tango-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

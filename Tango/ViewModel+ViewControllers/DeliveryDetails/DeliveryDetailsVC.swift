@@ -87,6 +87,7 @@ class DeliveryDetailsVC: BaseViewController {
         tblVw.tableFooterView = tblFooterVw
         tblVw.reloadData()
     }
+    
     func initializeViewModel() {
         viewModel.showAlertClosure = {[weak self]() in
             DispatchQueue.main.async {
@@ -158,8 +159,11 @@ class DeliveryDetailsVC: BaseViewController {
     }
     
     @IBAction func chatUsAction(_ sender: UIButton) {
-        print("Chat with us Action click")
+        
+        let vc = UIStoryboard.init(name: "Other", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChatUsVC") as? ChatUsVC
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
+    
     @IBAction func btnCancelOrderAction(_ sender: UIButton) {
         self.lblCancelPopupOrderID.text = self.lblOrderId.text
         vwCancelPopUp.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
@@ -264,14 +268,21 @@ extension DeliveryDetailsVC : UITextViewDelegate{
         }
     }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        let txtAfterUpdate = textView.text! as NSString
+//        let updateText = txtAfterUpdate.replacingCharacters(in: range, with: text) as String
+//        print("Updated TextField:: \(updateText)")
+//
         let txtAfterUpdate = textView.text! as NSString
-        let updateText = txtAfterUpdate.replacingCharacters(in: range, with: text) as String
+        let updateText = txtAfterUpdate.replacingCharacters(in: range, with: text) as NSString
         print("Updated TextField:: \(updateText)")
-        if textView == txtVwCancelReason{
-            txtVwCancelReason.text = updateText
-        }else{
-            txtVwComplainDesc.text = updateText
-        }
+        
+//        if textView == txtVwCancelReason{
+//            txtVwCancelReason.text = updateText as String
+//        }else{
+//            txtVwComplainDesc.text = updateText as String
+//        }
+        
+        
         
         return true
     }

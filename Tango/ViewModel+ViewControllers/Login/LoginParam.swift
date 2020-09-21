@@ -96,11 +96,13 @@ class OrderParam: Mappable {
 
     var note : String?
     var payment_mode : String?
-    var wallet : Int?
-    var delivery_charge : Int?
-    var packaging_charge : Int?
-    var user_address_id : Int?
-    var tips_amount : Double?
+    var wallet : String?
+    var delivery_charge : String?
+    var packaging_charge : String?
+    var user_address_id : String?
+    var tips_amount : String?
+    var payment_id : String?
+    var paymet_status : String?
     
     init() {}
     required init?(map: Map) {
@@ -115,5 +117,8 @@ class OrderParam: Mappable {
         packaging_charge <- map["packaging_charge"]
         user_address_id <- map["user_address_id"]
         tips_amount <- map["tips_amount"]
+        payment_id <- map["payment_id"]
+        paymet_status <- map["paymet_status"]
+        
     }
 }

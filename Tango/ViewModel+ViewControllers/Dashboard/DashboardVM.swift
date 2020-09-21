@@ -23,6 +23,8 @@ class DashboardVM {
     var userdetails = ProfiledetailsModel()
     var topBanner = [TopBannerModel]()
     var safetyBanner = [SafetyModel]()
+    var WalletsDetails = [WalletsModel]()
+    
     var isLoading: Bool = false {
         didSet {
             self.updateLoadingStatus?()
@@ -126,6 +128,30 @@ class DashboardVM {
                 if  let getUserDetails = responseData {
                     self?.safetyBanner = getUserDetails
                     self?.refreshSafetyBannerViewClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
+    
+    func getWalletsAPIService(){
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        
+        self.isLoading = true
+        self.apiService.getWalletsDetails() { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? [WalletsModel]
+                if  let getUserDetails = responseData {
+                    self?.WalletsDetails = getUserDetails
+                    self?.refreshViewClosure?()
                 } else {
                     self?.alertMessage = ""
                 }

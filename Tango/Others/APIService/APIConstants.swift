@@ -26,6 +26,7 @@ class APIConstants: NSObject {
     static let disputeURL =  "api/user/dispute"
     static let topBannerURL =  "api/user/banner"
     static let safetyBannerURL =  "api/user/footer-banner"
+    static let walletsURL =  "api/user/wallet"
     
     
     
@@ -77,5 +78,9 @@ class APIConstants: NSObject {
     
     static func safetyBannerApi() -> String {
         return baseURL + safetyBannerURL
+    }
+    
+    static func walletsApi() -> String {
+        return baseURL + walletsURL
     }
 }

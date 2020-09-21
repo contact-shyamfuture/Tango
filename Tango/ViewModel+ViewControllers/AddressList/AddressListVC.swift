@@ -17,7 +17,7 @@ class AddressListVC: BaseViewController {
         return AddressListVM()
     }()
     var addressList = [AddressListModel]()
-    var isSelected = false
+    var isSelected :  Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
         

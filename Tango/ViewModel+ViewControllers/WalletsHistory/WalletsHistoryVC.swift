@@ -11,6 +11,12 @@ import UIKit
 class WalletsHistoryVC: BaseViewController {
 
     @IBOutlet weak var walletsHistoryTable: UITableView!
+    
+    lazy var viewModel: DashboardVM = {
+        return DashboardVM()
+    }()
+    var wallet_balance : Int?
+    var WalletsDetails = [WalletsModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,14 +29,59 @@ class WalletsHistoryVC: BaseViewController {
         
         walletsHistoryTable.delegate = self
         walletsHistoryTable.dataSource = self
+        getWalletsDetails()
+    }
+    
+    func getWalletsDetails(){
+        viewModel.getWalletsAPIService()
+    }
+    
+    func initializeViewModel() {
+        viewModel.showAlertClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                if let message = self?.viewModel.alertMessage {
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: message, okButtonText: okText, completion: nil)
+                }
+            }
+        }
+        
+        viewModel.updateLoadingStatus = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                let isLoading = self?.viewModel.isLoading ?? false
+                if isLoading {
+                    self?.addLoaderView()
+                } else {
+                    self?.removeLoaderView()
+                }
+            }
+        }
+        
+        viewModel.refreshViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.WalletsDetails) != nil {
+                    self?.WalletsDetails = (self?.viewModel.WalletsDetails)!
+                    self?.walletsHistoryTable.reloadData()
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Profile", okButtonText: okText, completion: nil)
+                }
+            }
+        }
     }
 }
 extension WalletsHistoryVC : UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 12
+        if WalletsDetails != nil && WalletsDetails.count > 0 {
+            return WalletsDetails.count + 3
+        }else{
+            return 3
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,13 +92,15 @@ extension WalletsHistoryVC : UITableViewDelegate,UITableViewDataSource{
             return Cell
         case 1:
             let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletsList") as! WalletsList
+            Cell.lblAmount.text = "\(wallet_balance ?? 0)"
             return Cell
         case 2:
             let Cell = tableView.dequeueReusableCell(withIdentifier: "WallesTopCells") as! WallesTopCells
             Cell.lblTitle.text = "HISTORY"
             return Cell
-        case 3...11:
+        case 3...WalletsDetails.count + 3:
             let Cell = tableView.dequeueReusableCell(withIdentifier: "WalletsHistoryCell") as! WalletsHistoryCell
+            Cell.initializeCellDetails(cell: WalletsDetails[indexPath.row - 3])
             return Cell
             
         default:
