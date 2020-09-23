@@ -27,7 +27,9 @@ class APIConstants: NSObject {
     static let topBannerURL =  "api/user/banner"
     static let safetyBannerURL =  "api/user/footer-banner"
     static let walletsURL =  "api/user/wallet"
-    
+    static let forgotOtpurl = "api/user/forgot/password"
+    static let forgotReset = "api/user/reset/password"
+    static let deleteAddress = "api/user/address/"
     
     
     static func logInApi() -> String {
@@ -36,6 +38,14 @@ class APIConstants: NSObject {
     
     static func otpApi() -> String {
         return baseURL + otpURL
+    }
+    
+    static func forgotOtpApi() -> String {
+        return baseURL + forgotOtpurl
+    }
+    
+    static func forgotChangePasswordApi() -> String {
+        return baseURL + forgotReset
     }
     
     static func registerApi() -> String {
@@ -82,5 +92,9 @@ class APIConstants: NSObject {
     
     static func walletsApi() -> String {
         return baseURL + walletsURL
+    }
+    
+    static func deleteAddressApi() -> String {
+        return baseURL + deleteAddress
     }
 }

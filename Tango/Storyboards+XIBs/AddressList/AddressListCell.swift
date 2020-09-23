@@ -7,15 +7,20 @@
 //
 
 import UIKit
-
+protocol manageAddress {
+    func manageAddressDelete(index : Int)
+    func manageAddressEdit(index : Int)
+}
 class AddressListCell: UITableViewCell {
 
+    @IBOutlet weak var editbtnOutlet: UIButton!
+    @IBOutlet weak var deleteBtnOutlet: UIButton!
     @IBOutlet weak var imgRadio: UIImageView!
     @IBOutlet weak var imgType: UIImageView!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var btnStackVw: UIStackView!
-    
+    var delegate : manageAddress?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -28,8 +33,10 @@ class AddressListCell: UITableViewCell {
     }
     
     @IBAction func btnEditAction(_ sender: UIButton) {
+        delegate?.manageAddressEdit(index: sender.tag)
     }
     
     @IBAction func btnDeleteAction(_ sender: UIButton) {
+        delegate?.manageAddressDelete(index: sender.tag)
     }
 }

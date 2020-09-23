@@ -119,6 +119,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="deleteBtnOutlet" destination="Qy8-nh-7vz" id="aQQ-2T-rap"/>
+                <outlet property="editbtnOutlet" destination="jKG-Qx-Eit" id="osk-e0-E8L"/>
                 <outlet property="imgRadio" destination="PrL-t2-Tx3" id="L9G-oT-qn7"/>
                 <outlet property="imgType" destination="bwD-sq-hFx" id="0dy-rC-0tl"/>
                 <outlet property="lblAddress" destination="QOK-on-jyT" id="uYi-ct-WSk"/>

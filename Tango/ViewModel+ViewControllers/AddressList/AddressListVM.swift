@@ -12,11 +12,12 @@ class AddressListVM {
     
     let apiService: AddressServicesProtocol
     var refreshViewClosure: (() -> ())?
+    var refreshDeleteViewClosure: (() -> ())?
     var showAlertClosure: (()->())?
     var updateLoadingStatus: (()->())?
 
     var addressList = [AddressListModel]()
-    
+    var deleteAdd = AddressSaveModel()
     var isLoading: Bool = false {
         didSet {
             self.updateLoadingStatus?()
@@ -55,5 +56,29 @@ class AddressListVM {
                  }
              }
      }
+    
+    func deleteAddressDetails(id : String) {
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+            self.isLoading = true
+        self.apiService.deleteAddressDetails(addressID: id) { [weak self] (response) in
+                self?.isLoading = false
+                if response.responseStatus == .success {
+                    let responseData = response.data as? AddressSaveModel
+                    if  let getUserDetails = responseData {
+                        self?.deleteAdd = getUserDetails
+                        self?.refreshDeleteViewClosure?()
+                    } else {
+                        self?.alertMessage = "Failed"
+                    }
+                } else {
+                    self?.alertMessage = response.message
+                }
+            }
+    }
+    
     
 }

@@ -28,7 +28,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="1rM-xF-zvz">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="1rM-xF-zvz">
                                             <rect key="frame" x="10" y="37.5" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="60" id="9jX-Dj-mDv"/>
@@ -313,16 +313,13 @@
                                             <constraint firstAttribute="width" constant="100" id="zeZ-Xs-B2E"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-WP-qjY">
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Im-WP-qjY">
                                         <rect key="frame" x="218" y="-50" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="FpJ-58-aNH"/>
                                             <constraint firstAttribute="height" constant="60" id="VB2-3S-bgW"/>
                                         </constraints>
                                         <state key="normal" image="notes"/>
-                                        <connections>
-                                            <action selector="btnUploadImage:" destination="kCO-7G-3V1" eventType="touchUpInside" id="kcq-Nx-atg"/>
-                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Gau-x0-bvA">
                                         <rect key="frame" x="15" y="20" width="344" height="250"/>
@@ -480,6 +477,17 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fnn-DJ-W1e">
+                                <rect key="frame" x="137" y="138" width="140" height="106"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="aox-3p-OVN"/>
+                                    <constraint firstAttribute="height" constant="106" id="sEg-Oo-Mce"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="uploadProfileImageBtnAction:" destination="kCO-7G-3V1" eventType="touchUpInside" id="baD-Z9-6uI"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1O-NE-gNy" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
                                 <rect key="frame" x="20" y="599" width="374" height="50"/>
                                 <subviews>
@@ -521,6 +529,8 @@
                             <constraint firstItem="ABv-Wh-3Dm" firstAttribute="leading" secondItem="UOg-CA-7rH" secondAttribute="leading" id="3Ck-oD-s2e"/>
                             <constraint firstItem="ABv-Wh-3Dm" firstAttribute="top" secondItem="UOg-CA-7rH" secondAttribute="top" constant="40" id="4ja-AH-izd"/>
                             <constraint firstItem="ABv-Wh-3Dm" firstAttribute="trailing" secondItem="UOg-CA-7rH" secondAttribute="trailing" id="5LG-N1-7YB"/>
+                            <constraint firstItem="Fnn-DJ-W1e" firstAttribute="centerX" secondItem="kA0-D4-Vsf" secondAttribute="centerX" id="9vu-20-Svg"/>
+                            <constraint firstItem="kA0-D4-Vsf" firstAttribute="top" secondItem="Fnn-DJ-W1e" secondAttribute="bottom" id="EYH-x7-eAo"/>
                             <constraint firstItem="kA0-D4-Vsf" firstAttribute="top" secondItem="ABv-Wh-3Dm" secondAttribute="bottom" constant="100" id="QSv-ah-zWi"/>
                             <constraint firstItem="j1O-NE-gNy" firstAttribute="top" secondItem="kA0-D4-Vsf" secondAttribute="bottom" constant="55" id="hyZ-Wq-q1e"/>
                             <constraint firstItem="j1O-NE-gNy" firstAttribute="trailing" secondItem="kA0-D4-Vsf" secondAttribute="trailing" id="lCu-xt-qVr"/>
@@ -626,6 +636,7 @@
                                                             <constraint firstAttribute="height" constant="40" id="gWE-Qq-ZUe"/>
                                                         </constraints>
                                                         <state key="normal" image="iconfinder_eye_2561430"/>
+                                                        <state key="selected" image="iconfinder_View_1_6827649"/>
                                                         <connections>
                                                             <action selector="btnActionOldpass:" destination="0AV-ly-kRz" eventType="touchUpInside" id="8kR-yf-sJw"/>
                                                         </connections>
@@ -679,6 +690,7 @@
                                                             <constraint firstAttribute="height" constant="40" id="KSN-wG-2eM"/>
                                                         </constraints>
                                                         <state key="normal" image="iconfinder_eye_2561430"/>
+                                                        <state key="selected" image="iconfinder_View_1_6827649"/>
                                                         <connections>
                                                             <action selector="btnNewPassAction:" destination="0AV-ly-kRz" eventType="touchUpInside" id="nXs-Ru-boc"/>
                                                         </connections>
@@ -732,6 +744,7 @@
                                                             <constraint firstAttribute="width" constant="40" id="pdx-lR-BuP"/>
                                                         </constraints>
                                                         <state key="normal" image="iconfinder_eye_2561430"/>
+                                                        <state key="selected" image="iconfinder_View_1_6827649"/>
                                                         <connections>
                                                             <action selector="btnConfirmPassAction:" destination="0AV-ly-kRz" eventType="touchUpInside" id="xrM-20-dtU"/>
                                                         </connections>
@@ -956,6 +969,10 @@
                                                             <constraint firstAttribute="width" constant="40" id="EHc-BD-RZm"/>
                                                         </constraints>
                                                         <state key="normal" image="iconfinder_eye_2561430"/>
+                                                        <state key="selected" image="iconfinder_View_1_6827649"/>
+                                                        <connections>
+                                                            <action selector="btnNewPasswordEye:" destination="CTY-zV-A5M" eventType="touchUpInside" id="FMH-1W-6wW"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1006,6 +1023,10 @@
                                                             <constraint firstAttribute="height" constant="40" id="fvM-6o-TA8"/>
                                                         </constraints>
                                                         <state key="normal" image="iconfinder_eye_2561430"/>
+                                                        <state key="selected" image="iconfinder_View_1_6827649"/>
+                                                        <connections>
+                                                            <action selector="btnConfirmPasswordEye:" destination="CTY-zV-A5M" eventType="touchUpInside" id="4zD-xI-THL"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -1076,6 +1097,9 @@
                                         <state key="normal" title="CHANGE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="btnChangePasswordAction:" destination="CTY-zV-A5M" eventType="touchUpInside" id="yJG-4R-eGo"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0039215686269999999" green="0.0" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
@@ -1124,6 +1148,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HAn-CN-iyf"/>
                     </view>
+                    <connections>
+                        <outlet property="btnConfirmPassOutlet" destination="iOf-fI-eBF" id="hRW-dJ-biR"/>
+                        <outlet property="btnNewPassOutlet" destination="YlS-T4-iJG" id="6MX-GB-U6e"/>
+                        <outlet property="txtConfirmPassword" destination="xnP-NQ-xGQ" id="hqp-ua-Vb7"/>
+                        <outlet property="txtNewPassword" destination="1cx-SE-qC3" id="UWv-Rg-cwY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lcq-s2-bdk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1135,6 +1165,7 @@
         <image name="Profile" width="18.5" height="18.5"/>
         <image name="Settings-Person" width="82" height="81"/>
         <image name="back" width="14" height="11"/>
+        <image name="iconfinder_View_1_6827649" width="21.333333969116211" height="21.333333969116211"/>
         <image name="iconfinder_eye_2561430" width="21.333333969116211" height="21.333333969116211"/>
         <image name="logOut" width="10.666666984558105" height="10.666666984558105"/>
         <image name="loginBG" width="197.5" height="419"/>

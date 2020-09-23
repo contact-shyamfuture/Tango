@@ -18,6 +18,7 @@ class ForgotPasswordOTPVC: UIViewController {
     var otpValue : Int?
     var pinValue : String?
     var phoneNumbr : String?
+    var userID : Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,18 +34,15 @@ class ForgotPasswordOTPVC: UIViewController {
     }
     
     func loginRegisttration(){
-      /*  let data = String (otpValue!)
+      let data = String (otpValue!)
         if pinValue != nil && data == pinValue {
-            let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "RegisterVC") as? RegisterVC
+            let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ForgotChangePasswordVC") as? ForgotChangePasswordVC
             vc?.phoneNumbr = self.phoneNumbr
-            self.navigationController?.pushViewController(vc!, animated: false)
+            vc?.userID = self.userID
+            self.navigationController?.pushViewController(vc!, animated: true)
         }else{
             
-        } */
-        
-        let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ForgotChangePasswordVC") as? ForgotChangePasswordVC
-        vc?.phoneNumbr = self.phoneNumbr
-        self.navigationController?.pushViewController(vc!, animated: true)
+        }
     }
     
     func didFinishEnteringPin(pin:String) {

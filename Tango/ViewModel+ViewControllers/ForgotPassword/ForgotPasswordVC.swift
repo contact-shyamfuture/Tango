@@ -89,12 +89,13 @@ class ForgotPasswordVC: UIViewController {
             viewModel.refreshViewClosure = {[weak self]() in
                 DispatchQueue.main.async {
                     
-                    if  (self?.viewModel.otpResponse.otp) != nil {
-                       
-                        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "OtpVerifyVC") as? OtpVerifyVC
-                        vc?.otpValue = self?.viewModel.otpResponse.otp
-                        vc?.phoneNumbr = self!.saveObj.username!
-                        self?.navigationController?.pushViewController(vc!, animated: false)
+                    if  (self?.viewModel.otpResponse.forgotOtp) != nil {
+                        
+                        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ForgotPasswordOTPVC") as? ForgotPasswordOTPVC
+                        vc?.otpValue = self?.viewModel.otpResponse.forgotOtp
+                        vc?.phoneNumbr = self!.saveObj.countryCode! + self!.saveObj.username!
+                        vc?.userID = self?.viewModel.otpResponse.id
+                        self?.navigationController?.pushViewController(vc!, animated: true)
                         
                     }else{
                         self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
@@ -112,10 +113,14 @@ class ForgotPasswordVC: UIViewController {
     }
     
     func loginRegisttration(){
-        let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "ForgotPasswordOTPVC") as? ForgotPasswordOTPVC
-        vc?.otpValue = 0
-        vc?.phoneNumbr = self.saveObj.username!
-        self.navigationController?.pushViewController(vc!, animated: true)
+        
+        let param = OTPParam()
+        if saveObj.username == nil {
+            
+        }else{
+            param.phone = self.saveObj.countryCode! + saveObj.username!
+        }
+        viewModel.sendForgotOTPCredentialsToAPIService(user: param)
     }
 }
 

@@ -122,3 +122,39 @@ class OrderParam: Mappable {
         
     }
 }
+
+class ChangePasswordParam: Mappable {
+
+    var id : Int?
+    var password : String?
+    var password_confirmation : String?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        password <- map["password"]
+        password_confirmation <- map["password_confirmation"]
+    }
+}
+
+class UpdateProfileParam: Mappable {
+
+    var email : String?
+    var name : String?
+    var phone : String?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        email <- map["email"]
+        name <- map["name"]
+        phone <- map["phone"]
+    }
+}

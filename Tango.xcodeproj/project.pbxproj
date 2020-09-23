@@ -72,6 +72,7 @@
 		9E55780A24FD3EE600096314 /* SearchRestaurantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55780824FD3EE600096314 /* SearchRestaurantCell.swift */; };
 		9E55780B24FD3EE600096314 /* SearchRestaurantCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E55780924FD3EE600096314 /* SearchRestaurantCell.xib */; };
 		9E7526D42515E28D00C42E9C /* ChatUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7526D32515E28D00C42E9C /* ChatUsVC.swift */; };
+		9E7526F92518E56500C42E9C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E7526F82518E56400C42E9C /* GoogleService-Info.plist */; };
 		9E99E27F250901C7003B00C7 /* TopBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E99E27E250901C7003B00C7 /* TopBannerModel.swift */; };
 		9E99E2822509092C003B00C7 /* SafetyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E99E2802509092C003B00C7 /* SafetyCollectionCell.swift */; };
 		9E99E2832509092C003B00C7 /* SafetyCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E99E2812509092C003B00C7 /* SafetyCollectionCell.xib */; };
@@ -269,6 +270,8 @@
 		9E55780824FD3EE600096314 /* SearchRestaurantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRestaurantCell.swift; sourceTree = "<group>"; };
 		9E55780924FD3EE600096314 /* SearchRestaurantCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRestaurantCell.xib; sourceTree = "<group>"; };
 		9E7526D32515E28D00C42E9C /* ChatUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsVC.swift; sourceTree = "<group>"; };
+		9E7526F82518E56400C42E9C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9E7526FA2518E7CD00C42E9C /* Tango.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tango.entitlements; sourceTree = "<group>"; };
 		9E99E27E250901C7003B00C7 /* TopBannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopBannerModel.swift; sourceTree = "<group>"; };
 		9E99E2802509092C003B00C7 /* SafetyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyCollectionCell.swift; sourceTree = "<group>"; };
 		9E99E2812509092C003B00C7 /* SafetyCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SafetyCollectionCell.xib; sourceTree = "<group>"; };
@@ -683,6 +686,7 @@
 		9EE7215024C955D9006D0F19 = {
 			isa = PBXGroup;
 			children = (
+				9E7526F82518E56400C42E9C /* GoogleService-Info.plist */,
 				9EE7215B24C955DA006D0F19 /* Tango */,
 				9EE7217524C955E2006D0F19 /* TangoTests */,
 				9EE7218024C955E2006D0F19 /* TangoUITests */,
@@ -705,6 +709,7 @@
 		9EE7215B24C955DA006D0F19 /* Tango */ = {
 			isa = PBXGroup;
 			children = (
+				9E7526FA2518E7CD00C42E9C /* Tango.entitlements */,
 				9EE721C824C97850006D0F19 /* Resources */,
 				9EE7219B24C968CC006D0F19 /* Others */,
 				9EE7219A24C968C0006D0F19 /* Storyboards+XIBs */,
@@ -1326,6 +1331,7 @@
 				9E311F1424FD0A93000941B7 /* DeliveryInformationCell.xib in Resources */,
 				9EB6A33324DA7DF500912531 /* LoginCommonCell.xib in Resources */,
 				EF6E6D8E24E6BBB20046618A /* CartDetailsCell.xib in Resources */,
+				9E7526F92518E56500C42E9C /* GoogleService-Info.plist in Resources */,
 				EF7D75DF24E7DEFE00D114ED /* DeliveryLocationCell.xib in Resources */,
 				9E01C5E824EE7D630089470D /* TabCollectionCell.xib in Resources */,
 				9EE721CB24C9786E006D0F19 /* loader.gif in Resources */,
@@ -1802,6 +1808,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Tango/Tango.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 85MWHQDG4T;
@@ -1827,6 +1834,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Tango/Tango.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 85MWHQDG4T;

@@ -36,14 +36,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "819C13B3-883D-4C24-AF71-47B1AAC599C1 - 344822746a464949"
+                  uuid = "819C13B3-883D-4C24-AF71-47B1AAC599C1 - dd825cd1a0ae064f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Tango.PaymentServices.postOrderDetails(params: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: Swift.Optional&lt;(Tango.Response) -&gt; ()&gt;) -&gt; ()"
                   moduleName = "Tango"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/18.09.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/21.09.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "23"
@@ -51,14 +51,14 @@
                   offsetFromSymbolStart = "1248">
                </Location>
                <Location
-                  uuid = "819C13B3-883D-4C24-AF71-47B1AAC599C1 - 9b5aaba24e65117"
+                  uuid = "819C13B3-883D-4C24-AF71-47B1AAC599C1 - e07fd41fee0e1e11"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Alamofire.DataResponse&lt;Tango.OrderDetailsModel&gt;) -&gt; () in Tango.PaymentServices.postOrderDetails(params: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: Swift.Optional&lt;(Tango.Response) -&gt; ()&gt;) -&gt; ()"
                   moduleName = "Tango"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/18.09.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/21.09.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "24"
@@ -199,16 +199,208 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F030A926-3E9C-42A3-9253-379E682002DD"
+            uuid = "691DCA12-F8A5-4C73-BA91-284E42B2C0FB"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tango/ViewModel+ViewControllers/MyProfile/ProfileEditVC.swift"
+            filePath = "Tango/ViewModel+ViewControllers/RegisterWithMobile/RegisterWithMobileVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "btnUploadImage(_:)"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "loginRegisttration()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "356D493D-712C-4A0F-B988-EA2B9371CC73"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/RegisterWithMobile/RegisterWithMobileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "initializeViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6447AC9E-53A5-4F44-B074-46D32002CC67"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/RegisterWithMobile/RegisterWithMobileVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
+            landmarkName = "initializeViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "54271320-ADFD-455D-B7BB-3DCFB4C24697"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/OTP/OtpVerifyVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "loginRegisttration()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "22F155FA-1342-41CA-9DCA-9654498B3AAB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/OTP/OtpVerifyVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "loginRegisttration()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "122AA78F-5057-4493-B997-E40A979AFB96"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Register/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "loginRegisttration()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E501CA6-8923-4B10-AD54-5A3302FC6FAD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Register/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "loginRegisttration()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C6B44320-D2E2-4122-8BC4-D8D5BC96633D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Register/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "initializeViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF106A28-5BB5-47AD-8C18-A5DB42D81885"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Others/APIService/APIServices/SignUpServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "sendRegisterDetails(params:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "28C612C9-9EEA-4D39-9799-4D63E067152D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Others/APIService/APIServices/SignUpServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "sendRegisterDetails(params:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACB30FC2-F685-43DB-849D-0A11B84715A6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Register/RegisterVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "loginRegisttration()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "148D5ACA-AA85-4F29-A347-37484B6EDC65"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Others/APIService/APIServices/SignUpServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "sendRegisterDetails(params:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "14073A6A-62F9-4253-80AD-6218E092F59C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Dashboard/DashboardVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "getprifleDetails()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -93,7 +93,7 @@ class RegisterWithMobileVC: UIViewController {
                        
                         let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "OtpVerifyVC") as? OtpVerifyVC
                         vc?.otpValue = self?.viewModel.otpResponse.otp
-                        vc?.phoneNumbr = self!.saveObj.username!
+                        vc?.phoneNumbr = self!.saveObj.countryCode! + self!.saveObj.username!
                         self?.navigationController?.pushViewController(vc!, animated: false)
                         
                     }else{
@@ -113,8 +113,10 @@ class RegisterWithMobileVC: UIViewController {
     
     func loginRegisttration(){
         let param = OTPParam()
-        if loginObj.username != nil {
-            param.phone = self.saveObj.countryCode! + loginObj.username!
+        if saveObj.username == nil {
+            
+        }else{
+            param.phone = self.saveObj.countryCode! + saveObj.username!
         }
          //saveObj.username
         viewModel.sendOTPCredentialsToAPIService(user: param)

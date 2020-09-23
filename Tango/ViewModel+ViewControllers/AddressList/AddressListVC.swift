@@ -17,6 +17,8 @@ class AddressListVC: BaseViewController {
         return AddressListVM()
     }()
     var addressList = [AddressListModel]()
+    
+    
     var isSelected :  Bool?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,10 +75,41 @@ class AddressListVC: BaseViewController {
                 }
             }
         }
+        
+        viewModel.refreshDeleteViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if self?.viewModel.deleteAdd.message != nil {
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message:  (self?.viewModel.deleteAdd.message)!, okButtonText: okText, completion: {
+                    
+                        self!.ApiCalled()
+                    })
+                }
+            }
+        }
+    }
+    
+    func manageAddressDelete(index : Int){
+        print("tap index path : \(index)")
+        
+        let refreshAlert = UIAlertController(title: "", message: "Do you want to delete?", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+            self.viewModel.deleteAddressDetails(id: "\(self.addressList[index].id ?? 0)")
+          }))
+
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+           
+        }))
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
+    func manageAddressEdit(index : Int){
+        print("tap index path : \(index)")
     }
 }
 
-extension AddressListVC : UITableViewDelegate, UITableViewDataSource {
+extension AddressListVC : UITableViewDelegate, UITableViewDataSource  , manageAddress{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -105,6 +138,7 @@ extension AddressListVC : UITableViewDelegate, UITableViewDataSource {
             return Cell
         }else{
             let Cell = tableView.dequeueReusableCell(withIdentifier: "AddressListCell") as! AddressListCell
+            
             let list = self.addressList[indexPath.row]
             //Cell.btnStackVw.isHidden = false
             Cell.lblTitle.text = list.type?.uppercased()
@@ -113,6 +147,10 @@ extension AddressListVC : UITableViewDelegate, UITableViewDataSource {
             }else{
                 Cell.imgType.image = UIImage(named: "location")
             }
+            Cell.editbtnOutlet.tag = indexPath.row
+            Cell.deleteBtnOutlet.tag = indexPath.row
+            
+            Cell.delegate = self
             Cell.lblAddress.text = list.map_address
             return Cell
         }

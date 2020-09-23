@@ -35,6 +35,9 @@ class UserOTPResponse: Mappable {
     
     var message : String?
     var otp : Int?
+    
+    var id : Int?
+    var forgotOtp : Int?
 
     init() {}
     required init?(map: Map) {
@@ -44,6 +47,9 @@ class UserOTPResponse: Mappable {
     func mapping(map: Map) {
         message <- map["message"]
         otp <- map["otp"]
+        
+        id <- map["user.id"]
+        forgotOtp <- map["user.otp"]
     }
 }
 

@@ -75,7 +75,7 @@ class RegisterVC: UIViewController {
     func loginRegisttration(){
         
         let param = RegisterParam()
-        param.phone = "+91" + phoneNumbr!
+        param.phone = phoneNumbr!
         param.name = regisObj.name
         param.email = regisObj.email
 //        param.phone = regisObj.phone
@@ -106,6 +106,7 @@ extension RegisterVC : UITableViewDelegate, UITableViewDataSource , CommonButton
             Cell.txtField.isSecureTextEntry = false
             Cell.txtField.tag = indexPath.row
             Cell.txtField.delegate = self
+            Cell.codeConstraint.constant = 0
             return Cell
         case 1:
             let Cell = tableView.dequeueReusableCell(withIdentifier: "LoginCommonCell") as! LoginCommonCell
@@ -115,15 +116,19 @@ extension RegisterVC : UITableViewDelegate, UITableViewDataSource , CommonButton
             Cell.txtField.isSecureTextEntry = false
             Cell.txtField.tag = indexPath.row
             Cell.txtField.delegate = self
+            Cell.codeConstraint.constant = 0
+            Cell.imgIcon.image = UIImage(named: "mail56")
             return Cell
         case 2:
             let Cell = tableView.dequeueReusableCell(withIdentifier: "LoginCommonCell") as! LoginCommonCell
             Cell.txtField.text = regisObj.password
             Cell.txtField.placeholder = "Password"
-            Cell.txtField.keyboardType = .phonePad
-            Cell.txtField.isSecureTextEntry = false
+            Cell.txtField.keyboardType = .default
+            Cell.txtField.isSecureTextEntry = true
             Cell.txtField.tag = indexPath.row
             Cell.txtField.delegate = self
+            Cell.codeConstraint.constant = 0
+            Cell.imgIcon.image = UIImage(named: "passwordIcon")
             return Cell
         case 3:
             let Cell = tableView.dequeueReusableCell(withIdentifier: "LoginCommonCell") as! LoginCommonCell
@@ -133,6 +138,8 @@ extension RegisterVC : UITableViewDelegate, UITableViewDataSource , CommonButton
             Cell.txtField.isSecureTextEntry = true
             Cell.txtField.tag = indexPath.row
             Cell.txtField.delegate = self
+            Cell.codeConstraint.constant = 0
+            Cell.imgIcon.image = UIImage(named: "passwordIcon")
             return Cell
         case 4:
             let buttonCell = tableView.dequeueReusableCell(withIdentifier: "CommonButtonCell") as! CommonButtonCell

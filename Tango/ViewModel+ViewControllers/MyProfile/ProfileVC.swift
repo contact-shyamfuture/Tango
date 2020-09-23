@@ -40,6 +40,13 @@ class ProfileVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.btnBackAction.isHidden = true
+        
+        userProfileImage.layer.borderWidth = 0
+        userProfileImage.layer.masksToBounds = false
+        userProfileImage.layer.borderColor = UIColor.white.cgColor
+        userProfileImage.layer.cornerRadius = userProfileImage.frame.size.width / 2
+        userProfileImage.clipsToBounds = true
+        
         configureUI()
         getprifleDetails()
         initializeViewModel()
@@ -79,7 +86,9 @@ class ProfileVC: BaseViewController {
                     self!.lblPhoneNumber.text = self!.userdetails.phone
                     self!.lblEmail.text = self!.userdetails.email
                     self!.lblUserName.text = self!.userdetails.name
-                    
+                    if self!.userdetails.avatar != nil {
+                        self!.userProfileImage.sd_setImage(with: URL(string: self!.userdetails.avatar!))
+                    }
                     
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
@@ -196,9 +205,10 @@ extension ProfileVC : UITableViewDelegate,UITableViewDataSource{
             let vc = UIStoryboard.init(name: "Cart", bundle: Bundle.main).instantiateViewController(withIdentifier: "PromoCodeVC") as? PromoCodeVC
             self.navigationController?.pushViewController(vc!, animated: true)
         case 5:
-            let mainView = UIStoryboard(name:"Profile", bundle: nil)
-            let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
-            self.navigationController?.pushViewController (viewcontroller, animated: true)
+            
+            let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "ChangePasswordVC") as? ChangePasswordVC
+            vc?.userID = self.userdetails.id
+            self.navigationController?.pushViewController(vc!, animated: true)
         default:
             break
         }

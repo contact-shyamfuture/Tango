@@ -11,9 +11,13 @@ import CoreData
 import IQKeyboardManagerSwift
 import AVFoundation
 import Alamofire
+import Firebase
+import FirebaseInstanceID
+import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate, MessagingDelegate{
 
     var window: UIWindow?
     var navigationController: UINavigationController?
@@ -31,7 +35,84 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             self.openSignInViewController()
         }
+        FirebaseApp.configure()
+        if #available(iOS 10.0, *) {
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        UNUserNotificationCenter.current().delegate = self
+        application.registerForRemoteNotifications()
+        //FirebaseApp.configure()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: Notification.Name.MessagingRegistrationTokenRefreshed, object: nil)
         return true
+    }
+    
+    @objc func tokenRefreshNotification(_ notification: Notification) {
+        
+        var token = String()
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            } else if let result = result {
+                token = result.token
+                print("Remote instance ID token: \(result.token)")
+                UserDefaults.standard.setValue(token, forKey: PreferencesKeys.FCMTokenDeviceID)
+            }
+        }
+        connectToFcm()
+    }
+     func connectToFcm() {
+            Messaging.messaging().delegate = self
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Unable to register for remote notifications: \(error.localizedDescription)")
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("APNs token retrieved: \(deviceToken)")
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        print("APNs device token: \(deviceTokenString)")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        
+        if let messageID = userInfo["gcm.message_id"] {
+            print("Message ID: \(messageID)")
+        }
+        print(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+            
+            let state = application.applicationState
+            switch state {
+            case .inactive:
+                print("Inactive")
+            case .background:
+                print("Background")
+                // update badge count here
+                application.applicationIconBadgeNumber = application.applicationIconBadgeNumber + 1
+            case .active:
+                print("Active")
+            }
+            print(userInfo)
+            completionHandler(UIBackgroundFetchResult.newData)
+        }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.alert, .badge, .sound])
     }
     
     public func openSignInViewController(){

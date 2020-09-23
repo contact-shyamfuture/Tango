@@ -101,6 +101,33 @@ class SignUpVM {
         }
     }
     
+    func sendForgotOTPCredentialsToAPIService(user: OTPParam) {
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        
+        if let params = self.validateUserInputs(user: user) {
+            self.isLoading = true
+            self.apiService.sendOTPForForgotDetails(params: params) { [weak self] (response) in
+                self?.isLoading = false
+                if response.responseStatus == .success {
+                    let responseData = response.data as? UserOTPResponse
+                    if  let getUserDetails = responseData {
+                        self?.otpResponse = getUserDetails
+                        self?.refreshViewClosure?()
+                    } else {
+                        self?.alertMessage = ""
+                    }
+                } else {
+                    self?.alertMessage = response.message
+                }
+            }
+        }
+    }
+    
+    
     func validateUserInputs(user: OTPParam) -> [String: Any]? {
        
        guard let fname = user.phone, !fname.isEmpty else {
@@ -156,6 +183,52 @@ class SignUpVM {
         }
         return user.toJSON()
     }
+    
+    func sendForgotResetCredentialsToAPIService(user: ChangePasswordParam) {
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        
+        if let params = self.validateUserInputs(user: user) {
+            self.isLoading = true
+            self.apiService.sendForgotChangePasswordDetails(params: params) { [weak self] (response) in
+                self?.isLoading = false
+                if response.responseStatus == .success {
+                    let responseData = response.data as? UserOTPResponse
+                    if  let getUserDetails = responseData {
+                        self?.otpResponse = getUserDetails
+                        self?.refreshViewClosure?()
+                    } else {
+                        self?.alertMessage = ""
+                    }
+                } else {
+                    self?.alertMessage = response.message
+                }
+            }
+        }
+    }
+    
+    
+    func validateUserInputs(user: ChangePasswordParam) -> [String: Any]? {
+       
+       guard let password = user.password, !password.isEmpty else {
+           self.alertMessage = alertNewPassMessage
+           return nil
+       }
+        guard let confirmPass = user.password_confirmation, !confirmPass.isEmpty else {
+            self.alertMessage = alertNewConfirmPassMessage
+            return nil
+        }
+        if user.password_confirmation != user.password {
+            self.alertMessage = alertPasswordNotMatchMessage
+        }
+        return user.toJSON()
+    }
+    
+    
+    
     
     
 }
