@@ -31,6 +31,7 @@ class PaymentVC: BaseViewController {
         return DashboardVM()
     }()
     var userdetails = ProfiledetailsModel()
+    var tempOder = TempOrderSModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,8 +73,6 @@ class PaymentVC: BaseViewController {
                     self?.userdetails = (self?.viewprofileModel.userdetails)!
                     print(self!.userdetails.id!)
                     
-                    
-                    
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
                 }
@@ -91,15 +90,18 @@ class PaymentVC: BaseViewController {
     @IBAction func btnProcedToPay(_ sender: Any) {
         let param = OrderParam()
         param.note = orderSave.note
+        param.promo_amount = "0"
         param.payment_mode = "cash"
         param.wallet = String(orderSave.wallet)
         param.delivery_charge = String(userCartList.delivery_charges!)
         param.packaging_charge = String(userCartList.packaging_charge!)
         param.user_address_id = String(orderSave.user_address_id!)
-        param.tips_amount =  String(orderSave.tips_amount)
+        param.tips_amount = "0" //String(orderSave.tips_amount)
+        param.promo_id = ""
         viewModel.postOrderToAPIService(user: param)
     }
-    func orderOnline(paymet_status : String , paymetID : String){
+    
+    func orderOnline(){
         
         let param = OrderParam()
         param.note = orderSave.note
@@ -108,11 +110,48 @@ class PaymentVC: BaseViewController {
         param.delivery_charge = String(userCartList.delivery_charges!)
         param.packaging_charge = String(userCartList.packaging_charge!)
         param.user_address_id = String(orderSave.user_address_id!)
-        param.tips_amount =  String(orderSave.tips_amount)
+        param.tips_amount = "0" //String(orderSave.tips_amount)
+       // param.payment_id = paymetID
+       // param.paymet_status = paymet_status
+        param.promo_amount = "0"
+        param.promo_id = "0"
+        viewModel.postTempOrderToAPIService(user: param)
+    }
+    
+    func orderAfterPayment(paymet_status : String , paymetID : String){
+        
+       /* let param = OrderParam()
+        param.note = orderSave.note
+        param.payment_mode = "payu"
+        param.wallet = "0"///String(orderSave.wallet)
+        param.delivery_charge = String(userCartList.delivery_charges!)
+        param.packaging_charge = String(userCartList.packaging_charge!)
+        param.user_address_id = String(orderSave.user_address_id!)
+        param.tips_amount =  "0"//String(orderSave.tips_amount)
         param.payment_id = paymetID
         param.paymet_status = paymet_status
-        viewModel.postOrderToAPIService(user: param)
+       // param.promo_amount = "0"
+       // param.promo_id = ""
+        param.temp_order_id = "\(self.tempOder.temp_order_id ?? 0)"
+        viewModel.postOrderToAPIService(user: param) */
+        
+        let param = OnlineOrderParam()
+         param.note = orderSave.note
+         param.payment_mode = "payu"
+         param.wallet = 0//orderSave.wallet
+         param.delivery_charge = Int(userCartList.delivery_charges!)
+         param.packaging_charge = Int(userCartList.packaging_charge!)
+         param.user_address_id = Int(orderSave.user_address_id!)
+         param.tips_amount =  0//Int(orderSave.tips_amount)
+         param.payment_id = Int(paymetID)
+         param.payment_status = paymet_status
+        // param.promo_amount = "0"
+        // param.promo_id = ""
+         param.temp_order_id = self.tempOder.temp_order_id //"\(self.tempOder.temp_order_id ?? 0)"
+         viewModel.postOnlineOrderToAPIService(user: param)
+        //
     }
+    
     
     func initializeViewModel() {
         viewModel.showAlertClosure = {[weak self]() in
@@ -149,6 +188,19 @@ class PaymentVC: BaseViewController {
                 }
             }
         }
+        
+        viewModel.refreshTempViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.tempOder.temp_order_id) != nil {
+                    self!.tempOder = (self?.viewModel.tempOder)!
+                    self!.payuNavigationHashKeyGeneration()
+                    
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                }
+            }
+        }
     }
     
     func selectOption(index : Int){
@@ -158,7 +210,8 @@ class PaymentVC: BaseViewController {
             paymentType.isGooglePay = ""
             paymentType.isCash = ""
             processingView.isHidden = true
-            payuNavigationHashKeyGeneration()
+            self.orderOnline()
+            
         case 2:
             paymentType.isCash = ""
             paymentType.isOnline = ""
@@ -212,7 +265,7 @@ class PaymentVC: BaseViewController {
                     let resultDic = paymentResponse!["result"] as! Dictionary<String,Any>
                     let payemtnID = resultDic["paymentId"] as? Int ?? 0
                     let payemtnStatus = resultDic["status"] as? String ?? ""
-                    self.orderOnline(paymet_status: payemtnStatus , paymetID: "\(payemtnID)")
+                    self.orderAfterPayment(paymet_status: payemtnStatus , paymetID: "\(payemtnID)")
                 } else {
                     message = paymentResponse?["status"] as? String ?? ""
                 }

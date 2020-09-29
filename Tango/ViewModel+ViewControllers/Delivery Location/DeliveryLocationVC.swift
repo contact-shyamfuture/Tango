@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 protocol DeliveryLocationSaved {
-    func getDeliveryLocation(Address : String, addressID : Int)
+    func getDeliveryLocation(Address : String, addressID : Int , adddic : AddressListModel)
 }
 class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
     
@@ -56,6 +56,8 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         let longTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         hostMapView.addGestureRecognizer(longTapGesture)
     }
+    
+    
     @objc func handleTap(gestureRecognizer: UILongPressGestureRecognizer) {
 
         hostMapView.removeAnnotations(hostMapView.annotations)
@@ -188,6 +190,7 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         tblVw.register(DeliveryLocationCell.nib(), forCellReuseIdentifier: DeliveryLocationCell.identifier)
         tblVw.register(DeliveryDetailsCell.nib(), forCellReuseIdentifier: DeliveryDetailsCell.identifier)
     }
+    
     @IBAction func btnSaveAction(_ sender : UIButton){
         viewModel.getAddressSaveResponse(param: param)
     }

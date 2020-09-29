@@ -24,6 +24,7 @@ class DashboardVM {
     var topBanner = [TopBannerModel]()
     var safetyBanner = [SafetyModel]()
     var WalletsDetails = [WalletsModel]()
+    var FilterList = [FilterModel]()
     
     var isLoading: Bool = false {
         didSet {
@@ -41,7 +42,7 @@ class DashboardVM {
         self.apiService = apiService
     }
     
-    func getDashboardToAPIService(lat: String, long : String, id : String ){
+    func getDashboardToAPIService(lat: String, long : String, id : String ,offset : String){
         
         if !AppDelegate.appDelagate().isReachable() {
             self.alertMessage = internetConnectionWarningMessage
@@ -49,7 +50,7 @@ class DashboardVM {
         }
         
         self.isLoading = true
-        self.apiService.getRestaurantListDetails(lat : lat, long : long, id : id) { [weak self] (response) in
+        self.apiService.getRestaurantListDetails(lat : lat, long : long, id : id, offset: offset) { [weak self] (response) in
             self?.isLoading = false
             if response.responseStatus == .success {
                 let responseData = response.data as? RestaurantModel
@@ -151,6 +152,29 @@ class DashboardVM {
                 let responseData = response.data as? [WalletsModel]
                 if  let getUserDetails = responseData {
                     self?.WalletsDetails = getUserDetails
+                    self?.refreshViewClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
+    
+    func getFilterListAPIService(){
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        self.isLoading = true
+        self.apiService.getFilterList() { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? [FilterModel]
+                if  let getUserDetails = responseData {
+                    self?.FilterList = getUserDetails
                     self?.refreshViewClosure?()
                 } else {
                     self?.alertMessage = ""

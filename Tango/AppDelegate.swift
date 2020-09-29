@@ -29,12 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
         UINavigationBar.appearance().barTintColor = Constants.App.navigationBarColor
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
-        if loggedInStatus == IS_LOGGED_IN {
-            self.openHomeViewController()
-        } else {
-            self.openSignInViewController()
-        }
+//        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+//        if loggedInStatus == IS_LOGGED_IN {
+//            self.openHomeViewController()
+//        } else {
+//            self.openSignInViewController()
+//        }
         FirebaseApp.configure()
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

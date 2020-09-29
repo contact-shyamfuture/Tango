@@ -22,7 +22,7 @@ class APIConstants: NSObject {
     static let addressURL =  "api/user/address"
     static let orderDetailsURL =  "api/user/order/"
     static let orderListsURL =  "api/user/ongoing/order"
-    static let searchURL =  "api/user/search?user_id="
+    static let searchURL =  "api/user/searchn?user_id="
     static let disputeURL =  "api/user/dispute"
     static let topBannerURL =  "api/user/banner"
     static let safetyBannerURL =  "api/user/footer-banner"
@@ -30,7 +30,10 @@ class APIConstants: NSObject {
     static let forgotOtpurl = "api/user/forgot/password"
     static let forgotReset = "api/user/reset/password"
     static let deleteAddress = "api/user/address/"
-    
+    static let filterURL = "api/user/cuisines"
+    static let categoryURL = "api/user/categories?shop="
+    static let tempOrderURL = "api/user/temp-order"
+        
     
     static func logInApi() -> String {
         return baseURL + loginURL
@@ -58,7 +61,6 @@ class APIConstants: NSObject {
     static func userCartListApi() -> String {
         return baseURL + userCartList
     }
-    
     static func orderApi() -> String {
         return baseURL + orderURL
     }
@@ -94,7 +96,19 @@ class APIConstants: NSObject {
         return baseURL + walletsURL
     }
     
+    static func filterApi() -> String {
+        return baseURL + filterURL
+    }
+    
     static func deleteAddressApi() -> String {
         return baseURL + deleteAddress
+    }
+    
+    static func getCategoryApi() -> String {
+        return baseURL + categoryURL
+    }
+    
+    static func postTempOrderApi() -> String {
+        return baseURL + tempOrderURL
     }
 }

@@ -129,6 +129,7 @@ PODS:
   - SDWebImage/Core (5.8.0)
   - Stripe (19.2.0)
   - SVPinView (1.0.8)
+  - SwiftyGif (5.3.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -149,6 +150,7 @@ DEPENDENCIES:
   - SDWebImage
   - Stripe (~> 19.2.0)
   - SVPinView (~> 1.0)
+  - SwiftyGif
 
 SPEC REPOS:
   trunk:
@@ -186,6 +188,7 @@ SPEC REPOS:
     - SDWebImage
     - Stripe
     - SVPinView
+    - SwiftyGif
 
 EXTERNAL SOURCES:
   HideShowPasswordTextField:
@@ -232,7 +235,8 @@ SPEC CHECKSUMS:
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
   Stripe: d481c2dab9a892fd923f097f854661217f70dc7f
   SVPinView: 3194be48b8275805244486590b82e6da14d23ca6
+  SwiftyGif: e466e86c660d343357ab944a819a101c4127cb40
 
-PODFILE CHECKSUM: 4c576967395a6a5dae669d3270d13eccd1fce2f6
+PODFILE CHECKSUM: 35ef757b61d40a6473a3f9732336de088a6abd9b
 
 COCOAPODS: 1.8.4

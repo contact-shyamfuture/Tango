@@ -24,8 +24,21 @@
                             <constraint firstAttribute="width" constant="25" id="9zx-fd-WdU"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Search to be in a new Locations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olk-tW-pjM">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZM-V9-UGY">
+                        <rect key="frame" x="48" y="12" width="0.0" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Xte-iz-idQ"/>
+                            <constraint firstAttribute="width" priority="250" constant="42" id="spC-a3-u74"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Search to be in a new Locations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olk-tW-pjM">
                         <rect key="frame" x="48" y="34" width="256" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" priority="250" constant="17" id="jEK-Ae-lc7"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -110,6 +123,7 @@
                     <constraint firstItem="ret-aX-6TA" firstAttribute="leading" secondItem="Z4v-z6-Aqp" secondAttribute="leading" id="9JM-AI-Ooz"/>
                     <constraint firstItem="Olk-tW-pjM" firstAttribute="centerY" secondItem="oeV-d9-JiV" secondAttribute="centerY" id="B2c-df-UEq"/>
                     <constraint firstItem="Z4v-z6-Aqp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Jse-Uq-lkb"/>
+                    <constraint firstItem="2ZM-V9-UGY" firstAttribute="leading" secondItem="Olk-tW-pjM" secondAttribute="leading" id="LIW-mx-04h"/>
                     <constraint firstItem="ret-aX-6TA" firstAttribute="trailing" secondItem="Z4v-z6-Aqp" secondAttribute="trailing" id="MeU-54-DM8"/>
                     <constraint firstAttribute="bottom" secondItem="Z4v-z6-Aqp" secondAttribute="bottom" constant="15" id="Wko-TH-1Eg"/>
                     <constraint firstItem="oeV-d9-JiV" firstAttribute="leading" secondItem="Z4v-z6-Aqp" secondAttribute="leading" id="X4E-gz-cKF"/>
@@ -119,12 +133,14 @@
                     <constraint firstItem="Olk-tW-pjM" firstAttribute="trailing" secondItem="Z4v-z6-Aqp" secondAttribute="trailing" id="jPV-jL-y2I"/>
                     <constraint firstAttribute="trailing" secondItem="Z4v-z6-Aqp" secondAttribute="trailing" constant="15" id="mGi-WV-6e8"/>
                     <constraint firstItem="ret-aX-6TA" firstAttribute="top" secondItem="Z4v-z6-Aqp" secondAttribute="top" id="pdG-yI-izC"/>
+                    <constraint firstItem="Olk-tW-pjM" firstAttribute="top" secondItem="2ZM-V9-UGY" secondAttribute="bottom" constant="1" id="snv-lZ-OXA"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnCOntiniueAction" destination="ret-aX-6TA" id="EEt-Dd-JB9"/>
                 <outlet property="lblAddress" destination="Olk-tW-pjM" id="0wo-9O-Xfd"/>
+                <outlet property="lblAddressType" destination="2ZM-V9-UGY" id="Phe-Is-EQr"/>
             </connections>
             <point key="canvasLocation" x="131.15942028985509" y="142.29910714285714"/>
         </tableViewCell>

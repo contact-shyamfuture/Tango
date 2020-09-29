@@ -13,12 +13,14 @@ class UserCratVM {
     let apiService: UserCartServicesProtocol
     var refreshViewClosure: (() -> ())?
     var refreshCartListViewClosure: (() -> ())?
+    var refreshCategoryListViewClosure: (() -> ())?
     var refreshForgotpasswordViewClosure: (() -> ())?
     var showAlertClosure: (()->())?
     var updateLoadingStatus: (()->())?
 
     var userCartDetails = UserCartModel()
     var userCartList = UserCartModel()
+    var categoryList : RestaurantList?
     var isLoading: Bool = false {
         didSet {
             self.updateLoadingStatus?()
@@ -79,6 +81,29 @@ class UserCratVM {
                 if  let getUserDetails = responseData {
                     self?.userCartList = getUserDetails
                     self?.refreshCartListViewClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
+    
+    func getCategoryListToAPIService(shopID : String, user_id : String) {
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        self.isLoading = true
+        self.apiService.getCategoryDetails(shopID : shopID, user_id : user_id) { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? RestaurantList
+                if  let getUserDetails = responseData {
+                    self?.categoryList = getUserDetails
+                    self?.refreshCategoryListViewClosure?()
                 } else {
                     self?.alertMessage = ""
                 }

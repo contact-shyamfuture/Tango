@@ -56,7 +56,11 @@ class RegisterVC: UIViewController {
                 if  (self?.viewModel.regisResponse.id) != nil {
                     self!.navigateTo()
                 }else{
-                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                    if self?.viewModel.regisResponse.msgPhone != nil {
+                        self?.showAlertWithSingleButton(title: commonAlertTitle, message: (self?.viewModel.regisResponse.msgPhone![0])!, okButtonText: okText, completion: nil)
+                    }else{
+                        self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                    }
                 }
             }
         }

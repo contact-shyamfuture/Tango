@@ -63,6 +63,8 @@ class UserRegisterResponse: Mappable {
     var social_unique_id : String?
     var id : Int?
     
+    var msgPhone : [String]?
+    
 
     init() {}
     required init?(map: Map) {
@@ -76,5 +78,6 @@ class UserRegisterResponse: Mappable {
         login_by <- map["login_by"]
         social_unique_id <- map["social_unique_id"]
         id <- map["id"]
+        msgPhone <- map["phone"]
     }
 }

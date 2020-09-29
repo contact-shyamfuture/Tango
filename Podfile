@@ -25,6 +25,7 @@ target 'Tango' do
   pod 'HCSStarRatingView'
   pod 'ImageSlideshow', '~> 1.8.1'
   pod 'PayUmoney_PnP'
+  pod 'SwiftyGif'
   
 
   target 'TangoTests' do

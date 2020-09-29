@@ -47,9 +47,9 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sup-E9-2f4">
-                                <rect key="frame" x="96" y="25" width="207" height="20"/>
+                                <rect key="frame" x="96" y="15" width="207" height="20"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thali" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITF-Rk-4gK">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ThaliT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ITF-Rk-4gK">
                                         <rect key="frame" x="0.0" y="0.0" width="71" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
@@ -157,8 +157,18 @@
                                     <constraint firstAttribute="height" constant="20" id="EvM-Mj-SCy"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹350" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNU-rN-f8u">
+                                <rect key="frame" x="96" y="41" width="50" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="KCj-EG-VSj"/>
+                                    <constraint firstAttribute="height" constant="20" id="bQl-mK-1ng"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.84313725490000002" green="0.1960784314" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U6I-GL-SCR" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
-                                <rect key="frame" x="175" y="17" width="80" height="36"/>
+                                <rect key="frame" x="175" y="7" width="80" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CQu-yU-BCq">
                                         <rect key="frame" x="5" y="0.0" width="70" height="36"/>
@@ -196,14 +206,16 @@
                         <constraints>
                             <constraint firstItem="A8d-j3-it8" firstAttribute="leading" secondItem="pDm-JP-g9w" secondAttribute="trailing" constant="5" id="4qq-k3-KSD"/>
                             <constraint firstItem="sup-E9-2f4" firstAttribute="leading" secondItem="A8d-j3-it8" secondAttribute="trailing" constant="8" id="9G9-vd-kfK"/>
-                            <constraint firstItem="sup-E9-2f4" firstAttribute="centerY" secondItem="A8d-j3-it8" secondAttribute="centerY" id="BOv-Xa-5mT"/>
+                            <constraint firstItem="sup-E9-2f4" firstAttribute="centerY" secondItem="A8d-j3-it8" secondAttribute="centerY" constant="-10" id="BOv-Xa-5mT"/>
                             <constraint firstItem="U6I-GL-SCR" firstAttribute="centerY" secondItem="zgo-DQ-N7H" secondAttribute="centerY" id="BQx-C2-J1R"/>
+                            <constraint firstItem="jNU-rN-f8u" firstAttribute="leading" secondItem="sup-E9-2f4" secondAttribute="leading" id="DDf-Tg-ry0"/>
                             <constraint firstItem="pDm-JP-g9w" firstAttribute="top" secondItem="A8d-j3-it8" secondAttribute="top" id="Edx-Ql-7DL"/>
                             <constraint firstItem="pDm-JP-g9w" firstAttribute="leading" secondItem="7tf-Se-gyS" secondAttribute="leading" constant="8" id="I0D-a4-3oL"/>
                             <constraint firstAttribute="bottom" secondItem="DRj-xS-sBR" secondAttribute="bottom" id="LRU-rf-n23"/>
                             <constraint firstAttribute="trailing" secondItem="DRj-xS-sBR" secondAttribute="trailing" id="PrB-od-jgg"/>
                             <constraint firstItem="A8d-j3-it8" firstAttribute="centerY" secondItem="7tf-Se-gyS" secondAttribute="centerY" id="RO3-dl-NEI"/>
                             <constraint firstAttribute="trailing" secondItem="sup-E9-2f4" secondAttribute="trailing" constant="8" id="bNJ-Re-Jre"/>
+                            <constraint firstItem="jNU-rN-f8u" firstAttribute="top" secondItem="sup-E9-2f4" secondAttribute="bottom" constant="6" id="bOD-Ue-2UB"/>
                             <constraint firstItem="U6I-GL-SCR" firstAttribute="centerX" secondItem="zgo-DQ-N7H" secondAttribute="centerX" id="rAM-Nb-Guq"/>
                             <constraint firstItem="DRj-xS-sBR" firstAttribute="leading" secondItem="7tf-Se-gyS" secondAttribute="leading" id="x3k-q9-RHo"/>
                         </constraints>
@@ -225,10 +237,12 @@
                 <outlet property="cartMinusBtnOutlet" destination="vm7-XY-W9J" id="vgl-Ce-hLN"/>
                 <outlet property="cartPlusBtnOulet" destination="GmD-Su-TH1" id="jcn-8C-1qU"/>
                 <outlet property="cartPlusMinusView" destination="zgo-DQ-N7H" id="RTc-38-1we"/>
+                <outlet property="imgFoodType" destination="pDm-JP-g9w" id="AnF-0Q-g29"/>
                 <outlet property="imgItemView" destination="A8d-j3-it8" id="a2s-MD-fUd"/>
                 <outlet property="lblCartCount" destination="JVv-bc-Z8g" id="7UI-VR-ZA9"/>
                 <outlet property="lblItemMenu" destination="ITF-Rk-4gK" id="Tgf-lk-uJc"/>
                 <outlet property="lblPrice" destination="w1w-QD-Qsf" id="XTz-a3-Efx"/>
+                <outlet property="lblPriceTwo" destination="jNU-rN-f8u" id="3ru-xS-UMa"/>
             </connections>
             <point key="canvasLocation" x="132.60869565217394" y="140.625"/>
         </tableViewCell>

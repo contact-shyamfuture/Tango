@@ -11,6 +11,7 @@ import HCSStarRatingView
 import SDWebImage
 class ItemCell: UITableViewCell {
 
+    @IBOutlet weak var closedView: RoundUIView!
     @IBOutlet weak var btnDeliveryCharge: UIButton!
     @IBOutlet weak var btnDistanceTime: UIButton!
     @IBOutlet weak var ratingView: HCSStarRatingView!
@@ -36,5 +37,12 @@ class ItemCell: UITableViewCell {
         ratingView.value = CGFloat(cellDic.rating ?? 0)
         btnDistanceTime.setTitle("\(cellDic.estimated_delivery_time ?? 0) mint", for: .normal)
         menuImage.sd_setImage(with: URL(string: cellDic.avatar!))
+        if cellDic.shopstatus == "OPEN" {
+            closedView.isHidden = true
+            btnDeliveryCharge.isHidden = false
+        }else{
+            closedView.isHidden = false
+            btnDeliveryCharge.isHidden = true
+        }
     }
 }

@@ -103,6 +103,9 @@ class OrderParam: Mappable {
     var tips_amount : String?
     var payment_id : String?
     var paymet_status : String?
+    var promo_amount : String?
+    var promo_id : String?
+    var temp_order_id : String?
     
     init() {}
     required init?(map: Map) {
@@ -119,6 +122,44 @@ class OrderParam: Mappable {
         tips_amount <- map["tips_amount"]
         payment_id <- map["payment_id"]
         paymet_status <- map["paymet_status"]
+        promo_amount <- map["promo_amount"]
+        promo_id <- map["promo_id"]
+        temp_order_id <- map["temp_order_id"]
+        
+    }
+}
+
+class OnlineOrderParam: Mappable {
+
+
+    var note : String?
+    var payment_mode : String?
+    var wallet : Int?
+    var delivery_charge : Int?
+    var packaging_charge : Int?
+    var user_address_id : Int?
+    var tips_amount : Int?
+    var payment_id : Int?
+    var payment_status : String?
+    var temp_order_id : Int?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        note <- map["note"]
+        payment_mode <- map["payment_mode"]
+        wallet <- map["wallet"]
+        delivery_charge <- map["delivery_charge"]
+        packaging_charge <- map["packaging_charge"]
+        user_address_id <- map["user_address_id"]
+        tips_amount <- map["tips_amount"]
+        payment_id <- map["payment_id"]
+        payment_status <- map["payment_status"]
+        
+        temp_order_id <- map["temp_order_id"]
         
     }
 }

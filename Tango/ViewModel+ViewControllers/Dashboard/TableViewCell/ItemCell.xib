@@ -52,7 +52,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="07-512" translatesAutoresizingMaskIntoConstraints="NO" id="6ef-zk-Ngc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="07-513" translatesAutoresizingMaskIntoConstraints="NO" id="6ef-zk-Ngc">
                                 <rect key="frame" x="138" y="69" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="BpR-3a-MH8"/>
@@ -132,6 +132,37 @@
                                             <color key="titleColor" red="0.81960784310000001" green="0.0" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgv-Kr-Xus" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
+                                        <rect key="frame" x="344" y="5" width="100" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJf-ZU-qAh">
+                                                <rect key="frame" x="10" y="5" width="80" height="20"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                <color key="textColor" red="0.70196078429999997" green="0.20000000000000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="dJf-ZU-qAh" firstAttribute="top" secondItem="jgv-Kr-Xus" secondAttribute="top" constant="5" id="57m-uJ-4A1"/>
+                                            <constraint firstAttribute="trailing" secondItem="dJf-ZU-qAh" secondAttribute="trailing" constant="10" id="ech-Dr-ngo"/>
+                                            <constraint firstAttribute="height" constant="30" id="hQS-R1-QUx"/>
+                                            <constraint firstItem="dJf-ZU-qAh" firstAttribute="leading" secondItem="jgv-Kr-Xus" secondAttribute="leading" constant="10" id="haN-dA-TZW"/>
+                                            <constraint firstAttribute="width" constant="100" id="l1W-tC-KNr"/>
+                                            <constraint firstAttribute="bottom" secondItem="dJf-ZU-qAh" secondAttribute="bottom" constant="5" id="zsK-OO-bQ9"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.70196078429999997" green="0.20000000000000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -139,6 +170,7 @@
                                     <constraint firstItem="opS-RA-UoP" firstAttribute="leading" secondItem="a5g-0J-ZBJ" secondAttribute="leading" id="8Rh-nx-0c0"/>
                                     <constraint firstItem="adJ-gP-Ncb" firstAttribute="leading" secondItem="a5g-0J-ZBJ" secondAttribute="leading" constant="10" id="AtO-RN-vnI"/>
                                     <constraint firstAttribute="trailing" secondItem="opS-RA-UoP" secondAttribute="trailing" constant="20" id="DaA-QI-v22"/>
+                                    <constraint firstItem="jgv-Kr-Xus" firstAttribute="centerY" secondItem="a5g-0J-ZBJ" secondAttribute="centerY" id="KUr-py-KzW"/>
                                     <constraint firstItem="T6s-2w-Dbu" firstAttribute="centerY" secondItem="oWE-4O-zne" secondAttribute="centerY" id="RUJ-db-ACA"/>
                                     <constraint firstItem="opS-RA-UoP" firstAttribute="top" secondItem="a5g-0J-ZBJ" secondAttribute="top" id="Ref-Zy-GsW"/>
                                     <constraint firstItem="adJ-gP-Ncb" firstAttribute="centerY" secondItem="a5g-0J-ZBJ" secondAttribute="centerY" id="TBB-Sv-edF"/>
@@ -146,6 +178,7 @@
                                     <constraint firstAttribute="trailing" secondItem="T6s-2w-Dbu" secondAttribute="trailing" constant="10" id="Z1R-OQ-ZTg"/>
                                     <constraint firstAttribute="height" constant="40" id="eSV-ng-IdZ"/>
                                     <constraint firstItem="oWE-4O-zne" firstAttribute="centerY" secondItem="a5g-0J-ZBJ" secondAttribute="centerY" id="i1d-ae-bDl"/>
+                                    <constraint firstAttribute="trailing" secondItem="jgv-Kr-Xus" secondAttribute="trailing" constant="20" id="nsn-LX-fBZ"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -197,6 +230,7 @@
             <connections>
                 <outlet property="btnDeliveryCharge" destination="T6s-2w-Dbu" id="hMR-Ic-cQS"/>
                 <outlet property="btnDistanceTime" destination="oWE-4O-zne" id="8Pw-2g-9Hc"/>
+                <outlet property="closedView" destination="jgv-Kr-Xus" id="cdL-wj-UPD"/>
                 <outlet property="lblDesrciptiuon" destination="N3C-xJ-qEp" id="bj1-CY-cc0"/>
                 <outlet property="lblDiscount" destination="Q5m-RF-fEg" id="vzd-pd-NcT"/>
                 <outlet property="lblMenuNAme" destination="tRz-Lx-cGi" id="1Nj-IQ-ZB3"/>
@@ -208,7 +242,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="07-512" width="12" height="12"/>
+        <image name="07-513" width="12" height="12"/>
         <image name="Aamantran-Bangla-Restaurant" width="67" height="51.333332061767578"/>
         <image name="bike" width="26" height="26"/>
         <image name="rupeesmall-1" width="17" height="17"/>

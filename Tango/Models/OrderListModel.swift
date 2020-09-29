@@ -72,5 +72,14 @@ class OrderListModel: Mappable {
         shopList <- map["shop"]
         userCart <- map["items"]
         orderStatusList <- map["ordertiming"]
+        
+        
+        dispute <- map["dispute"]
+        delivery_date <- map["delivery_date"]
+        order_otp <- map["order_otp"]
+        order_ready_time <- map["order_ready_time"]
+        order_ready_status <- map["order_ready_status"]
+        status <- map["status"]
+        created_at <- map["created_at"]
     }
 }

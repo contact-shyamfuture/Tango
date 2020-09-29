@@ -22,6 +22,7 @@ class RestourantMenuListVC: BaseViewController {
     @IBOutlet weak var MenuHeaderImage: UIImageView!
     @IBOutlet weak var menutableView: UITableView!
     var categoryList : RestaurantList?
+    var shopID : String = ""
     var userdetails = ProfiledetailsModel()
     
     lazy var viewModel: UserCratVM = {
@@ -66,6 +67,13 @@ class RestourantMenuListVC: BaseViewController {
         self.tabBarView.uiColorArray = [UIColor(red: 255/255.0, green: 133/255.0, blue: 0/255.0, alpha: CGFloat(1)),UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1))]
         
         initializeViewModel()
+        getcategoryList()
+    }
+    
+    func getcategoryList(){
+       // AppPreferenceService.setString(String((self!.userdetails.id!)), key: PreferencesKeys.userID)
+        let userID = AppPreferenceService.getString(PreferencesKeys.userID)
+        viewModel.getCategoryListToAPIService(shopID : shopID, user_id : userID!)
     }
     
     func initializeViewModel() {
@@ -112,6 +120,18 @@ class RestourantMenuListVC: BaseViewController {
                         self!.lblAmount.text = "0"
                     }
                     
+                    self!.menutableView.reloadData()
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                }
+            }
+        }
+        
+        viewModel.refreshCategoryListViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if (self?.viewModel.categoryList) != nil {
+                    self!.categoryList = self?.viewModel.categoryList                    
                     self!.menutableView.reloadData()
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
@@ -179,6 +199,7 @@ class RestourantMenuListVC: BaseViewController {
                 param.cart_id = obj.id
             }
         }
+        
         if shop_id == productDetails.shop_id  {
             
             param.latitude = 22.4705668

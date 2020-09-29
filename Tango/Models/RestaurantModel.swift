@@ -23,7 +23,7 @@ class RestaurantModel: Mappable {
     required init?(map: Map) {
         mapping(map: map)
     }
-    
+
     func mapping(map: Map) {
         shopList <- map["shops"]
         currency <- map["currency"]
@@ -63,6 +63,7 @@ class RestaurantList: Mappable {
     var updated_at : String?
     var deleted_at : String?
     var distance : Double?
+    var shopstatus : String?
     var restaurantCuisines : [RestaurantCuisines]?
     var restauranttTimings : [RestauranttTimings]?
     var ratings : Int?
@@ -106,6 +107,7 @@ class RestaurantList: Mappable {
         restauranttTimings <- map["timings"]
         ratings <- map["ratings"]
         restaurantCategories <- map["categories"]
+        shopstatus <- map["shopstatus"]
     }
 }
 class RestaurantCuisines: Mappable {
@@ -195,7 +197,7 @@ class CategoriesProducts: Mappable {
     var pricesid : Int?
     var pricesprice : Int?
     var pricesorignal_price : Int?
-    var pricescurrency : Int?
+    var pricescurrency : String?
     var pricesdiscount : Int?
     var pricesdiscount_type : String?
     var categoriesProductsImages : [CategoriesProductsImages]?

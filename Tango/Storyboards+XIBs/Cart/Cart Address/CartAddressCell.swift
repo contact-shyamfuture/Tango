@@ -14,6 +14,7 @@ protocol addressSelectionDelegate {
 }
 class CartAddressCell: UITableViewCell {
     
+    @IBOutlet weak var lblAddressType: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var btnCOntiniueAction: UIView!
     static let identifier = "CartAddressCell"

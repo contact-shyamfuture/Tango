@@ -156,3 +156,21 @@ class OrderStatusList: Mappable {
         updated_at <- map["updated_at"]
     }
 }
+
+class TempOrderSModel: Mappable {
+
+    var type : String?
+    var temp_order_id : Int?
+    var message : String?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        type <- map["type"]
+        temp_order_id <- map["temp_order_id"]
+        message <- map["message"]
+    }
+}

@@ -11,7 +11,7 @@ import CoreLocation
 import CoreTelephony
 import Foundation
 
-class DashboardVC: BaseViewController {
+class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDelegate , DeliveryLocationSaved{
     @IBOutlet weak var lbNearLocation: UILabel!
     @IBOutlet weak var lblLocation: UILabel!
     
@@ -22,10 +22,18 @@ class DashboardVC: BaseViewController {
     }()
     var userdetails = ProfiledetailsModel()
     var resObj : RestaurantModel?
-    var shopList : [RestaurantList]?
+    var shopList = [RestaurantList]()
     var topBanner = [TopBannerModel]()
     var safetyBanner = [SafetyModel]()
     var locationManager = CLLocationManager()
+    var offset : String = "0"
+    var totalCount : Int?
+    var perPage : Int?
+    var latValue : Double?
+    var longValue : Double?
+    
+    @IBOutlet weak var tableViewFooter: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,11 +53,7 @@ class DashboardVC: BaseViewController {
         
         self.tabBarView.imgArray = ["HomeSelected","Search","finished","Profile"]
         self.tabBarView.uiColorArray = [UIColor(red: 255/255.0, green: 133/255.0, blue: 0/255.0, alpha: CGFloat(1)),UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1))]
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-       
+        self.tableViewFooter.isHidden = true
         locationManager = CLLocationManager()
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -60,8 +64,31 @@ class DashboardVC: BaseViewController {
         getSafetyBanner()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+        
+    }
+    
+    @IBAction func btnChangeAddressAction(_ sender: Any) {
+        selectAddress()
+    }
+    
+    func selectAddress(){
+        let vc = UIStoryboard.init(name: "Profile", bundle: Bundle.main).instantiateViewController(withIdentifier: "AddressListVC") as? AddressListVC
+        vc?.delegate = self
+        vc?.isSelected = true
+        self.navigationController?.pushViewController(vc!, animated: false)
+    }
+    
+    func getDeliveryLocation(Address : String, addressID : Int , adddic : AddressListModel ){
+        self.lblLocation.text = adddic.map_address
+        self.lbNearLocation.text = adddic.type
+        viewModel.getDashboardToAPIService(lat: "\(adddic.latitude ?? 0)", long: "\(adddic.longitude ?? 0)", id: "", offset: offset)
+    }
+    
     func getDashboardList(){
-        viewModel.getDashboardToAPIService(lat: "", long: "", id: "")
+        viewModel.getDashboardToAPIService(lat: "", long: "", id: "", offset: offset)
     }
     
     func getTopBanner(){
@@ -104,7 +131,7 @@ class DashboardVC: BaseViewController {
                 
                 if  (self?.viewModel.restaurantModel.shopList) != nil {
                     self?.resObj = self?.viewModel.restaurantModel
-                    self?.shopList = self?.viewModel.restaurantModel.shopList
+                    self?.shopList += (self?.viewModel.restaurantModel.shopList)!
                     self?.dashboradTableView.reloadData()
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
@@ -176,6 +203,34 @@ class DashboardVC: BaseViewController {
         // return new id
         return newId
     }
+    
+    @IBAction func btnFilterAction(_ sender: Any) {
+        let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "FilterVC") as? FilterVC
+        vc!.filterDel = self
+        self.navigationController?.pushViewController (vc!, animated: true)
+    }
+    
+    func filterValues(value : String){
+        viewModel.getDashboardToAPIService(lat: "\(latValue ?? 0)", long: "\(longValue ?? 0)", id: "", offset: offset)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        if offsetY == contentHeight - scrollView.frame.size.height {
+            self.tableViewFooter.isHidden = false
+            if resObj!.total_shops != nil && shopList != nil {
+                if resObj!.total_shops! > shopList.count {
+                    viewModel.getDashboardToAPIService(lat: "\(latValue ?? 0)", long: "\(longValue ?? 0)", id: "", offset: "\(shopList.count)")
+                } else {
+                   self.tableViewFooter.isHidden = true
+                }
+            }else{
+                self.tableViewFooter.isHidden = true
+            }
+        }
+    }
 }
 
 extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
@@ -190,8 +245,8 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
         }else if section == 1 {
             return 1
         }else{
-            if self.shopList != nil && self.shopList!.count > 0 {
-                return self.shopList!.count
+            if self.shopList != nil && self.shopList.count > 0 {
+                return self.shopList.count
             }else{
                 return 0
             }
@@ -210,7 +265,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return Cell
         }else{
             let Cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
-            Cell.initializeCellDetails(cellDic: self.shopList![indexPath.row])
+            Cell.initializeCellDetails(cellDic: self.shopList[indexPath.row])
             return Cell
         }
     }
@@ -258,9 +313,20 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 2 {
+//            if self.shopList[indexPath.row].shopstatus == "OPEN" {
+//                let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+//                vc!.categoryList = self.shopList[indexPath.row]
+//                vc!.userdetails = userdetails
+//                vc!.shopID = "\(self.shopList[indexPath.row].id ?? 0)"
+//                self.navigationController?.pushViewController (vc!, animated: true)
+//            }else{
+//                self.showAlertWithSingleButton(title: commonAlertTitle, message: "Shop closed", okButtonText: okText, completion: nil)
+//            }
+            
             let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
-            vc!.categoryList = self.shopList![indexPath.row]
+            vc!.categoryList = self.shopList[indexPath.row]
             vc!.userdetails = userdetails
+            vc!.shopID = "\(self.shopList[indexPath.row].id ?? 0)"
             self.navigationController?.pushViewController (vc!, animated: true)
         }
     }
@@ -282,7 +348,9 @@ extension DashboardVC : CLLocationManagerDelegate {
         //21.228124
         let lon: Double = Double("\(pdblLongitude)")!
         //72.833770
-        viewModel.getDashboardToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "")
+        latValue = pdblLatitude
+        longValue = pdblLongitude
+        viewModel.getDashboardToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
         let ceo: CLGeocoder = CLGeocoder()
         center.latitude = lat
         center.longitude = lon
@@ -304,7 +372,7 @@ extension DashboardVC : CLLocationManagerDelegate {
                           }
                           if pm.thoroughfare != nil {
                               addressString = addressString + pm.thoroughfare! + ", "
-                            self.lbNearLocation.text = addressString
+                            self.lbNearLocation.text = pm.thoroughfare!
                           }
                           if pm.locality != nil {
                               addressString = addressString + pm.locality! + ", "

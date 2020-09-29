@@ -42,13 +42,18 @@ class OrderListCell: UITableViewCell {
         if items.count > 0{
             lblItemName.text = "\(items[0].CartProduct?.name ?? "")(\(items[0].quantity ?? 0))"
         }
-        lblOrderDate.text = getFormattedDate(string: model.shopList?.created_at ?? "")
+        lblOrderDate.text = getFormattedDate(string: model.created_at ?? "")
         lblTotalAmount.text = "₹\(model.invoiceDetails?.payable ?? 0)"
+        if model.dispute == "NODISPUTE" {
+            vwDisputed.isHidden = true
+        }else{
+            vwDisputed.isHidden = false
+        }
     }
     
     func getFormattedDate(string: String) -> String{
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss" //2020-05-12T08:09:46.930608Z
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss" //2020-05-12T08:09:46.930608Z  2020-09-29 13:03:04
         
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM dd,yyyy hh:mm a"

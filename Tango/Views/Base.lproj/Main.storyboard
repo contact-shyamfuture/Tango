@@ -1087,12 +1087,28 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="xsJ-xq-Uc9" kind="relationship" relationship="rootViewController" id="noi-ZI-OHx"/>
+                        <segue destination="UbO-Sq-iUJ" kind="relationship" relationship="rootViewController" id="96Z-LS-lP3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m8F-lD-nlT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-663.768115942029" y="-737.27678571428567"/>
+            <point key="canvasLocation" x="-1355" y="-737"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="e4g-N9-Qtk">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UbO-Sq-iUJ" customClass="ViewController" customModule="Tango" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="a1o-R8-6fd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="mBP-5N-Gkc"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sC6-Mh-59y"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lpE-L1-cZx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-538" y="-737"/>
         </scene>
     </scenes>
     <resources>

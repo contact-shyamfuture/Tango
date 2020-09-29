@@ -253,6 +253,7 @@
                         <viewLayoutGuide key="safeArea" id="WIS-hf-xfe"/>
                     </view>
                     <connections>
+                        <outlet property="btnAddAddressOutlet" destination="sL1-5y-Vmx" id="Cl3-gy-smm"/>
                         <outlet property="tableAddressList" destination="Cuq-MK-ZHl" id="M7Q-SA-rT0"/>
                     </connections>
                 </viewController>

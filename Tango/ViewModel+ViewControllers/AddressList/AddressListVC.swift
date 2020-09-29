@@ -10,6 +10,7 @@ import UIKit
 
 class AddressListVC: BaseViewController {
 
+    @IBOutlet weak var btnAddAddressOutlet: UIButton!
     @IBOutlet weak var tableAddressList: UITableView!
     var delegate : DeliveryLocationSaved?
     
@@ -17,7 +18,6 @@ class AddressListVC: BaseViewController {
         return AddressListVM()
     }()
     var addressList = [AddressListModel]()
-    
     
     var isSelected :  Bool?
     override func viewDidLoad() {
@@ -28,6 +28,9 @@ class AddressListVC: BaseViewController {
         self.tableAddressList.delegate = self
         self.tableAddressList.dataSource = self
         self.tableAddressList.register(UINib(nibName: "AddressListCell", bundle: Bundle.main), forCellReuseIdentifier: "AddressListCell")
+        if isSelected == true {
+            btnAddAddressOutlet.isHidden = true
+        }
         initializeViewModel()
     }
     
@@ -88,6 +91,7 @@ class AddressListVC: BaseViewController {
             }
         }
     }
+    //9933326218
     
     func manageAddressDelete(index : Int){
         print("tap index path : \(index)")
@@ -96,6 +100,7 @@ class AddressListVC: BaseViewController {
 
         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
             self.viewModel.deleteAddressDetails(id: "\(self.addressList[index].id ?? 0)")
+            
           }))
 
         refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
@@ -122,7 +127,6 @@ extension AddressListVC : UITableViewDelegate, UITableViewDataSource  , manageAd
             }else{
                 return 0
             }
-            
         }else {
             return self.addressList.count
         }
@@ -135,6 +139,13 @@ extension AddressListVC : UITableViewDelegate, UITableViewDataSource  , manageAd
             //Cell.btnStackVw.isHidden = true
             Cell.lblTitle.text = "Current Location"
             Cell.lblAddress.text = "Lorem Ipsum is simply"
+            if isSelected == true {
+                Cell.editbtnOutlet.isHidden = true
+                Cell.deleteBtnOutlet.isHidden = true
+            }else{
+                Cell.editbtnOutlet.isHidden = false
+                Cell.deleteBtnOutlet.isHidden = false
+            }
             return Cell
         }else{
             let Cell = tableView.dequeueReusableCell(withIdentifier: "AddressListCell") as! AddressListCell
@@ -149,9 +160,16 @@ extension AddressListVC : UITableViewDelegate, UITableViewDataSource  , manageAd
             }
             Cell.editbtnOutlet.tag = indexPath.row
             Cell.deleteBtnOutlet.tag = indexPath.row
-            
             Cell.delegate = self
             Cell.lblAddress.text = list.map_address
+            
+            if isSelected == true {
+                Cell.editbtnOutlet.isHidden = true
+                Cell.deleteBtnOutlet.isHidden = true
+            }else{
+                Cell.editbtnOutlet.isHidden = false
+                Cell.deleteBtnOutlet.isHidden = false
+            }
             return Cell
         }
     }
@@ -192,14 +210,14 @@ extension AddressListVC : UITableViewDelegate, UITableViewDataSource  , manageAd
                 return 0
             }
         }else{
-            return 130
+            return 140//UITableView.automaticDimension
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isSelected == true {
             navigationController?.popViewController(animated: true)
-            delegate?.getDeliveryLocation(Address: self.addressList[indexPath.row].map_address!, addressID: self.addressList[indexPath.row].id!)
+            delegate?.getDeliveryLocation(Address: self.addressList[indexPath.row].map_address!, addressID: self.addressList[indexPath.row].id!, adddic: self.addressList[indexPath.row])
         }
     }
 }

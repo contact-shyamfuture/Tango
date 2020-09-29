@@ -21,12 +21,10 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
     lazy var viewModel: UserCratVM = {
         return UserCratVM()
     }()
+    
     var orderSave = OrderSaveModel()
     var userCart : [ProfileCartModel]?
     var userCartList = UserCartModel()
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,11 +129,13 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
         self.navigationController?.pushViewController(vc!, animated: false)
     }
     
-    func getDeliveryLocation(Address : String, addressID : Int){
+    func getDeliveryLocation(Address : String, addressID : Int , adddic : AddressListModel){
         orderSave.user_address_id = addressID
         orderSave.user_address = Address
+        orderSave.addressType = adddic.type!
         tblVw.reloadData()
     }
+    
     func applyPromocodes(value : Int){
         orderSave.wallet = value//"\(value)"
         tblVw.reloadData()
@@ -218,6 +218,7 @@ extension CartVC : UITableViewDelegate,UITableViewDataSource , addressSelectionD
             if orderSave.user_address_id != nil {
                 Cell.btnCOntiniueAction.isHidden = false
                 Cell.lblAddress.text = orderSave.user_address
+                Cell.lblAddressType.text = orderSave.addressType
             }else{
                 Cell.btnCOntiniueAction.isHidden = true
             }
