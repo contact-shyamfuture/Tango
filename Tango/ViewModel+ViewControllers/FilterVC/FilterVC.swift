@@ -24,6 +24,7 @@ class FilterVC: BaseViewController {
         headerView.imgLogo.isHidden = true
         headerView.btnBackAction.isHidden = false
         tabBarView.isHidden = true
+        headerView.btnHeartOutlet.isHidden = true
 
         self.filterTableView.delegate = self
         self.filterTableView.dataSource = self

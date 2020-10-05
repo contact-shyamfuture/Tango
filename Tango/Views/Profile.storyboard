@@ -209,13 +209,59 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFc-M0-tuW">
+                                        <rect key="frame" x="10" y="0.0" width="394" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set Delivery Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6fh-cI-IH3">
+                                                <rect key="frame" x="30" y="0.0" width="334" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="21" id="6WE-sb-BcZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search for area, street name.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSl-Re-P1d">
+                                                <rect key="frame" x="30" y="21" width="354" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="oag-sZ-QPc"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lpr-tT-lP5">
+                                                <rect key="frame" x="0.0" y="0.0" width="394" height="30"/>
+                                                <connections>
+                                                    <action selector="btnSetDeliveryLocationBtnAction:" destination="xZ1-9J-nzY" eventType="touchUpInside" id="gMM-wE-VH6"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PSl-Re-P1d" secondAttribute="trailing" constant="10" id="4Dr-oE-W2r"/>
+                                            <constraint firstItem="6fh-cI-IH3" firstAttribute="top" secondItem="aFc-M0-tuW" secondAttribute="top" id="5Of-KM-jCD"/>
+                                            <constraint firstItem="PSl-Re-P1d" firstAttribute="top" secondItem="6fh-cI-IH3" secondAttribute="bottom" id="Cj0-iv-IwG"/>
+                                            <constraint firstAttribute="trailing" secondItem="6fh-cI-IH3" secondAttribute="trailing" constant="30" id="I8r-TU-6RC"/>
+                                            <constraint firstItem="lpr-tT-lP5" firstAttribute="top" secondItem="aFc-M0-tuW" secondAttribute="top" id="Uab-7N-2FV"/>
+                                            <constraint firstItem="lpr-tT-lP5" firstAttribute="leading" secondItem="aFc-M0-tuW" secondAttribute="leading" id="a4W-ud-2wk"/>
+                                            <constraint firstItem="6fh-cI-IH3" firstAttribute="leading" secondItem="aFc-M0-tuW" secondAttribute="leading" constant="30" id="aF7-10-t75"/>
+                                            <constraint firstAttribute="trailing" secondItem="lpr-tT-lP5" secondAttribute="trailing" id="gel-d3-8U7"/>
+                                            <constraint firstAttribute="bottom" secondItem="lpr-tT-lP5" secondAttribute="bottom" id="kcG-ia-NdI"/>
+                                            <constraint firstItem="PSl-Re-P1d" firstAttribute="leading" secondItem="6fh-cI-IH3" secondAttribute="leading" id="yv3-o1-Fbc"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstItem="aFc-M0-tuW" firstAttribute="leading" secondItem="ikj-MS-l07" secondAttribute="leading" constant="10" id="259-Se-4CR"/>
                                     <constraint firstItem="NaV-x6-R2U" firstAttribute="top" secondItem="ikj-MS-l07" secondAttribute="top" id="Ewm-4Z-xeS"/>
                                     <constraint firstAttribute="trailing" secondItem="NaV-x6-R2U" secondAttribute="trailing" id="Lmv-Io-Omn"/>
                                     <constraint firstItem="NaV-x6-R2U" firstAttribute="leading" secondItem="ikj-MS-l07" secondAttribute="leading" constant="15" id="Y6l-zC-x2q"/>
                                     <constraint firstAttribute="height" constant="30" id="eMV-11-rjf"/>
+                                    <constraint firstAttribute="trailing" secondItem="aFc-M0-tuW" secondAttribute="trailing" constant="10" id="gMQ-Ez-Czy"/>
+                                    <constraint firstItem="aFc-M0-tuW" firstAttribute="top" secondItem="ikj-MS-l07" secondAttribute="top" id="kLX-ge-oWR"/>
+                                    <constraint firstAttribute="bottom" secondItem="aFc-M0-tuW" secondAttribute="bottom" id="txq-uc-icE"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="Cuq-MK-ZHl">
@@ -254,6 +300,7 @@
                     </view>
                     <connections>
                         <outlet property="btnAddAddressOutlet" destination="sL1-5y-Vmx" id="Cl3-gy-smm"/>
+                        <outlet property="setDeliveryLocationView" destination="aFc-M0-tuW" id="Lby-Nv-Y52"/>
                         <outlet property="tableAddressList" destination="Cuq-MK-ZHl" id="M7Q-SA-rT0"/>
                     </connections>
                 </viewController>
@@ -894,7 +941,7 @@
                                         </constraints>
                                     </imageView>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WkZ-fk-dRy">
-                                        <rect key="frame" x="70" y="36.5" width="164" height="23.5"/>
+                                        <rect key="frame" x="70" y="36.5" width="161.5" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>

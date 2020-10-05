@@ -9,7 +9,7 @@
 import UIKit
 import HCSStarRatingView
 
-class RestourantMenuListVC: BaseViewController {
+class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
     @IBOutlet weak var lblItemCount: UILabel!
     @IBOutlet weak var lblCurrency: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
@@ -29,22 +29,43 @@ class RestourantMenuListVC: BaseViewController {
         return UserCratVM()
     }()
     
+    var favoritesList : [FavoritesList]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         headerView.imgLogo.isHidden = true
         headerView.btnBackAction.isHidden = false
-        
+        headerView.btnHeartOutlet.isHidden = false
+        headerView.delegate = self
         menutableView.delegate = self
         menutableView.dataSource = self
         menutableView.register(CartTopCell.nib(), forCellReuseIdentifier: CartTopCell.identifier)
         
         self.menutableView.register(UINib(nibName: "CartListCell", bundle: Bundle.main), forCellReuseIdentifier: "CartListCell")
         
-        lblMenuName.text = categoryList?.name
-        btnDistance.setTitle("\(categoryList!.estimated_delivery_time ?? 0) mint", for: .normal)
-        MenuHeaderImage.sd_setImage(with: URL(string: categoryList!.avatar!))
-        ratingView.value = CGFloat(categoryList!.rating ?? 0)
+        if let name = self.categoryList?.name {
+            self.lblMenuName.text = name
+        }else{
+             self.lblMenuName.text = ""
+        }
+        
+        if let time = self.categoryList!.estimated_delivery_time {
+            self.btnDistance.setTitle("\(time) mint", for: .normal)
+        }else{
+            self.btnDistance.setTitle("0 mint", for: .normal)
+        }
+        
+        if let avatar = self.categoryList!.avatar {
+            self.MenuHeaderImage.sd_setImage(with: URL(string: avatar))
+        }
+        
+        if let rating = self.categoryList!.rating {
+            self.ratingView.value = CGFloat(rating )
+        }else{
+            self.ratingView.value = CGFloat(0 )
+        }
+        
         
         if userdetails.userCart != nil && userdetails.userCart!.count > 0 {
             itemView.isHidden = false
@@ -61,13 +82,26 @@ class RestourantMenuListVC: BaseViewController {
             lblCurrency.text = ""
             lblAmount.text = "0"
         }
-        
-        
         self.tabBarView.imgArray = ["HomeSelected","Search","finished","Profile"]
         self.tabBarView.uiColorArray = [UIColor(red: 255/255.0, green: 133/255.0, blue: 0/255.0, alpha: CGFloat(1)),UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1))]
         
         initializeViewModel()
         getcategoryList()
+        getFavorites()
+    }
+    
+    func getFavorites(){
+        viewModel.getFavoritesListToAPIService()
+    }
+    
+    func addFavorites(){
+        if self.favoritesList!.contains(where: {$0.shop_id == Int(self.shopID)}) {            
+            viewModel.removeFavoritesToAPIService(shopId : shopID)
+        } else {
+            let param = AddFavParam()
+            param.shop_id = Int(shopID)
+            viewModel.addFavoritesToAPIService(user: param)
+        }
     }
     
     func getcategoryList(){
@@ -97,6 +131,7 @@ class RestourantMenuListVC: BaseViewController {
                 }
             }
         }
+        
         
         viewModel.refreshViewClosure = {[weak self]() in
             DispatchQueue.main.async {
@@ -131,8 +166,77 @@ class RestourantMenuListVC: BaseViewController {
             DispatchQueue.main.async {
                 
                 if (self?.viewModel.categoryList) != nil {
-                    self!.categoryList = self?.viewModel.categoryList                    
+                    self!.categoryList = self?.viewModel.categoryList
+                    
+                    if let name = self!.categoryList?.name {
+                        self!.lblMenuName.text = name
+                    }else{
+                         //self!.lblMenuName.text = ""
+                    }
+                    
+                    if let time = self!.categoryList!.estimated_delivery_time {
+                        self!.btnDistance.setTitle("\(time) mint", for: .normal)
+                    }else{
+                        //self!.btnDistance.setTitle("0 mint", for: .normal)
+                    }
+                    
+                    if let avatar = self!.categoryList!.avatar {
+                        self!.MenuHeaderImage.sd_setImage(with: URL(string: avatar))
+                    }
+                    
+                    if let rating = self!.categoryList!.rating {
+                        self!.ratingView.value = CGFloat(rating )
+                    }else{
+                        //self!.ratingView.value = CGFloat(0 )
+                    }
                     self!.menutableView.reloadData()
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                }
+            }
+        }
+        viewModel.refreshFavoritesListViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.favoritesDetails.favoritesList) != nil {
+                    self!.favoritesList = self?.viewModel.favoritesDetails.favoritesList
+                    
+                    if self!.favoritesList!.contains(where: {$0.shop_id == Int(self!.shopID)}) {
+                        self!.headerView.btnHeartOutlet.setImage(UIImage(named: "RedHeart"), for: .normal)
+                    } else {
+                       self!.headerView.btnHeartOutlet.setImage(UIImage(named: "whiteHeart"), for: .normal)
+                    }
+                    
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                }
+            }
+        }
+        
+        viewModel.refreshAddFavoritesViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.addFavDetails.message) != nil {
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: (self?.viewModel.addFavDetails.message)!, okButtonText: okText, completion: {
+
+                        self!.getFavorites()
+                    })
+                    
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                }
+            }
+        }
+        
+        viewModel.refreshRemoveFavoritesViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.addFavDetails.message) != nil {
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: (self?.viewModel.addFavDetails.message)!, okButtonText: okText, completion: {
+
+                        self!.getFavorites()
+                    })
+                    
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
                 }
@@ -240,12 +344,17 @@ class RestourantMenuListVC: BaseViewController {
 
 extension RestourantMenuListVC : UITableViewDelegate,UITableViewDataSource , UserCartProtocol{
     func numberOfSections(in tableView: UITableView) -> Int {
-        if categoryList!.restaurantCategories != nil && categoryList!.restaurantCategories!.count > 0 {
-            return categoryList!.restaurantCategories!.count
+        if categoryList != nil {
+            if categoryList!.restaurantCategories != nil && categoryList!.restaurantCategories!.count > 0 {
+                return categoryList!.restaurantCategories!.count
+            }else{
+                return 0
+            }
         }else{
             return 0
         }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if categoryList!.restaurantCategories != nil && categoryList!.restaurantCategories!.count > 0 {
             return categoryList!.restaurantCategories![section].categoriesProducts!.count
@@ -263,9 +372,9 @@ extension RestourantMenuListVC : UITableViewDelegate,UITableViewDataSource , Use
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let mainView = UIStoryboard(name:"Dashboard", bundle: nil)
-        let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "MenuDetailsVC") as! MenuDetailsVC
-        self.navigationController?.pushViewController (viewcontroller, animated: true)
+//        let mainView = UIStoryboard(name:"Dashboard", bundle: nil)
+//        let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "MenuDetailsVC") as! MenuDetailsVC
+//        self.navigationController?.pushViewController (viewcontroller, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

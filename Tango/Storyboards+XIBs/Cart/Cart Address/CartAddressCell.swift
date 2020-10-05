@@ -14,6 +14,7 @@ protocol addressSelectionDelegate {
 }
 class CartAddressCell: UITableViewCell {
     
+    @IBOutlet weak var changeAddress: UIButton!
     @IBOutlet weak var lblAddressType: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var btnCOntiniueAction: UIView!
@@ -41,5 +42,9 @@ class CartAddressCell: UITableViewCell {
     }    
     @IBAction func continueBtnAction(_ sender: Any) {
         delegate?.orderContinue()
+    }
+    
+    @IBAction func changeAddress(_ sender: Any) {
+        delegate?.selectAddress()
     }
 }

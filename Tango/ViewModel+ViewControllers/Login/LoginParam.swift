@@ -199,3 +199,34 @@ class UpdateProfileParam: Mappable {
         phone <- map["phone"]
     }
 }
+
+class AddFavParam: Mappable {
+    var shop_id : Int?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        shop_id <- map["shop_id"]
+
+    }
+}
+class CheckLocationParam: Mappable {
+
+    var address_id : String?
+    var near_by : String?
+    var restaurant_id : String?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        address_id <- map["address_id"]
+        near_by <- map["near_by"]
+        restaurant_id <- map["restaurant_id"]
+    }
+}

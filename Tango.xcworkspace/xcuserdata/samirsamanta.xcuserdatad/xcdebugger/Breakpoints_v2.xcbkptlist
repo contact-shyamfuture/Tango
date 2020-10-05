@@ -116,14 +116,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "FBB3D182-9FF7-4C3C-BA7C-78E048C29B11 - 63a0da2dfd40de77"
+                  uuid = "FBB3D182-9FF7-4C3C-BA7C-78E048C29B11 - 5fc3d92e3c0a5685"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "Tango.PaymentServices.postOrderDetails(params: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: Swift.Optional&lt;(Tango.Response) -&gt; ()&gt;) -&gt; ()"
                   moduleName = "Tango"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/29.09.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "24"
@@ -131,14 +131,14 @@
                   offsetFromSymbolStart = "1248">
                </Location>
                <Location
-                  uuid = "FBB3D182-9FF7-4C3C-BA7C-78E048C29B11 - 5e5d52e3b3e0c629"
+                  uuid = "FBB3D182-9FF7-4C3C-BA7C-78E048C29B11 - 623e51e072aa4edb"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Alamofire.DataResponse&lt;Tango.OrderDetailsModel&gt;) -&gt; () in Tango.PaymentServices.postOrderDetails(params: Swift.Dictionary&lt;Swift.String, Any&gt;, completion: Swift.Optional&lt;(Tango.Response) -&gt; ()&gt;) -&gt; ()"
                   moduleName = "Tango"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/29.09.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/Others/APIService/APIServices/PaymentServices.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -209,6 +209,465 @@
             startingLineNumber = "37"
             endingLineNumber = "37"
             landmarkName = "postOrderDetails(params:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "009C2291-71E7-406E-88FD-723E81542070"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/MenuList/RestourantMenuListVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "initializeViewModel()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "009C2291-71E7-406E-88FD-723E81542070 - 9aa802ec3b01de60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in Tango.RestourantMenuListVC.initializeViewModel() -&gt; ()"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/MenuList/RestourantMenuListVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "137"
+                  endingLineNumber = "137"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "009C2291-71E7-406E-88FD-723E81542070 - a18e3de7d34699fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #3 () -&gt; () in Tango.RestourantMenuListVC.initializeViewModel() -&gt; ()"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/MenuList/RestourantMenuListVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "41A3FFE8-BAB2-4AA3-93D2-A52A8DE7EB73"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Search/SearchVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "735B03F4-3A3A-4FDB-9B96-48FFE32B0677"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Storyboards+XIBs/Cart/DeloveryTipCell/DeliveryTipCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E3775468-4F86-4383-BBD7-2C1230D02B4C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Storyboards+XIBs/Cart/DeloveryTipCell/DeliveryTipCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D5B65EB-0FA2-46DF-8858-9B8C675A001E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Storyboards+XIBs/Cart/DeloveryTipCell/DeliveryTipCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "awakeFromNib()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5BDC2FA-644F-4CB3-82CD-F20204BACA7D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Storyboards+XIBs/Cart/DeloveryTipCell/DeliveryTipCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "collectionView(_:numberOfItemsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CCA965BC-F019-40C7-B2CD-B4F5A174214D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Storyboards+XIBs/Cart/DeloveryTipCell/DeliveryTipCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9AF0B8C-B0B5-47DE-AE75-391AC784988E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/MenuList/RestourantMenuListVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "initializeViewModel()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C93587E5-1F5C-4A01-B121-3A7DDC8DC8C6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Storyboards+XIBs/Cart/Cart Details/CartDetailsCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "CartDetailsCell"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A6B6641A-C98E-468D-AC1E-FBEDF582619A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/FavouritesList/FavouritesCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "initializeCellDetails(cellDic:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B443EC2-FDF4-4DB4-9D8D-5DFE50695BD0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Dashboard/DashboardVM.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "getDashboardNearByFalseToAPIService(lat:long:id:offset:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC556489-1DD8-4A54-9536-688CDF80BFFD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Others/APIService/APIServices/DashboradServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "getRestaurantNearByFalseListDetails(lat:long:id:offset:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DC556489-1DD8-4A54-9536-688CDF80BFFD - 98ef2709c221448d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.DashboradServices.getRestaurantNearByFalseListDetails(lat: Swift.String, long: Swift.String, id: Swift.String, offset: Swift.String, completion: Swift.Optional&lt;(Tango.Response) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/Others/APIService/APIServices/DashboradServices.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "1238">
+               </Location>
+               <Location
+                  uuid = "DC556489-1DD8-4A54-9536-688CDF80BFFD - 6a9b75fee837a6c3"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Tango.RestaurantNearModel&gt;) -&gt; () in Tango.DashboradServices.getRestaurantNearByFalseListDetails(lat: Swift.String, long: Swift.String, id: Swift.String, offset: Swift.String, completion: Swift.Optional&lt;(Tango.Response) -&gt; ()&gt;) -&gt; ()"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/Others/APIService/APIServices/DashboradServices.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "246">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "628144C3-0569-43EB-B921-FB8EE47FC37B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Others/APIService/APIServices/DashboradServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "getRestaurantNearByFalseListDetails(lat:long:id:offset:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "04D67539-64BB-4BED-8947-EC9D098DEE89"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/Others/APIService/APIServices/DashboradServices.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "getRestaurantNearByFalseListDetails(lat:long:id:offset:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F02A9CC-8D7B-414E-BDD0-EBEEB5C69294"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
+            landmarkName = "getDeliveryLocation(Address:addressID:adddic:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4 - d373ecbc815394c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.CartVC.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "294"
+                  endingLineNumber = "294"
+                  offsetFromSymbolStart = "141">
+               </Location>
+               <Location
+                  uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4 - d373ecbc815394c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.CartVC.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "294"
+                  endingLineNumber = "294"
+                  offsetFromSymbolStart = "279">
+               </Location>
+               <Location
+                  uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4 - d373ecbc815394c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.CartVC.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "294"
+                  endingLineNumber = "294"
+                  offsetFromSymbolStart = "1622">
+               </Location>
+               <Location
+                  uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4 - d373ecbc815394c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.CartVC.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "294"
+                  endingLineNumber = "294"
+                  offsetFromSymbolStart = "2646">
+               </Location>
+               <Location
+                  uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4 - d373ecbc815394c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.CartVC.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "294"
+                  endingLineNumber = "294"
+                  offsetFromSymbolStart = "3610">
+               </Location>
+               <Location
+                  uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4 - d373ecbc815394c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.CartVC.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "294"
+                  endingLineNumber = "294"
+                  offsetFromSymbolStart = "4159">
+               </Location>
+               <Location
+                  uuid = "C0748B1F-5CF8-4EC7-9630-D090B0C696E4 - d373ecbc815394c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tango.CartVC.tableView(_: __C.UITableView, cellForRowAt: Foundation.IndexPath) -&gt; __C.UITableViewCell"
+                  moduleName = "Tango"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/samirsamanta/Desktop/Office/Tango/Backup/BackUp/03.010.2020/Tango/Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "294"
+                  endingLineNumber = "294"
+                  offsetFromSymbolStart = "5375">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DB1F8A7F-72D8-4D06-AD58-C057134FC942"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD440F1C-ECBF-4124-B28D-4DA935F3B2A0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Cart/CartVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "orderContinue()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

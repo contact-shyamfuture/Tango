@@ -39,7 +39,22 @@ class ItemCell: UITableViewCell {
         menuImage.sd_setImage(with: URL(string: cellDic.avatar!))
         if cellDic.shopstatus == "OPEN" {
             closedView.isHidden = true
-            btnDeliveryCharge.isHidden = false
+            btnDeliveryCharge.isHidden = true
+        }else{
+            closedView.isHidden = false
+            btnDeliveryCharge.isHidden = true
+        }
+    }
+    func initializeCellNearDetails(cellDic : RestaurantList){
+        lblMenuNAme.text = cellDic.name
+        lblDesrciptiuon.text = cellDic.description
+        lblDiscount.text = "\(cellDic.offer_percent ?? 0) % off"
+        ratingView.value = CGFloat(cellDic.rating ?? 0)
+        btnDistanceTime.setTitle("\(cellDic.estimated_delivery_time ?? 0) mint", for: .normal)
+        menuImage.sd_setImage(with: URL(string: cellDic.avatar!))
+        if cellDic.shopstatus == "OPEN" {
+            closedView.isHidden = true
+            btnDeliveryCharge.isHidden = true
         }else{
             closedView.isHidden = false
             btnDeliveryCharge.isHidden = true

@@ -1101,10 +1101,25 @@
                     <view key="view" contentMode="scaleToFill" id="a1o-R8-6fd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-xc-gZs">
+                                <rect key="frame" x="0.0" y="60" width="414" height="806"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="eHI-xc-gZs" secondAttribute="trailing" id="8FA-la-FDp"/>
+                            <constraint firstItem="eHI-xc-gZs" firstAttribute="top" secondItem="a1o-R8-6fd" secondAttribute="top" constant="60" id="QRJ-Ah-eJv"/>
+                            <constraint firstItem="eHI-xc-gZs" firstAttribute="leading" secondItem="a1o-R8-6fd" secondAttribute="leading" id="St4-Du-Qq7"/>
+                            <constraint firstAttribute="bottom" secondItem="eHI-xc-gZs" secondAttribute="bottom" constant="30" id="VvA-Ba-4rO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="mBP-5N-Gkc"/>
                     </view>
                     <navigationItem key="navigationItem" id="sC6-Mh-59y"/>
+                    <connections>
+                        <outlet property="SplachView" destination="eHI-xc-gZs" id="nZh-iU-0tb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpE-L1-cZx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

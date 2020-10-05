@@ -20,8 +20,12 @@ class FavouritesCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
+    func initializeCellDetails(cellDic : FavoritesList){
+        lblShopName.text = cellDic.shopList?.name
+        txtViewAddress.text = cellDic.shopList?.address
+        shopImage.sd_setImage(with: URL(string: cellDic.shopList?.avatar ?? ""))
+    }
 }

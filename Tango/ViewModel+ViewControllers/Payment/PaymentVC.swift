@@ -36,6 +36,7 @@ class PaymentVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true
         //UINavigationBar.appearance().barTintColor = UIColor(red: 255/255.0, green: 167/255.0, blue: 0/255.0, alpha: CGFloat(1))
@@ -90,14 +91,14 @@ class PaymentVC: BaseViewController {
     @IBAction func btnProcedToPay(_ sender: Any) {
         let param = OrderParam()
         param.note = orderSave.note
-        param.promo_amount = "0"
+        param.promo_amount = String(orderSave.wallet)
         param.payment_mode = "cash"
-        param.wallet = String(orderSave.wallet)
+        param.wallet = "0" //String(orderSave.wallet)
         param.delivery_charge = String(userCartList.delivery_charges!)
         param.packaging_charge = String(userCartList.packaging_charge!)
         param.user_address_id = String(orderSave.user_address_id!)
-        param.tips_amount = "0" //String(orderSave.tips_amount)
-        param.promo_id = ""
+        param.tips_amount = String(orderSave.tips_amount)
+        param.promo_id = String(orderSave.promoID)
         viewModel.postOrderToAPIService(user: param)
     }
     
@@ -106,15 +107,15 @@ class PaymentVC: BaseViewController {
         let param = OrderParam()
         param.note = orderSave.note
         param.payment_mode = "payu"
-        param.wallet = String(orderSave.wallet)
+        param.wallet = ""//String(orderSave.wallet)
         param.delivery_charge = String(userCartList.delivery_charges!)
         param.packaging_charge = String(userCartList.packaging_charge!)
         param.user_address_id = String(orderSave.user_address_id!)
-        param.tips_amount = "0" //String(orderSave.tips_amount)
+        param.tips_amount = String(orderSave.tips_amount)
        // param.payment_id = paymetID
        // param.paymet_status = paymet_status
-        param.promo_amount = "0"
-        param.promo_id = "0"
+        param.promo_amount =  String(orderSave.wallet)
+        param.promo_id = String(orderSave.promoID)
         viewModel.postTempOrderToAPIService(user: param)
     }
     
@@ -142,7 +143,7 @@ class PaymentVC: BaseViewController {
          param.delivery_charge = Int(userCartList.delivery_charges!)
          param.packaging_charge = Int(userCartList.packaging_charge!)
          param.user_address_id = Int(orderSave.user_address_id!)
-         param.tips_amount =  0//Int(orderSave.tips_amount)
+         param.tips_amount = Int(orderSave.tips_amount)
          param.payment_id = Int(paymetID)
          param.payment_status = paymet_status
         // param.promo_amount = "0"
@@ -151,7 +152,6 @@ class PaymentVC: BaseViewController {
          viewModel.postOnlineOrderToAPIService(user: param)
         //
     }
-    
     
     func initializeViewModel() {
         viewModel.showAlertClosure = {[weak self]() in
@@ -179,9 +179,9 @@ class PaymentVC: BaseViewController {
                 
                 if  (self?.viewModel.orderDetails.id) != nil {
                     self?.orderDetails = (self?.viewModel.orderDetails)!
-                    let mainView = UIStoryboard(name:"Other", bundle: nil)
-                    let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "ThankYouVC") as! ThankYouVC
-                    self?.navigationController?.pushViewController (viewcontroller, animated: true)
+                    let vc = UIStoryboard.init(name: "Other", bundle: Bundle.main).instantiateViewController(withIdentifier: "ThankYouVC") as? ThankYouVC
+                    vc!.orderDetails = self!.orderDetails
+                    self?.navigationController?.pushViewController (vc!, animated: true)
                     
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)

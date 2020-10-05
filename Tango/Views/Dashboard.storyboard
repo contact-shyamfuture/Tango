@@ -636,6 +636,95 @@
             </objects>
             <point key="canvasLocation" x="1508.6956521739132" y="24.776785714285712"/>
         </scene>
+        <!--Safety MesureVC-->
+        <scene sceneID="Uhz-eR-BnV">
+            <objects>
+                <viewController storyboardIdentifier="SafetyMesureVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="VXl-AM-Qhl" customClass="SafetyMesureVC" customModule="Tango" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xEd-D5-kOW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BGd-8X-cbD">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hq4-MM-Eaw">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="716"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tep-Hh-i71">
+                                        <rect key="frame" x="0.0" y="816" width="414" height="60"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dR-Xw-Qcs" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
+                                                <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m6A-ML-tsx">
+                                                        <rect key="frame" x="10" y="5" width="354" height="40"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                                        <state key="normal" title="Ok">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="btnOkayAction:" destination="VXl-AM-Qhl" eventType="touchUpInside" id="yJ9-C1-eb1"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstItem="m6A-ML-tsx" firstAttribute="top" secondItem="1dR-Xw-Qcs" secondAttribute="top" constant="5" id="9pF-1C-wr6"/>
+                                                    <constraint firstItem="m6A-ML-tsx" firstAttribute="leading" secondItem="1dR-Xw-Qcs" secondAttribute="leading" constant="10" id="HnV-zO-e3B"/>
+                                                    <constraint firstAttribute="trailing" secondItem="m6A-ML-tsx" secondAttribute="trailing" constant="10" id="goF-wV-q9I"/>
+                                                    <constraint firstAttribute="bottom" secondItem="m6A-ML-tsx" secondAttribute="bottom" constant="5" id="kKg-8C-qCN"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="7"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="1dR-Xw-Qcs" firstAttribute="top" secondItem="Tep-Hh-i71" secondAttribute="top" id="0XS-uV-Usm"/>
+                                            <constraint firstAttribute="height" constant="60" id="anY-IH-b0j"/>
+                                            <constraint firstAttribute="bottom" secondItem="1dR-Xw-Qcs" secondAttribute="bottom" constant="10" id="fmS-V2-0qf"/>
+                                            <constraint firstItem="1dR-Xw-Qcs" firstAttribute="leading" secondItem="Tep-Hh-i71" secondAttribute="leading" constant="20" id="vVi-RA-II0"/>
+                                            <constraint firstAttribute="trailing" secondItem="1dR-Xw-Qcs" secondAttribute="trailing" constant="20" id="wZw-F6-pAt"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Hq4-MM-Eaw" secondAttribute="trailing" id="DLq-lG-9A0"/>
+                                    <constraint firstItem="Tep-Hh-i71" firstAttribute="leading" secondItem="BGd-8X-cbD" secondAttribute="leading" id="HkP-rL-vk4"/>
+                                    <constraint firstAttribute="bottom" secondItem="Tep-Hh-i71" secondAttribute="bottom" constant="20" id="TfU-zW-9IP"/>
+                                    <constraint firstItem="Hq4-MM-Eaw" firstAttribute="top" secondItem="BGd-8X-cbD" secondAttribute="top" constant="100" id="nVb-V6-U6o"/>
+                                    <constraint firstItem="Tep-Hh-i71" firstAttribute="top" secondItem="Hq4-MM-Eaw" secondAttribute="bottom" id="ri1-dU-t6X"/>
+                                    <constraint firstAttribute="trailing" secondItem="Tep-Hh-i71" secondAttribute="trailing" id="sOB-Vd-Bco"/>
+                                    <constraint firstItem="Hq4-MM-Eaw" firstAttribute="leading" secondItem="BGd-8X-cbD" secondAttribute="leading" id="tBc-MF-FRj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="BGd-8X-cbD" secondAttribute="bottom" id="Cda-Ho-ahp"/>
+                            <constraint firstItem="BGd-8X-cbD" firstAttribute="top" secondItem="xEd-D5-kOW" secondAttribute="top" id="YCt-xY-dYb"/>
+                            <constraint firstItem="BGd-8X-cbD" firstAttribute="leading" secondItem="tZi-uo-XJw" secondAttribute="leading" id="gP2-d1-ysb"/>
+                            <constraint firstItem="tZi-uo-XJw" firstAttribute="trailing" secondItem="BGd-8X-cbD" secondAttribute="trailing" id="q5d-ly-OeO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="tZi-uo-XJw"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="Hq4-MM-Eaw" id="4n0-FV-drK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pTe-jw-BJb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4148" y="25"/>
+        </scene>
         <!--FilterVC-->
         <scene sceneID="OYj-3V-DnD">
             <objects>

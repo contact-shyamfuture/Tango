@@ -33,6 +33,28 @@ class RestaurantModel: Mappable {
     }
 }
 
+class RestaurantNearModel: Mappable {
+    
+    var shopList : [RestaurantList]?
+    var currency : String?
+    var nearby_distance : String?
+    var far_distance : String?
+    var total_shops : Int?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+
+    func mapping(map: Map) {
+        shopList <- map["shops"]
+        currency <- map["currency"]
+        nearby_distance <- map["nearby_distance"]
+        far_distance <- map["far_distance"]
+        total_shops <- map["total_shops"]
+    }
+}
+
 class RestaurantList: Mappable {
 
     var id : Int?

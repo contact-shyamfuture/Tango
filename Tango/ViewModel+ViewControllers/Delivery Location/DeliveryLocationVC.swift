@@ -37,7 +37,7 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         
         otherMainView.isHidden = true
         otherBgView.isHidden = true
-        
+        headerView.btnHeartOutlet.isHidden = true
         txtFieldOther.delegate = self
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true

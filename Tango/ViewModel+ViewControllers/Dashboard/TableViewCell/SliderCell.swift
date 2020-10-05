@@ -47,12 +47,14 @@ extension SliderCell : UICollectionViewDelegate , UICollectionViewDataSource,UIC
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCollectionViewCell", for: indexPath as IndexPath) as! SliderCollectionViewCell
         cell.imgSlider.sd_setImage(with: URL(string: topBanner[indexPath.row].url!))
+        cell.lblOffer.text = "\(topBanner[indexPath.row].shopList?.offer_percent ?? 0)  % OFF"
+        cell.lblName.text = "\(topBanner[indexPath.row].shopList?.name ?? "")"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width : CGFloat = 270
-        let height: CGFloat = 200
+        let width : CGFloat = 220
+        let height: CGFloat = 170
         return CGSize(width: width, height: height)
     }
     
@@ -62,6 +64,7 @@ extension SliderCell : UICollectionViewDelegate , UICollectionViewDataSource,UIC
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     }

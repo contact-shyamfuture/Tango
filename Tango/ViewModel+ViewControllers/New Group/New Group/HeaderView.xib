@@ -10,6 +10,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderView" customModule="Tango" customModuleProvider="target">
             <connections>
                 <outlet property="btnBackAction" destination="jBb-yI-aSs" id="ecP-Fd-IAO"/>
+                <outlet property="btnHeartOutlet" destination="I1i-3Q-UKX" id="1Vw-5G-mO9"/>
                 <outlet property="headerContentView" destination="iN0-l3-epB" id="Bly-eQ-Hr2"/>
                 <outlet property="imgLogo" destination="Glh-H2-N03" id="rX7-OF-sg7"/>
             </connections>
@@ -41,6 +42,17 @@
                         <action selector="sideMenuButtonAction:" destination="-1" eventType="touchUpInside" id="xUP-ba-cdl"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I1i-3Q-UKX">
+                    <rect key="frame" x="325" y="64.5" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="VmE-T7-MSE"/>
+                        <constraint firstAttribute="height" constant="35" id="bT0-Dp-6Oj"/>
+                    </constraints>
+                    <state key="normal" image="whiteHeart"/>
+                    <connections>
+                        <action selector="btnHeartAction:" destination="-1" eventType="touchUpInside" id="e53-pD-eV1"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -48,10 +60,12 @@
                 <constraint firstItem="08d-Np-xEA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5Sh-Ru-1Za"/>
                 <constraint firstItem="jBb-yI-aSs" firstAttribute="centerY" secondItem="Glh-H2-N03" secondAttribute="centerY" id="6e7-9b-f1X"/>
                 <constraint firstItem="08d-Np-xEA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AXe-z2-eqa"/>
+                <constraint firstAttribute="trailing" secondItem="I1i-3Q-UKX" secondAttribute="trailing" constant="15" id="NlH-Xw-YHr"/>
                 <constraint firstItem="jBb-yI-aSs" firstAttribute="centerX" secondItem="Glh-H2-N03" secondAttribute="centerX" id="RmK-Qs-V7k"/>
                 <constraint firstItem="Glh-H2-N03" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="f43-jD-a4K"/>
                 <constraint firstAttribute="bottom" secondItem="Glh-H2-N03" secondAttribute="bottom" constant="10" id="fO3-Nx-TIk"/>
                 <constraint firstAttribute="bottom" secondItem="08d-Np-xEA" secondAttribute="bottom" id="ozw-Rh-GEA"/>
+                <constraint firstItem="I1i-3Q-UKX" firstAttribute="centerY" secondItem="jBb-yI-aSs" secondAttribute="centerY" id="yab-sR-bLy"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -62,6 +76,7 @@
     <resources>
         <image name="Header" width="375" height="80"/>
         <image name="Logo" width="187" height="172"/>
-        <image name="whiteBack" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="whiteBack" width="30.666666030883789" height="37.333332061767578"/>
+        <image name="whiteHeart" width="21.333333969116211" height="21.333333969116211"/>
     </resources>
 </document>

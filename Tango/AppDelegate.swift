@@ -15,6 +15,8 @@ import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
 import UserNotifications
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterDelegate, MessagingDelegate{
@@ -22,7 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
     var window: UIWindow?
     var navigationController: UINavigationController?
     let reachabilityManager = Alamofire.NetworkReachabilityManager(host: "www.google.com")
-    
+    let googleApiKey = "AIzaSyB5sH_5064gTLwAZeu7fuFWPeRr-jQf19k"
+    //AIzaSyBnbo5ldXXAFUWmv3-efDdIlc12kXCe9qA"//
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
@@ -35,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,UNUserNotificationCenterD
 //        } else {
 //            self.openSignInViewController()
 //        }
+        
+        GMSServices.provideAPIKey(googleApiKey)
+        GMSPlacesClient.provideAPIKey(googleApiKey)
+       
         FirebaseApp.configure()
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)

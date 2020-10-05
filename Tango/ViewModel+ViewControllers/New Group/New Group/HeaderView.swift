@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
+protocol AddFavoritesProtocal {
+    func addFavorites()
+}
 class HeaderView: UIView {
     
+    @IBOutlet weak var btnHeartOutlet: UIButton!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var btnBackAction: UIButton!
     
@@ -26,6 +29,7 @@ class HeaderView: UIView {
     var onClickSideMenuButtonAction: (() -> Void)? = nil
     var onClickProfileButtonAction: (() -> Void)? = nil
     var onClickNotificationButtonAction: (() -> Void)? = nil
+    var delegate : AddFavoritesProtocal?
     override func layoutSubviews() {
         super.layoutSubviews()
     }
@@ -58,5 +62,9 @@ class HeaderView: UIView {
         if self.onClickNotificationButtonAction != nil{
             self.onClickNotificationButtonAction!()
         }
+    }
+    
+    @IBAction func btnHeartAction(_ sender: Any) {
+        delegate?.addFavorites()
     }
 }

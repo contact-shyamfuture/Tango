@@ -20,7 +20,7 @@ class WalletVC: BaseViewController {
         // Do any additional setup after loading the view.
         self.walletsTableView.register(UINib(nibName: "WallesTopCells", bundle: Bundle.main), forCellReuseIdentifier: "WallesTopCells")
         self.walletsTableView.register(UINib(nibName: "WalletsList", bundle: Bundle.main), forCellReuseIdentifier: "WalletsList")
-        
+        headerView.btnHeartOutlet.isHidden = true
         walletsTableView.delegate = self
         walletsTableView.dataSource = self
     }

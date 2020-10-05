@@ -39,6 +39,9 @@ class ProfileVC: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       headerView.btnHeartOutlet.isHidden = true
+        
         headerView.btnBackAction.isHidden = true
         
         userProfileImage.layer.borderWidth = 0

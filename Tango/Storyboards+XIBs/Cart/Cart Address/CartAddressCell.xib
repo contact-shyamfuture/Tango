@@ -18,14 +18,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="oeV-d9-JiV">
-                        <rect key="frame" x="15" y="30" width="25" height="25"/>
+                        <rect key="frame" x="15" y="40" width="25" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="9SZ-pT-OLp"/>
                             <constraint firstAttribute="width" constant="25" id="9zx-fd-WdU"/>
                         </constraints>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80A-Ow-tXX">
+                        <rect key="frame" x="189" y="3" width="120" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="MHq-4f-0uA"/>
+                            <constraint firstAttribute="height" constant="25" id="vHX-z4-Ux7"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="CHANGE ADDRESS">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="changeAddress:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="V2a-93-MEb"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ZM-V9-UGY">
-                        <rect key="frame" x="48" y="12" width="0.0" height="21"/>
+                        <rect key="frame" x="48" y="22" width="0.0" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Xte-iz-idQ"/>
                             <constraint firstAttribute="width" priority="250" constant="42" id="spC-a3-u74"/>
@@ -34,8 +48,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Search to be in a new Locations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olk-tW-pjM">
-                        <rect key="frame" x="48" y="34" width="256" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Search to be in a new Locations" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olk-tW-pjM">
+                        <rect key="frame" x="48" y="44" width="256" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="250" constant="17" id="jEK-Ae-lc7"/>
                         </constraints>
@@ -129,16 +143,19 @@
                     <constraint firstItem="oeV-d9-JiV" firstAttribute="leading" secondItem="Z4v-z6-Aqp" secondAttribute="leading" id="X4E-gz-cKF"/>
                     <constraint firstItem="ret-aX-6TA" firstAttribute="bottom" secondItem="Z4v-z6-Aqp" secondAttribute="bottom" id="Xvm-23-GVL"/>
                     <constraint firstItem="Olk-tW-pjM" firstAttribute="leading" secondItem="oeV-d9-JiV" secondAttribute="trailing" constant="8" id="bgB-HD-osc"/>
-                    <constraint firstItem="Z4v-z6-Aqp" firstAttribute="top" secondItem="oeV-d9-JiV" secondAttribute="bottom" constant="13" id="hoW-bc-0Du"/>
                     <constraint firstItem="Olk-tW-pjM" firstAttribute="trailing" secondItem="Z4v-z6-Aqp" secondAttribute="trailing" id="jPV-jL-y2I"/>
+                    <constraint firstItem="oeV-d9-JiV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="40" id="m8b-1M-I5u"/>
                     <constraint firstAttribute="trailing" secondItem="Z4v-z6-Aqp" secondAttribute="trailing" constant="15" id="mGi-WV-6e8"/>
+                    <constraint firstAttribute="trailing" secondItem="80A-Ow-tXX" secondAttribute="trailing" constant="10" id="p80-9q-uDs"/>
                     <constraint firstItem="ret-aX-6TA" firstAttribute="top" secondItem="Z4v-z6-Aqp" secondAttribute="top" id="pdG-yI-izC"/>
                     <constraint firstItem="Olk-tW-pjM" firstAttribute="top" secondItem="2ZM-V9-UGY" secondAttribute="bottom" constant="1" id="snv-lZ-OXA"/>
+                    <constraint firstItem="80A-Ow-tXX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="t9D-5H-1aj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnCOntiniueAction" destination="ret-aX-6TA" id="EEt-Dd-JB9"/>
+                <outlet property="changeAddress" destination="80A-Ow-tXX" id="TA3-Kq-fw7"/>
                 <outlet property="lblAddress" destination="Olk-tW-pjM" id="0wo-9O-Xfd"/>
                 <outlet property="lblAddressType" destination="2ZM-V9-UGY" id="Phe-Is-EQr"/>
             </connections>

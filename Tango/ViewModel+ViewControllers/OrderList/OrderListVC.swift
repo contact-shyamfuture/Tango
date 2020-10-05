@@ -22,6 +22,8 @@ class OrderListVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true
         initializeViewModel()

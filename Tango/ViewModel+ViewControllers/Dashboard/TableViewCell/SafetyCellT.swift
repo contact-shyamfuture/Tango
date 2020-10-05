@@ -7,11 +7,14 @@
 //
 
 import UIKit
-
+protocol safetyDetails {
+    func navigateToSafetyDetails(id : Int)
+}
 class SafetyCellT: UITableViewCell {
 
     @IBOutlet weak var safetyCollectionView: UICollectionView!
     var safetyBanner = [SafetyModel]()
+    var delegateSft : safetyDetails?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -62,10 +65,16 @@ extension SafetyCellT : UICollectionViewDelegate , UICollectionViewDataSource,UI
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegateSft?.navigateToSafetyDetails(id: safetyBanner[indexPath.row].id!)
     }
 }

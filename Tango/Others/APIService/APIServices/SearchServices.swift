@@ -15,7 +15,7 @@ protocol SearchServicesProtocol {
 class SearchServices: SearchServicesProtocol {
     
     func getSearchresultDetails(searchValue : String ,userID : String, completion: RequestCompletionHandler?) {
-        let Api = APIConstants.searchApi() + "\(userID)&name=\(searchValue)"
+        let Api = APIConstants.searchApi() + "\(userID)&name=\(searchValue)&latitude=22.486785&nearBy=false&longitude=88.360054"
         
         let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
         print("Header: ",header)

@@ -11,11 +11,12 @@ import SwiftyGif
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var SplachView: UIView!
     let logoAnimationView = LogoAnimationView()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.addSubview(logoAnimationView)
+        SplachView.addSubview(logoAnimationView)
         logoAnimationView.pinEdgesToSuperView()
         logoAnimationView.logoGifImageView.delegate = self
     }

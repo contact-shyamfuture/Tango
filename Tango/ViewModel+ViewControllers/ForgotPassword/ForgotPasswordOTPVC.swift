@@ -26,6 +26,7 @@ class ForgotPasswordOTPVC: UIViewController {
         self.otpTableView.delegate = self
         self.otpTableView.dataSource = self
         self.lblPhoneNumber.text = phoneNumbr
+        
         self.otpTableView.register(UINib(nibName: "CommonButtonCell", bundle: Bundle.main), forCellReuseIdentifier: "CommonButtonCell")
         otpView.didFinishCallback = didFinishEnteringPin(pin:)
         otpView.didChangeCallback = { pin in

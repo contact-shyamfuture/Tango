@@ -33,8 +33,12 @@ class APIConstants: NSObject {
     static let filterURL = "api/user/cuisines"
     static let categoryURL = "api/user/categories?shop="
     static let tempOrderURL = "api/user/temp-order"
-        
+    static let promocodeURL = "api/user/wallet/promocode"
+    static let favoritesListURL = "api/user/favorite"
+    static let favoritesAddtURL = "api/user/favorite"
+    static let checkLocationURL = "api/user/check-distance"
     
+        
     static func logInApi() -> String {
         return baseURL + loginURL
     }
@@ -110,5 +114,21 @@ class APIConstants: NSObject {
     
     static func postTempOrderApi() -> String {
         return baseURL + tempOrderURL
+    }
+    
+    static func promoCodeApi() -> String {
+        return baseURL + promocodeURL
+    }
+    
+    static func favoritesApi() -> String {
+        return baseURL + favoritesListURL
+    }
+    
+    static func addFavoritesApi() -> String {
+        return baseURL + favoritesListURL
+    }
+    
+    static func checkLocationApi() -> String {
+        return baseURL + checkLocationURL
     }
 }

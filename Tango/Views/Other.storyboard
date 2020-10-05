@@ -526,6 +526,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Dw-58-z09"/>
                     </view>
+                    <connections>
+                        <outlet property="lblAmount" destination="YfJ-pQ-Xtu" id="E3k-o0-ETL"/>
+                        <outlet property="lblOrderID" destination="wgq-rQ-bwK" id="WQI-Op-koD"/>
+                        <outlet property="lblOrderName" destination="89G-2Y-oQf" id="RJx-JC-92s"/>
+                        <outlet property="lblPaymentMode" destination="UN1-TE-7m7" id="ghj-5L-omH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nyd-pv-DwZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

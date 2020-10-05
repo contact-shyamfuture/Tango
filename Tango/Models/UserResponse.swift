@@ -18,6 +18,9 @@ class UserResponse: Mappable {
     var access_token : String?
     var refresh_token : String?
     
+    var error : String?
+    var messag : String?
+    
     init() {}
     required init?(map: Map) {
         mapping(map: map)
@@ -28,6 +31,9 @@ class UserResponse: Mappable {
         expires_in <- map["expires_in"]
         access_token <- map["access_token"]
         refresh_token <- map["refresh_token"]
+        
+        error <- map["error"]
+        messag <- map["message"]
     }
 }
 

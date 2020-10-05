@@ -12,6 +12,8 @@ class DashboardVM {
     
     let apiService: DashboradServicesProtocol
     var refreshViewClosure: (() -> ())?
+    var refreshViewNearByClosure: (() -> ())?
+    var refreshPromoListViewClosure: (() -> ())?
     var refreshprofileViewClosure: (() -> ())?
     var refreshForgotpasswordViewClosure: (() -> ())?
     var refreshToBannerViewClosure: (() -> ())?
@@ -20,11 +22,14 @@ class DashboardVM {
     var updateLoadingStatus: (()->())?
 
     var restaurantModel = RestaurantModel()
+    var restaurantNearModel = RestaurantNearModel()
     var userdetails = ProfiledetailsModel()
     var topBanner = [TopBannerModel]()
     var safetyBanner = [SafetyModel]()
     var WalletsDetails = [WalletsModel]()
     var FilterList = [FilterModel]()
+    var promoList = [PromoCodeModel]()
+    
     
     var isLoading: Bool = false {
         didSet {
@@ -57,6 +62,30 @@ class DashboardVM {
                 if  let getUserDetails = responseData {
                     self?.restaurantModel = getUserDetails
                     self?.refreshViewClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
+    
+    func getDashboardNearByFalseToAPIService(lat: String, long : String, id : String ,offset : String){
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        
+        self.isLoading = true
+        self.apiService.getRestaurantNearByFalseListDetails(lat : lat, long : long, id : id, offset: offset) { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? RestaurantNearModel
+                if  let getUserDetails = responseData {
+                    self?.restaurantNearModel = getUserDetails
+                    self?.refreshViewNearByClosure?()
                 } else {
                     self?.alertMessage = ""
                 }
@@ -176,6 +205,29 @@ class DashboardVM {
                 if  let getUserDetails = responseData {
                     self?.FilterList = getUserDetails
                     self?.refreshViewClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
+    
+    func getPromoListListAPIService(){
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        self.isLoading = true
+        self.apiService.getPromocodesList() { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? [PromoCodeModel]
+                if  let getUserDetails = responseData {
+                    self?.promoList = getUserDetails
+                    self?.refreshPromoListViewClosure?()
                 } else {
                     self?.alertMessage = ""
                 }

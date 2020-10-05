@@ -39,7 +39,5 @@ class LocationService : NSObject,CLLocationManagerDelegate{
         DispatchQueue.main.async {
             self.delegate.locationDidUpdateToLocation(location: self.currentLocation!)
         }
-        
     }
-    
 }

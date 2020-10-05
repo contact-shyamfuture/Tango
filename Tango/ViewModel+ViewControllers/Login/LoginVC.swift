@@ -66,10 +66,10 @@ class LoginVC: UIViewController {
     }
     
     func loginAction(){
-        if loginObj.username != nil {
-            loginObj.username = self.saveObj.countryCode! + loginObj.username!
+        if saveObj.username != nil {
+            loginObj.username = self.saveObj.countryCode! + saveObj.username!
         }
-        loginObj.password = loginObj.password
+        loginObj.password = saveObj.password
         loginObj.client_id = "2"
         loginObj.grant_type = "password"
         loginObj.client_secret = "aMRXNeDgf8kq9izvggI3gAykX0cu46mAJIXN6w2j"
@@ -115,7 +115,8 @@ class LoginVC: UIViewController {
                     self?.navigationController?.pushViewController (viewcontroller, animated: true)
                     
                 }else{
-                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                    
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: (self?.viewModel.userDetails.messag)!, okButtonText: okText, completion: nil)
                 }
             }
         }
@@ -208,9 +209,9 @@ extension LoginVC : UITextFieldDelegate {
         print("Updated TextField:: \(updateText)")
         switch textField.tag {
             case 0:
-                loginObj.username = updateText as String
+                saveObj.username = updateText as String
             case 1:
-                loginObj.password = updateText as String
+                saveObj.password = updateText as String
             default:
                 break
         }

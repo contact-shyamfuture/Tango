@@ -22,7 +22,9 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
     }()
     var userdetails = ProfiledetailsModel()
     var resObj : RestaurantModel?
+    var resObj2 : RestaurantNearModel?
     var shopList = [RestaurantList]()
+    var shopNearList = [RestaurantList]()
     var topBanner = [TopBannerModel]()
     var safetyBanner = [SafetyModel]()
     var locationManager = CLLocationManager()
@@ -33,10 +35,12 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
     var longValue : Double?
     
     @IBOutlet weak var tableViewFooter: UIView!
+    var promoList = [PromoCodeModel]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerView.btnHeartOutlet.isHidden = true
         
         headerView.btnBackAction.isHidden = true
         self.dashboradTableView.delegate = self
@@ -45,6 +49,11 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         self.dashboradTableView.register(UINib(nibName: "ItemCell", bundle: Bundle.main), forCellReuseIdentifier: "ItemCell")
         
         self.dashboradTableView.register(UINib(nibName: "SafetyCellT", bundle: Bundle.main), forCellReuseIdentifier: "SafetyCellT")
+        self.dashboradTableView.register(UINib(nibName: "DashboardHeaderCell", bundle: Bundle.main), forCellReuseIdentifier: "DashboardHeaderCell")
+        
+        self.dashboradTableView.register(UINib(nibName: "HeaderNearCell", bundle: Bundle.main), forCellReuseIdentifier: "HeaderNearCell")
+        
+        self.dashboradTableView.register(UINib(nibName: "DashboradPromocodeCell", bundle: Bundle.main), forCellReuseIdentifier: "DashboradPromocodeCell")
         
         //print(obj.access_token!)
         initializeViewModel()
@@ -62,6 +71,7 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         
         getTopBanner()
         getSafetyBanner()
+        getPromoDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,10 +95,16 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         self.lblLocation.text = adddic.map_address
         self.lbNearLocation.text = adddic.type
         viewModel.getDashboardToAPIService(lat: "\(adddic.latitude ?? 0)", long: "\(adddic.longitude ?? 0)", id: "", offset: offset)
+        
+        viewModel.getDashboardNearByFalseToAPIService(lat: "\(adddic.latitude ?? 0)", long: "\(adddic.longitude ?? 0)", id: "", offset: offset)
     }
     
     func getDashboardList(){
         viewModel.getDashboardToAPIService(lat: "", long: "", id: "", offset: offset)
+    }
+    
+    func getDashboardNearList(){
+        viewModel.getDashboardNearByFalseToAPIService(lat: "", long: "", id: "", offset: offset)
     }
     
     func getTopBanner(){
@@ -103,6 +119,10 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         let deviceToken = AppPreferenceService.getString(PreferencesKeys.FCMTokenDeviceID)
         let deviceID = getUUID()
         viewModel.getProfileDetailsAPIService(device_type: "ios", device_token: deviceToken!, device_id: deviceID!)
+    }
+    
+    func getPromoDetails(){
+        viewModel.getPromoListListAPIService()
     }
     
     func initializeViewModel() {
@@ -132,6 +152,19 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
                 if  (self?.viewModel.restaurantModel.shopList) != nil {
                     self?.resObj = self?.viewModel.restaurantModel
                     self?.shopList += (self?.viewModel.restaurantModel.shopList)!
+                    self?.dashboradTableView.reloadData()
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                }
+            }
+        }
+        
+        viewModel.refreshViewNearByClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.restaurantNearModel.shopList) != nil {
+                    self?.resObj2 = self?.viewModel.restaurantNearModel
+                    self?.shopNearList += (self?.viewModel.restaurantNearModel.shopList)!
                     self?.dashboradTableView.reloadData()
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
@@ -177,6 +210,18 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
                 }
             }
         }
+        
+        viewModel.refreshPromoListViewClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.promoList) != nil {
+                    self?.promoList = (self?.viewModel.promoList)!
+                    self?.dashboradTableView.reloadData()
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "No promo code found", okButtonText: okText, completion: nil)
+                }
+            }
+        }
     }
     
     func getUUID() -> String? {
@@ -212,6 +257,8 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
     
     func filterValues(value : String){
         viewModel.getDashboardToAPIService(lat: "\(latValue ?? 0)", long: "\(longValue ?? 0)", id: "", offset: offset)
+        
+        viewModel.getDashboardNearByFalseToAPIService(lat: "\(latValue ?? 0)", long: "\(longValue ?? 0)", id: "", offset: offset)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -231,11 +278,17 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
             }
         }
     }
+    
+    func navigateToSafetyDetails(id : Int){
+        let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "SafetyMesureVC") as? SafetyMesureVC
+        vc!.id = "\(id)"
+        self.navigationController?.pushViewController (vc!, animated: true)
+    }
 }
 
-extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
+extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetails{
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -244,9 +297,21 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
             return 1
         }else if section == 1 {
             return 1
-        }else{
+        }else if section == 2{
             if self.shopList != nil && self.shopList.count > 0 {
                 return self.shopList.count
+            }else{
+                return 0
+            }
+        }else if section == 3{
+            if self.shopNearList != nil && self.shopNearList.count > 0 {
+                return self.shopNearList.count
+            }else{
+                return 0
+            }
+        }else{
+            if self.promoList != nil && self.promoList.count > 0 {
+                return 1//return self.promoList.count
             }else{
                 return 0
             }
@@ -256,78 +321,132 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource {
     //"leftmenu-icon-messages.png"
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "SafetyCellT") as! SafetyCellT
+            Cell.initializeCellDetails(cellDic: safetyBanner)
+            Cell.delegateSft = self
+            return Cell
+            
+        }else if indexPath.section == 1{
             let Cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell") as! SliderCell
             Cell.initializeCellDetails(cellDic: topBanner)
             return Cell
-        }else if indexPath.section == 1{
-            let Cell = tableView.dequeueReusableCell(withIdentifier: "SafetyCellT") as! SafetyCellT
-            Cell.initializeCellDetails(cellDic: safetyBanner)
-            return Cell
-        }else{
+        }else if indexPath.section == 2{
             let Cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
             Cell.initializeCellDetails(cellDic: self.shopList[indexPath.row])
+            return Cell
+        }else if indexPath.section == 3{
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
+            Cell.initializeCellNearDetails(cellDic: self.shopNearList[indexPath.row])
+            return Cell
+        }else{
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboradPromocodeCell") as! DashboradPromocodeCell
+            Cell.initializeCellDetails(cellDic: promoList)
             return Cell
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
-        let label = UILabel()
-        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
-        
-        if section == 0 {
-            label.text = ""
-        }else if section == 1 {
-            label.text = "MEASURES TO ENSURE SAFETY"
-        }else{
-            if resObj != nil {
-                label.text = "\(resObj!.total_shops ?? 0) Restaurants near you within \(resObj!.nearby_distance ?? "")"
+//        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
+//        let label = UILabel()
+//        label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
+//
+//        if section == 0 {
+//            label.text = ""
+//        }else if section == 1 {
+//            label.text = "MEASURES TO ENSURE SAFETY"
+//        }else{
+//            if resObj != nil {
+//                label.text = "\(resObj!.total_shops ?? 0) Restaurants near you within \(resObj!.nearby_distance ?? "")"
+//            }else{
+//                label.text = " "
+//            }
+//        }
+//        label.font = .systemFont(ofSize: 18) // my custom font
+//        label.textColor = UIColor.red // my custom colour
+//        headerView.backgroundColor = .white
+//        headerView.addSubview(label)
+//
+//        let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboardHeaderCell") as! DashboardHeaderCell
+        switch section {
+        case 0:
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboardHeaderCell") as! DashboardHeaderCell
+            Cell.lblTitle.text = "MEASURES TO ENSURE SAFETY"
+            return Cell
+        case 1:
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboardHeaderCell") as! DashboardHeaderCell
+            Cell.lblTitle.text = "TOP PICKS FOR YOU"
+            return Cell
+            
+        case 2:
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboardHeaderCell") as! DashboardHeaderCell
+            Cell.lblTitle.text = "RESTAURANTS"
+            return Cell
+        case 3:
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "HeaderNearCell") as! HeaderNearCell
+            if resObj2 != nil {
+                Cell.lblHeaderName.text = "\(resObj2!.total_shops ?? 0) RESTAURANTS NEAR YOU WITH IN \(resObj2!.nearby_distance ?? "") (EXTRA CHARGES APPLICABLE)"
             }else{
-                label.text = " "
+                Cell.lblHeaderName.text = " RESTAURANTS NEAR YOU WITH IN 0 KM (EXTRA CHARGES APPLICABLE)"
             }
+            return Cell
+        case 4:
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboardHeaderCell") as! DashboardHeaderCell
+            Cell.lblTitle.text = "PROMO CODE"
+            return Cell
+        default:
+            return UITableViewCell(style: .value1, reuseIdentifier: "Cell")
         }
-        label.font = .systemFont(ofSize: 18) // my custom font
-        label.textColor = UIColor.red // my custom colour
-        headerView.backgroundColor = .white
-
-        headerView.addSubview(label)
-
-        return headerView
     }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 0
+            return 60
+        }else if section == 3 {
+            if resObj2 != nil {
+                if resObj2!.total_shops! > 0 {
+                    return 70
+                }else{
+                    return 0
+                }
+            }else{
+                return 0
+            }
         }else{
-            return 50
+            return 60
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             return 200
+        }else if indexPath.section == 4{
+            return 150
         }else {
             return 210
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 2 {
-//            if self.shopList[indexPath.row].shopstatus == "OPEN" {
-//                let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
-//                vc!.categoryList = self.shopList[indexPath.row]
-//                vc!.userdetails = userdetails
-//                vc!.shopID = "\(self.shopList[indexPath.row].id ?? 0)"
-//                self.navigationController?.pushViewController (vc!, animated: true)
-//            }else{
-//                self.showAlertWithSingleButton(title: commonAlertTitle, message: "Shop closed", okButtonText: okText, completion: nil)
-//            }
+            if self.shopList[indexPath.row].shopstatus == "OPEN" {
+                let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+                vc!.categoryList = self.shopList[indexPath.row]
+                vc!.userdetails = userdetails
+                vc!.shopID = "\(self.shopList[indexPath.row].id ?? 0)"
+                self.navigationController?.pushViewController (vc!, animated: true)
+            }else{
+                self.showAlertWithSingleButton(title: commonAlertTitle, message: "Shop closed", okButtonText: okText, completion: nil)
+            }
             
-            let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+           /* let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
             vc!.categoryList = self.shopList[indexPath.row]
             vc!.userdetails = userdetails
             vc!.shopID = "\(self.shopList[indexPath.row].id ?? 0)"
-            self.navigationController?.pushViewController (vc!, animated: true)
+            self.navigationController?.pushViewController (vc!, animated: true) */
         }
     }
 }
@@ -351,6 +470,10 @@ extension DashboardVC : CLLocationManagerDelegate {
         latValue = pdblLatitude
         longValue = pdblLongitude
         viewModel.getDashboardToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
+        
+        viewModel.getDashboardNearByFalseToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
+        
+        //getDashboardNearList()
         let ceo: CLGeocoder = CLGeocoder()
         center.latitude = lat
         center.longitude = lon

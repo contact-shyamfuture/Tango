@@ -57,6 +57,8 @@ class DeliveryDetailsVC: BaseViewController {
     }
     private func configureUI(){
        // topHeaderSet(vc: self)
+        
+        headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true
         sectionCount = 5

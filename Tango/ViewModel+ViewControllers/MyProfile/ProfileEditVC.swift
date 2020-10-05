@@ -25,6 +25,9 @@ class ProfileEditVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        headerView.btnHeartOutlet.isHidden = true
+        
         tabBarView.isHidden = true
         headerView.imgLogo.isHidden = true
         headerView.btnBackAction.isHidden = false

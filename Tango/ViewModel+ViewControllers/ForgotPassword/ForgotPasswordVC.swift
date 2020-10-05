@@ -27,6 +27,7 @@ class ForgotPasswordVC: UIViewController {
         self.tbRegisterMobileNumber.dataSource = self
         self.tbRegisterMobileNumber.register(UINib(nibName: "LoginCommonCell", bundle: Bundle.main), forCellReuseIdentifier: "LoginCommonCell")
         self.tbRegisterMobileNumber.register(UINib(nibName: "CommonButtonCell", bundle: Bundle.main), forCellReuseIdentifier: "CommonButtonCell")
+        //headerView.isHidden = true
         initializeViewModel()
 
         // Do any additional setup after loading the view.
