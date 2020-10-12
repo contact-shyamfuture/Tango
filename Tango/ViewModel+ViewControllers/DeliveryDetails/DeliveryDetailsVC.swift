@@ -60,6 +60,7 @@ class DeliveryDetailsVC: BaseViewController {
         
         headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         sectionCount = 5
         tblVw.delegate = self

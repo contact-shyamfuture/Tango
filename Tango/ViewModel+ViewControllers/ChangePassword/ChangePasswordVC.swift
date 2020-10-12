@@ -34,6 +34,7 @@ class ChangePasswordVC: BaseViewController {
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true
         headerView.btnHeartOutlet.isHidden = true
+        headerView.imgBackLogo.isHidden = false
         initializeViewModel()
     }
     

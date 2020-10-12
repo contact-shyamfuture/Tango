@@ -69,6 +69,14 @@ extension DeliveryTipCell : UICollectionViewDelegate , UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TipCollectionViewCell", for: indexPath as IndexPath) as! TipCollectionViewCell
+        
+//        if indexPath.row == 4 {
+//            if
+//            cell.lblAmount.text = "₹\(amountArray[indexPath.row].amount ?? "")"
+//        }else{
+//            cell.lblAmount.text = "₹\(amountArray[indexPath.row].amount ?? "")"
+//        }
+        
         cell.lblAmount.text = "₹\(amountArray[indexPath.row].amount ?? "")"
         if amountArray[indexPath.row].isSelect == true {
             cell.lblAmount.textColor = UIColor(red:255/255, green:152/255, blue:0/255, alpha: 1)

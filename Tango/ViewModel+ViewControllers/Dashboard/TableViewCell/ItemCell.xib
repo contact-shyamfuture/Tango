@@ -230,6 +230,7 @@
                 <outlet property="btnDeliveryCharge" destination="T6s-2w-Dbu" id="hMR-Ic-cQS"/>
                 <outlet property="btnDistanceTime" destination="oWE-4O-zne" id="8Pw-2g-9Hc"/>
                 <outlet property="closedView" destination="jgv-Kr-Xus" id="cdL-wj-UPD"/>
+                <outlet property="imgOffer" destination="6ef-zk-Ngc" id="Ygm-Y8-95D"/>
                 <outlet property="lblDesrciptiuon" destination="N3C-xJ-qEp" id="bj1-CY-cc0"/>
                 <outlet property="lblDiscount" destination="Q5m-RF-fEg" id="vzd-pd-NcT"/>
                 <outlet property="lblMenuNAme" destination="tRz-Lx-cGi" id="1Nj-IQ-ZB3"/>

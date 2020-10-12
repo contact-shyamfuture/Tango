@@ -41,6 +41,7 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.btnHeartOutlet.isHidden = true
+        headerView.isHidden = true
         
         headerView.btnBackAction.isHidden = true
         self.dashboradTableView.delegate = self
@@ -57,7 +58,13 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         
         //print(obj.access_token!)
         initializeViewModel()
-        getprifleDetails()
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            getprifleDetails()
+        }else{
+            
+        }
+        
         //getDashboardList()
         
         self.tabBarView.imgArray = ["HomeSelected","Search","finished","Profile"]
@@ -76,12 +83,46 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
-        
     }
     
+    @IBAction func btnShareAction(_ sender: Any) {
+        let myWebsite = NSURL(string:"https://play.google.com/store/apps/details?id=com.tangoeateries.customer&hl=en_US")
+        let img : String = "Tango - Online Food Delivery App"
+
+        guard let url = myWebsite else {
+            print("nothing found")
+            return
+        }
+
+        let shareItems:Array = [img, url] as [Any]
+        let activityViewController:UIActivityViewController = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [UIActivity.ActivityType.print, UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.copyToPasteboard, UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.postToVimeo]
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func btnChangeAddressAction(_ sender: Any) {
-        selectAddress()
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            selectAddress()
+        }else{
+            commonAllertView()
+        }
+        
+    }
+    func commonAllertView(){
+        let refreshAlert = UIAlertController(title: "Tango", message: "Do you need to login", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+          let appDelegate = UIApplication.shared.delegate as! AppDelegate
+          appDelegate.openSignInViewController()
+          }))
+
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+          
+          }))
+
+        present(refreshAlert, animated: true, completion: nil)
     }
     
     func selectAddress(){

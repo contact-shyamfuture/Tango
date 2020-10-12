@@ -23,6 +23,7 @@ class WalletsHistoryVC: BaseViewController {
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true
         headerView.btnHeartOutlet.isHidden = true
+        headerView.imgBackLogo.isHidden = false
 
         self.walletsHistoryTable.register(UINib(nibName: "WallesTopCells", bundle: Bundle.main), forCellReuseIdentifier: "WallesTopCells")
         self.walletsHistoryTable.register(UINib(nibName: "WalletsList", bundle: Bundle.main), forCellReuseIdentifier: "WalletsList")

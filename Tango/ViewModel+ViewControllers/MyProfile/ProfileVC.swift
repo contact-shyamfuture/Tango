@@ -43,7 +43,7 @@ class ProfileVC: BaseViewController {
        headerView.btnHeartOutlet.isHidden = true
         
         headerView.btnBackAction.isHidden = true
-        
+        headerView.imgBackLogo.isHidden = true
         userProfileImage.layer.borderWidth = 0
         userProfileImage.layer.masksToBounds = false
         userProfileImage.layer.borderColor = UIColor.white.cgColor

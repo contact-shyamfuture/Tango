@@ -89,12 +89,67 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e50-0T-ROA" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
+                                <rect key="frame" x="20" y="363" width="374" height="170"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other Tips Values" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z77-Xt-tbr">
+                                        <rect key="frame" x="10" y="10" width="354" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="9Rs-iq-H2q"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" red="0.87843137250000003" green="0.4431372549" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Other tips amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BWY-Zb-1C4">
+                                        <rect key="frame" x="10" y="55" width="354" height="45"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5t-Tx-1bU">
+                                        <rect key="frame" x="0.0" y="120" width="374" height="50"/>
+                                        <color key="backgroundColor" red="0.98039215690000003" green="0.2901960784" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Zdl-65-HDu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <state key="normal" title="SUBMIT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="otherTipsSubmitBtnAction:" destination="RAJ-h2-Iay" eventType="touchUpInside" id="n4q-OL-cSc"/>
+                                            <action selector="submitAddNoteBtnView:" destination="RAJ-h2-Iay" eventType="touchUpInside" id="O1l-yy-ncg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="170" id="0mL-bK-PlC"/>
+                                    <constraint firstAttribute="trailing" secondItem="C5t-Tx-1bU" secondAttribute="trailing" id="4cf-aC-aYp"/>
+                                    <constraint firstAttribute="trailing" secondItem="Z77-Xt-tbr" secondAttribute="trailing" constant="10" id="EFB-7n-qcl"/>
+                                    <constraint firstAttribute="trailing" secondItem="BWY-Zb-1C4" secondAttribute="trailing" constant="10" id="Ez2-Sp-fwR"/>
+                                    <constraint firstItem="Z77-Xt-tbr" firstAttribute="top" secondItem="e50-0T-ROA" secondAttribute="top" constant="10" id="OJl-t4-8fd"/>
+                                    <constraint firstAttribute="bottom" secondItem="C5t-Tx-1bU" secondAttribute="bottom" id="Oht-2o-mUo"/>
+                                    <constraint firstItem="C5t-Tx-1bU" firstAttribute="leading" secondItem="e50-0T-ROA" secondAttribute="leading" id="T1P-Y8-TJt"/>
+                                    <constraint firstItem="BWY-Zb-1C4" firstAttribute="leading" secondItem="e50-0T-ROA" secondAttribute="leading" constant="10" id="TgR-NJ-N2h"/>
+                                    <constraint firstItem="BWY-Zb-1C4" firstAttribute="top" secondItem="Z77-Xt-tbr" secondAttribute="bottom" constant="20" id="eH0-jB-4dY"/>
+                                    <constraint firstItem="C5t-Tx-1bU" firstAttribute="top" secondItem="BWY-Zb-1C4" secondAttribute="bottom" constant="20" id="fJC-r4-HQ6"/>
+                                    <constraint firstItem="Z77-Xt-tbr" firstAttribute="leading" secondItem="e50-0T-ROA" secondAttribute="leading" constant="10" id="lHJ-lu-gTp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="e50-0T-ROA" firstAttribute="centerY" secondItem="Yb4-Pl-lJS" secondAttribute="centerY" id="0hg-pT-E7y"/>
                             <constraint firstItem="q4j-zZ-aGc" firstAttribute="top" secondItem="gX8-FH-yUu" secondAttribute="top" constant="60" id="D6a-I5-EaU"/>
                             <constraint firstItem="gX8-FH-yUu" firstAttribute="bottom" secondItem="vJU-8F-o2c" secondAttribute="bottom" constant="60" id="Jbx-CO-baU"/>
                             <constraint firstItem="gX8-FH-yUu" firstAttribute="trailing" secondItem="jvv-mP-i3C" secondAttribute="trailing" id="OgT-mB-q99"/>
+                            <constraint firstItem="e50-0T-ROA" firstAttribute="leading" secondItem="gX8-FH-yUu" secondAttribute="leading" constant="20" id="OmT-H8-hlH"/>
                             <constraint firstItem="vJU-8F-o2c" firstAttribute="leading" secondItem="gX8-FH-yUu" secondAttribute="leading" id="S15-v4-O4C"/>
                             <constraint firstItem="uJc-MI-sMp" firstAttribute="leading" secondItem="gX8-FH-yUu" secondAttribute="leading" constant="20" id="Tf3-dw-Ta4"/>
                             <constraint firstAttribute="bottom" secondItem="jvv-mP-i3C" secondAttribute="bottom" id="VA5-nu-Idu"/>
@@ -102,7 +157,9 @@
                             <constraint firstItem="gX8-FH-yUu" firstAttribute="trailing" secondItem="uJc-MI-sMp" secondAttribute="trailing" constant="20" id="aco-ba-9bE"/>
                             <constraint firstItem="uJc-MI-sMp" firstAttribute="centerY" secondItem="Yb4-Pl-lJS" secondAttribute="centerY" id="bUa-BG-2Pl"/>
                             <constraint firstItem="gX8-FH-yUu" firstAttribute="trailing" secondItem="vJU-8F-o2c" secondAttribute="trailing" id="e1o-aZ-JKG"/>
+                            <constraint firstItem="e50-0T-ROA" firstAttribute="centerX" secondItem="Yb4-Pl-lJS" secondAttribute="centerX" id="fvm-Rs-OkN"/>
                             <constraint firstItem="gX8-FH-yUu" firstAttribute="trailing" secondItem="q4j-zZ-aGc" secondAttribute="trailing" id="kZs-7o-7bC"/>
+                            <constraint firstItem="gX8-FH-yUu" firstAttribute="trailing" secondItem="e50-0T-ROA" secondAttribute="trailing" constant="20" id="mw2-gd-nAd"/>
                             <constraint firstItem="gX8-FH-yUu" firstAttribute="bottom" secondItem="q4j-zZ-aGc" secondAttribute="bottom" constant="40" id="nfv-fJ-ATh"/>
                             <constraint firstItem="vJU-8F-o2c" firstAttribute="top" secondItem="gX8-FH-yUu" secondAttribute="top" constant="60" id="tTm-Ne-NRq"/>
                             <constraint firstItem="q4j-zZ-aGc" firstAttribute="leading" secondItem="gX8-FH-yUu" secondAttribute="leading" id="w87-ga-CVi"/>
@@ -117,6 +174,8 @@
                         <outlet property="addBackroundView" destination="jvv-mP-i3C" id="hOX-ME-2HH"/>
                         <outlet property="addNotesMainView" destination="uJc-MI-sMp" id="o77-L3-8Cr"/>
                         <outlet property="noCartImg" destination="q4j-zZ-aGc" id="95M-So-FZM"/>
+                        <outlet property="otherTipValue" destination="e50-0T-ROA" id="V5N-LR-KJm"/>
+                        <outlet property="otherTipsTextField" destination="BWY-Zb-1C4" id="JIk-jq-eBx"/>
                         <outlet property="tblVw" destination="vJU-8F-o2c" id="kYE-h2-2UP"/>
                         <outlet property="txtAddNoteView" destination="VqF-Lw-hrt" id="yfh-iG-Hws"/>
                     </connections>

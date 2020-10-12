@@ -108,6 +108,7 @@
                 <outlet property="imgSlider" destination="MCi-ZX-IJQ" id="X1y-d1-F2R"/>
                 <outlet property="lblName" destination="AmZ-fQ-IW8" id="gkk-n4-QrM"/>
                 <outlet property="lblOffer" destination="Jeb-aH-RgS" id="CVA-AG-Djo"/>
+                <outlet property="offerView" destination="GZw-1F-2Sv" id="YA0-yX-Bn1"/>
             </connections>
             <point key="canvasLocation" x="315.94202898550725" y="167.74553571428569"/>
         </collectionViewCell>

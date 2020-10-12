@@ -10,6 +10,8 @@ import UIKit
 
 class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
     
+    @IBOutlet weak var otherTipsTextField: UITextField!
+    @IBOutlet weak var otherTipValue: RoundUIView!
     @IBOutlet weak var txtAddNoteView: UITextView!
     @IBOutlet weak var addNotesMainView: RoundUIView!
     @IBOutlet weak var addBackroundView: UIView!
@@ -35,19 +37,22 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
         self.tabBarView.uiColorArray = [UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)),UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 255/255.0, green: 133/255.0, blue: 0/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1))]
         
         headerView.btnHeartOutlet.isHidden = true
+        headerView.imgBackLogo.isHidden = true
         addNotesMainView.isHidden = true
         addBackroundView.isHidden = true
+        otherTipValue.isHidden = true
         txtAddNoteView.delegate = self
         txtAddNoteView.text = "Enter your notes"
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         addBackroundView.addGestureRecognizer(tap)
         
         self.tblVw.register(UINib(nibName: "DeliveryTipCell", bundle: Bundle.main), forCellReuseIdentifier: "DeliveryTipCell")
-       
     }
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         addNotesMainView.isHidden = true
         addBackroundView.isHidden = true
+        otherTipValue.isHidden = true
     }
     private func configureUI(){
         //topHeaderSet(vc : self)
@@ -191,6 +196,7 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
     }
     
     func customNotesAdd(){
+        otherTipValue.isHidden = true
         addNotesMainView.isHidden = false
         addBackroundView.isHidden = false
     }
@@ -217,12 +223,27 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
     func tipsValue(value : String){
         if value == "Other" {
             
+            addNotesMainView.isHidden = true
+            addBackroundView.isHidden = false
+            otherTipValue.isHidden = false
+            
         }else{
             print("Delivery tips : \(value)")
             orderSave.tips_amount = value
             tblVw.reloadData()
         }
     }
+    
+    @IBAction func otherTipsSubmitBtnAction(_ sender: Any) {
+        addNotesMainView.isHidden = true
+        addBackroundView.isHidden = true
+        otherTipValue.isHidden = true
+        orderSave.tips_amount = otherTipsTextField.text!
+        orderSave.tips_Othe_amount = otherTipsTextField.text!
+        tblVw.reloadData()
+    }
+    
+    
     
     func userAddToCart(cell : CartListCell) {
         

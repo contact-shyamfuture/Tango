@@ -16,6 +16,7 @@ class WalletVC: BaseViewController {
         super.viewDidLoad()
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true
+        headerView.imgBackLogo.isHidden = false
 
         // Do any additional setup after loading the view.
         self.walletsTableView.register(UINib(nibName: "WallesTopCells", bundle: Bundle.main), forCellReuseIdentifier: "WallesTopCells")

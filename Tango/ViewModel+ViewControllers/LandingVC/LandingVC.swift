@@ -14,7 +14,7 @@ class LandingVC: UIViewController {
     @IBOutlet weak var btnSignOutlet: UIButton!
     @IBOutlet weak var btnRegisterOutlet: UIButton!
     @IBOutlet var slideshow: ImageSlideshow!
-    let localSource = [BundleImageSource(imageString: "intro1"), BundleImageSource(imageString: "intro2"), BundleImageSource(imageString: "intro3")]
+    let localSource = [BundleImageSource(imageString: "intro_1"), BundleImageSource(imageString: "intro_2"), BundleImageSource(imageString: "intro_3")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +27,14 @@ class LandingVC: UIViewController {
         
         let pageControl = UIPageControl()
         pageControl.currentPageIndicatorTintColor = UIColor(red: 250/255.0, green: 128/255.0, blue: 0/255.0, alpha: CGFloat(1))//UIColor(red: 250/255.0, green: 128/255.0, blue: 0/255.0, alpha: CGFloat(1))//UIColor.lightGray
-        pageControl.pageIndicatorTintColor = UIColor.clear ///UIColor.black
+        pageControl.pageIndicatorTintColor = UIColor.blue ///UIColor.black
+        pageControl.currentPageIndicatorTintColor = UIColor.white
         slideshow.pageIndicator = pageControl
         
         // optional way to show activity indicator during image load (skipping the line will show no activity indicator)
         slideshow.activityIndicator = DefaultActivityIndicator()
         slideshow.delegate = self
-        
+        //carbol
         slideshow.setImageInputs(localSource)
         
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(LandingVC.didTap))

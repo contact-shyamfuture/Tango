@@ -164,12 +164,16 @@ class SignUpVM {
     }
     
     func validateUserInputs(user: RegisterParam) -> [String: Any]? {
-       
+        
        guard let fname = user.phone, !fname.isEmpty else {
            self.alertMessage = shouldEnterTheEmailName
            return nil
-       }
+        }
         guard let email = user.email, !email.isEmpty else {
+            self.alertMessage = enterValidEmailIDString
+            return nil
+        }
+        guard user.email!.isValidEmail() else {
             self.alertMessage = enterValidEmailIDString
             return nil
         }

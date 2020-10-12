@@ -33,6 +33,7 @@ class AddressListVC: BaseViewController {
         
         headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         self.tableAddressList.delegate = self
         self.tableAddressList.dataSource = self
@@ -267,10 +268,10 @@ extension AddressListVC: GMSAutocompleteViewControllerDelegate {
         Long = getLng
         
         let vc = UIStoryboard.init(name: "Other", bundle: Bundle.main).instantiateViewController(withIdentifier: "DeliveryLocationVC") as? DeliveryLocationVC
-//        vc!.lat = self.lat
-//        vc!.Long = self.Long
-//        vc!.address = self.address
-//        vc!.isCommingFromLocation = true
+        vc!.lat = self.lat
+        vc!.Long = self.Long
+        vc!.address = self.address
+        vc!.googlePlace = "Yes"
         self.navigationController?.pushViewController(vc!, animated: true)
         
         

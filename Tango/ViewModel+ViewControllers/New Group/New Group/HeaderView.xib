@@ -12,6 +12,7 @@
                 <outlet property="btnBackAction" destination="jBb-yI-aSs" id="ecP-Fd-IAO"/>
                 <outlet property="btnHeartOutlet" destination="I1i-3Q-UKX" id="1Vw-5G-mO9"/>
                 <outlet property="headerContentView" destination="iN0-l3-epB" id="Bly-eQ-Hr2"/>
+                <outlet property="imgBackLogo" destination="X8x-89-8Jh" id="AUO-zj-l1x"/>
                 <outlet property="imgLogo" destination="Glh-H2-N03" id="rX7-OF-sg7"/>
             </connections>
         </placeholder>
@@ -53,6 +54,13 @@
                         <action selector="btnHeartAction:" destination="-1" eventType="touchUpInside" id="e53-pD-eV1"/>
                     </connections>
                 </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="X8x-89-8Jh">
+                    <rect key="frame" x="72" y="57" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="d2M-Cv-HW8"/>
+                        <constraint firstAttribute="width" constant="50" id="ujC-k3-t1h"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -62,6 +70,8 @@
                 <constraint firstItem="08d-Np-xEA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="AXe-z2-eqa"/>
                 <constraint firstAttribute="trailing" secondItem="I1i-3Q-UKX" secondAttribute="trailing" constant="15" id="NlH-Xw-YHr"/>
                 <constraint firstItem="jBb-yI-aSs" firstAttribute="centerX" secondItem="Glh-H2-N03" secondAttribute="centerX" id="RmK-Qs-V7k"/>
+                <constraint firstItem="X8x-89-8Jh" firstAttribute="leading" secondItem="Glh-H2-N03" secondAttribute="trailing" constant="2" id="Uch-li-jhO"/>
+                <constraint firstItem="X8x-89-8Jh" firstAttribute="centerY" secondItem="Glh-H2-N03" secondAttribute="centerY" id="cOJ-FT-dau"/>
                 <constraint firstItem="Glh-H2-N03" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="f43-jD-a4K"/>
                 <constraint firstAttribute="bottom" secondItem="Glh-H2-N03" secondAttribute="bottom" constant="10" id="fO3-Nx-TIk"/>
                 <constraint firstAttribute="bottom" secondItem="08d-Np-xEA" secondAttribute="bottom" id="ozw-Rh-GEA"/>
@@ -75,7 +85,7 @@
     </objects>
     <resources>
         <image name="Header" width="375" height="80"/>
-        <image name="Logo" width="187" height="172"/>
+        <image name="Logo" width="561" height="516"/>
         <image name="whiteBack" width="30.666666030883789" height="37.333332061767578"/>
         <image name="whiteHeart" width="21.333333969116211" height="21.333333969116211"/>
     </resources>

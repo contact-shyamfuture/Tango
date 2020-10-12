@@ -38,6 +38,7 @@ class PaymentVC: BaseViewController {
         configureUI()
         headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         //UINavigationBar.appearance().barTintColor = UIColor(red: 255/255.0, green: 167/255.0, blue: 0/255.0, alpha: CGFloat(1))
         processingView.isHidden = true

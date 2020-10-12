@@ -32,6 +32,7 @@ class SearchVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.btnBackAction.isHidden = true
+        headerView.imgBackLogo.isHidden = true
         imgDishes.isHidden = true
         imgrestaurant.isHidden = false
         headerView.btnHeartOutlet.isHidden = true

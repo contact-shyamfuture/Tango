@@ -71,6 +71,8 @@ class UserRegisterResponse: Mappable {
     
     var msgPhone : [String]?
     
+    
+    
 
     init() {}
     required init?(map: Map) {

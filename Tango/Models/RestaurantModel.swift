@@ -90,6 +90,7 @@ class RestaurantList: Mappable {
     var restauranttTimings : [RestauranttTimings]?
     var ratings : Int?
     var restaurantCategories : [RestaurantCategories]?
+    var featureList : [RestaurantFeaturedProduct]?
     
     init() {}
     required init?(map: Map) {
@@ -129,6 +130,7 @@ class RestaurantList: Mappable {
         restauranttTimings <- map["timings"]
         ratings <- map["ratings"]
         restaurantCategories <- map["categories"]
+        featureList <- map["featured_products"]
         shopstatus <- map["shopstatus"]
     }
 }
@@ -269,5 +271,74 @@ class CategoriesProductsImages: Mappable {
         url <- map["url"]
         position <- map["position"]
         
+    }
+}
+
+class RestaurantFeaturedProduct: Mappable {
+    
+    var id : Int?
+    var shop_id : Int?
+    var name : String?
+    var description : String?
+    var position : Int?
+    var food_type : String?
+    var avalability : Int?
+    var max_quantity : Int?
+    var featured : Int?
+    var addon_status : Int?
+    var out_of_stock : String?
+    var status : String?
+    
+    var priceid : Int?
+    var price : Int?
+    var orignal_price : Int?
+    var currency : String?
+    var discount : Int?
+    var discount_type : String?
+    
+    var featureImag : [FeaturedProductImage]?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        shop_id <- map["shop_id"]
+        name <- map["name"]
+        description <- map["description"]
+        position <- map["position"]
+        food_type <- map["food_type"]
+        avalability <- map["avalability"]
+        max_quantity <- map["max_quantity"]
+        featured <- map["featured"]
+        addon_status <- map["addon_status"]
+        out_of_stock <- map["out_of_stock"]
+        status <- map["status"]
+        
+        priceid <- map["prices.id"]
+        price <- map["prices.price"]
+        orignal_price <- map["prices.orignal_price"]
+        currency <- map["prices.currency"]
+        discount <- map["prices.discount"]
+        discount_type <- map["prices.discount_type"]
+        featureImag <- map["featured_images"]
+    }
+}
+
+class FeaturedProductImage: Mappable {
+
+    var url : String?
+    var position : Int?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        url <- map["url"]
+        position <- map["position"]
     }
 }

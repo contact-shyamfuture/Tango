@@ -53,7 +53,7 @@ class OrderListCell: UITableViewCell {
     
     func getFormattedDate(string: String) -> String{
         let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss" //2020-05-12T08:09:46.930608Z  2020-09-29 13:03:04
+        dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "MMM dd,yyyy hh:mm a"
@@ -61,5 +61,4 @@ class OrderListCell: UITableViewCell {
         guard let date = dateFormatterGet.date(from: string) else {return ""}
         return dateFormatterPrint.string(from: date)
     }
-    
 }

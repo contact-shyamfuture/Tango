@@ -25,6 +25,7 @@ class PromoCodeVC: BaseViewController {
         headerView.imgLogo.isHidden = true
         tabBarView.isHidden = true
         headerView.btnHeartOutlet.isHidden = true
+        headerView.imgBackLogo.isHidden = false
 
         self.promoCodeTable.register(UINib(nibName: "PromoCodeCell", bundle: Bundle.main), forCellReuseIdentifier: "PromoCodeCell")
         

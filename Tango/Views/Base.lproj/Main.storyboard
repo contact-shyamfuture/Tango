@@ -1103,22 +1103,34 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHI-xc-gZs">
-                                <rect key="frame" x="0.0" y="60" width="414" height="806"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Myi-k5-Hy4">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="Myi-k5-Hy4" firstAttribute="leading" secondItem="eHI-xc-gZs" secondAttribute="leading" id="R2w-4y-pPB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Myi-k5-Hy4" secondAttribute="trailing" id="VIw-Xw-phT"/>
+                                    <constraint firstAttribute="bottom" secondItem="Myi-k5-Hy4" secondAttribute="bottom" id="hzF-Ew-uZE"/>
+                                    <constraint firstItem="Myi-k5-Hy4" firstAttribute="top" secondItem="eHI-xc-gZs" secondAttribute="top" id="o7M-Dr-np5"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="eHI-xc-gZs" secondAttribute="trailing" id="8FA-la-FDp"/>
-                            <constraint firstItem="eHI-xc-gZs" firstAttribute="top" secondItem="a1o-R8-6fd" secondAttribute="top" constant="60" id="QRJ-Ah-eJv"/>
+                            <constraint firstItem="eHI-xc-gZs" firstAttribute="top" secondItem="a1o-R8-6fd" secondAttribute="top" id="QRJ-Ah-eJv"/>
                             <constraint firstItem="eHI-xc-gZs" firstAttribute="leading" secondItem="a1o-R8-6fd" secondAttribute="leading" id="St4-Du-Qq7"/>
-                            <constraint firstAttribute="bottom" secondItem="eHI-xc-gZs" secondAttribute="bottom" constant="30" id="VvA-Ba-4rO"/>
+                            <constraint firstAttribute="bottom" secondItem="eHI-xc-gZs" secondAttribute="bottom" id="VvA-Ba-4rO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mBP-5N-Gkc"/>
                     </view>
                     <navigationItem key="navigationItem" id="sC6-Mh-59y"/>
                     <connections>
                         <outlet property="SplachView" destination="eHI-xc-gZs" id="nZh-iU-0tb"/>
+                        <outlet property="splashImageView" destination="Myi-k5-Hy4" id="rdu-LD-AkZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lpE-L1-cZx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1127,7 +1139,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Logo" width="187" height="172"/>
+        <image name="Logo" width="280.5" height="258"/>
         <image name="facebook" width="25" height="25"/>
         <image name="loginBG" width="197.5" height="419"/>
         <image name="splashBg" width="190.5" height="413"/>

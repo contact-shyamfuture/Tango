@@ -12,6 +12,7 @@ protocol AddFavoritesProtocal {
 }
 class HeaderView: UIView {
     
+    @IBOutlet weak var imgBackLogo: UIImageView!
     @IBOutlet weak var btnHeartOutlet: UIButton!
     @IBOutlet weak var imgLogo: UIImageView!
     @IBOutlet weak var btnBackAction: UIButton!

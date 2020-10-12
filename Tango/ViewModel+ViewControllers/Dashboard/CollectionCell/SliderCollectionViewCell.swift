@@ -9,6 +9,8 @@
 import UIKit
 
 class SliderCollectionViewCell: UICollectionViewCell {
+    
+    @IBOutlet weak var offerView: RoundUIView!
     @IBOutlet weak var imgSlider: UIImageView!
     @IBOutlet weak var lblOffer: UILabel!
     @IBOutlet weak var lblName: UILabel!

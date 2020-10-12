@@ -25,6 +25,7 @@ class OrderListVC: BaseViewController {
         
         headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         initializeViewModel()
         viewModel.getOrderList()

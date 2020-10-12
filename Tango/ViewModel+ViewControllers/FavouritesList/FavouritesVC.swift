@@ -17,6 +17,7 @@ class FavouritesVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         headerView.imgLogo.isHidden = true
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         self.favouritesTable.register(UINib(nibName: "FavouritesCell", bundle: Bundle.main), forCellReuseIdentifier: "FavouritesCell")
         headerView.btnHeartOutlet.isHidden = true

@@ -119,16 +119,30 @@ class BaseViewController: UIViewController {
         }
         
         tabBarView.onClickCartButtonAction = {() -> Void in
-            let mainView = UIStoryboard(name:"Cart", bundle: nil)
-            let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "CartVC") as! CartVC
-            self.navigationController?.pushViewController (viewcontroller, animated: false)
+            
+            let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+            if loggedInStatus == IS_LOGGED_IN {
+                let mainView = UIStoryboard(name:"Cart", bundle: nil)
+                let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "CartVC") as! CartVC
+                self.navigationController?.pushViewController (viewcontroller, animated: false)
+            } else {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.openSignInViewController()
+                
+            }
         }
         
         tabBarView.onClickProfileButtonAction = {() -> Void in
-            
-            let mainView = UIStoryboard(name:"Profile", bundle: nil)
-            let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
-            self.navigationController?.pushViewController (viewcontroller, animated: false)
+            let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+            if loggedInStatus == IS_LOGGED_IN {
+                let mainView = UIStoryboard(name:"Profile", bundle: nil)
+                let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "ProfileVC") as! ProfileVC
+                self.navigationController?.pushViewController (viewcontroller, animated: false)
+            } else {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.openSignInViewController()
+                
+            }
         }
     }
     

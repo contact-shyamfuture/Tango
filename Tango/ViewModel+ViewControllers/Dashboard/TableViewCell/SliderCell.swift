@@ -47,7 +47,13 @@ extension SliderCell : UICollectionViewDelegate , UICollectionViewDataSource,UIC
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCollectionViewCell", for: indexPath as IndexPath) as! SliderCollectionViewCell
         cell.imgSlider.sd_setImage(with: URL(string: topBanner[indexPath.row].url!))
-        cell.lblOffer.text = "\(topBanner[indexPath.row].shopList?.offer_percent ?? 0)  % OFF"
+        if topBanner[indexPath.row].shopList?.offer_percent == 0 {
+            cell.offerView.isHidden = true
+            cell.lblOffer.text = ""
+        }else{
+            cell.offerView.isHidden = false
+            cell.lblOffer.text = "\(topBanner[indexPath.row].shopList?.offer_percent ?? 0)  % OFF"
+        }
         cell.lblName.text = "\(topBanner[indexPath.row].shopList?.name ?? "")"
         return cell
     }

@@ -16,6 +16,7 @@ class SafetyMesureVC: BaseViewController {
         super.viewDidLoad()
         headerView.imgLogo.isHidden = true
         headerView.btnBackAction.isHidden = false
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         let url = "http://tangoeateries.com/footer-banner-details/\(id)"
         let myURLString = url

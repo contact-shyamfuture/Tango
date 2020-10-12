@@ -113,6 +113,8 @@
 		9EB6A33624DA839200912531 /* CommonButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6A33424DA839200912531 /* CommonButtonCell.swift */; };
 		9EB6A33724DA839200912531 /* CommonButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EB6A33524DA839200912531 /* CommonButtonCell.xib */; };
 		9EB6A33A24DADB5800912531 /* RegisterWithMobileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB6A33924DADB5800912531 /* RegisterWithMobileVC.swift */; };
+		9EDFD3DA252AE94000C5B828 /* FeatureProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFD3D8252AE94000C5B828 /* FeatureProductCell.swift */; };
+		9EDFD3DB252AE94000C5B828 /* FeatureProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EDFD3D9252AE94000C5B828 /* FeatureProductCell.xib */; };
 		9EE7215D24C955DA006D0F19 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7215C24C955DA006D0F19 /* AppDelegate.swift */; };
 		9EE7216124C955DA006D0F19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE7216024C955DA006D0F19 /* ViewController.swift */; };
 		9EE7216424C955DA006D0F19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EE7216224C955DA006D0F19 /* Main.storyboard */; };
@@ -335,6 +337,8 @@
 		9EB6A33424DA839200912531 /* CommonButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonButtonCell.swift; sourceTree = "<group>"; };
 		9EB6A33524DA839200912531 /* CommonButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommonButtonCell.xib; sourceTree = "<group>"; };
 		9EB6A33924DADB5800912531 /* RegisterWithMobileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterWithMobileVC.swift; sourceTree = "<group>"; };
+		9EDFD3D8252AE94000C5B828 /* FeatureProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureProductCell.swift; sourceTree = "<group>"; };
+		9EDFD3D9252AE94000C5B828 /* FeatureProductCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeatureProductCell.xib; sourceTree = "<group>"; };
 		9EE7215924C955DA006D0F19 /* Tango.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tango.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EE7215C24C955DA006D0F19 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EE7216024C955DA006D0F19 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -786,6 +790,15 @@
 			path = RegisterWithMobile;
 			sourceTree = "<group>";
 		};
+		9EDFD3D7252AE92700C5B828 /* FeatureImage */ = {
+			isa = PBXGroup;
+			children = (
+				9EDFD3D8252AE94000C5B828 /* FeatureProductCell.swift */,
+				9EDFD3D9252AE94000C5B828 /* FeatureProductCell.xib */,
+			);
+			path = FeatureImage;
+			sourceTree = "<group>";
+		};
 		9EE7215024C955D9006D0F19 = {
 			isa = PBXGroup;
 			children = (
@@ -1201,6 +1214,7 @@
 		EF6E6D7924E6BA070046618A /* Cart */ = {
 			isa = PBXGroup;
 			children = (
+				9EDFD3D7252AE92700C5B828 /* FeatureImage */,
 				9E8365CC2524655E00EC9CF3 /* DeloveryTipCell */,
 				EF6E6D7A24E6BA110046618A /* Cart Top */,
 				EF6E6D7B24E6BA1D0046618A /* Cart List */,
@@ -1454,6 +1468,7 @@
 				9EE7216424C955DA006D0F19 /* Main.storyboard in Resources */,
 				9EEA4B8A24F419F50087C0F9 /* MenuDetaisRatingCell.xib in Resources */,
 				EF7D75E324E7DF5C00D114ED /* DeliveryDetailsCell.xib in Resources */,
+				9EDFD3DB252AE94000C5B828 /* FeatureProductCell.xib in Resources */,
 				9E8365E825259A9900EC9CF3 /* PromoCollectionCell.xib in Resources */,
 				9E01C5FA24EEA1860089470D /* ItemCell.xib in Resources */,
 				9E1318BE24FA185100B21CE2 /* FavouritesCell.xib in Resources */,
@@ -1718,6 +1733,7 @@
 				9E1318A624F92D7800B21CE2 /* UserCratVM.swift in Sources */,
 				EFD35AB224FF743300AE95E6 /* DeliveryLocationAddVM.swift in Sources */,
 				9EE7219E24C96915006D0F19 /* Enums.swift in Sources */,
+				9EDFD3DA252AE94000C5B828 /* FeatureProductCell.swift in Sources */,
 				EFBE9E5D24E7F39C002DF1DF /* ThankYouVC.swift in Sources */,
 				9E311F0D24FCD74D000941B7 /* PromoCodeCell.swift in Sources */,
 				EF0DEDD624E9804B00BA4161 /* DeliveryDetailsMapCell.swift in Sources */,
@@ -1943,6 +1959,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tango/Tango.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3.0;
 				DEVELOPMENT_TEAM = 85MWHQDG4T;
 				INFOPLIST_FILE = Tango/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1950,6 +1967,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tangoeateries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = TangoUserAdhok;
@@ -1969,6 +1987,7 @@
 				CODE_SIGN_ENTITLEMENTS = Tango/Tango.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 3.0;
 				DEVELOPMENT_TEAM = 85MWHQDG4T;
 				INFOPLIST_FILE = Tango/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1976,6 +1995,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.tangoeateries;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = TangoUserAdhok;

@@ -31,6 +31,7 @@ class ProfileEditVC: BaseViewController {
         tabBarView.isHidden = true
         headerView.imgLogo.isHidden = true
         headerView.btnBackAction.isHidden = false
+        headerView.imgBackLogo.isHidden = false
         
         userName.text = userdetails.name
         userPhone.text = userdetails.phone

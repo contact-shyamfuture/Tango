@@ -23,6 +23,7 @@ class FilterVC: BaseViewController {
         super.viewDidLoad()
         headerView.imgLogo.isHidden = true
         headerView.btnBackAction.isHidden = false
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         headerView.btnHeartOutlet.isHidden = true
 

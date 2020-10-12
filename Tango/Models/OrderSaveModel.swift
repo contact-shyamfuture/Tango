@@ -19,6 +19,7 @@ class OrderSaveModel: NSObject {
     var user_address = String()
     var addressType = String()
     var tips_amount = "0"
+    var tips_Othe_amount = "0"
     var promoID = Int()
     var totalAmount = Int()
 }

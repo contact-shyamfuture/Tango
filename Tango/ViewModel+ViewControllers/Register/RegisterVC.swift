@@ -74,6 +74,9 @@ class RegisterVC: UIViewController {
                 break
             }
         }
+        let mainView = UIStoryboard(name:"Main", bundle: nil)
+        let viewcontroller : UIViewController = mainView.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+        self.navigationController?.pushViewController (viewcontroller, animated: true)
     }
     
     func loginRegisttration(){

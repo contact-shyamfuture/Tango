@@ -29,6 +29,11 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
     lazy var viewModel: DeliveryLocationAddVM = {
         return DeliveryLocationAddVM()
     }()
+    
+    var lat : Double?
+    var Long : Double?
+    var address : String?
+    var googlePlace : String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +45,21 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         headerView.btnHeartOutlet.isHidden = true
         txtFieldOther.delegate = self
         headerView.imgLogo.isHidden = true
+        headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         
-        locationManager = CLLocationManager()
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        if googlePlace == "Yes" {
+            self.param.map_address = self.address
+            param.latitude = lat
+            param.longitude = Long
+            self.getAddressFromLatLon(pdblLatitude: lat!, pdblLongitude: Long!)
+        }else{
+            locationManager = CLLocationManager()
+            locationManager.delegate = self;
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
         
         hostMapView.delegate = self
         hostMapView.mapType = MKMapType.standard
@@ -55,6 +68,8 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
         
         let longTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         hostMapView.addGestureRecognizer(longTapGesture)
+        
+        
     }
     
     
@@ -107,23 +122,23 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
             let region = MKCoordinateRegion(center: view.annotation!.coordinate, span: mapView.region.span)
             mapView.setRegion(region, animated: true)
         }
+    
+    func loadServiceMapView(lat : Double, long : Double , address : String){
+        hostMapView.removeAnnotations(hostMapView.annotations)
+        hostMapView.delegate = self
+        hostMapView.mapType = MKMapType.standard
+        hostMapView.showsUserLocation = true
         
-            func loadServiceMapView(lat : Double, long : Double , address : String){
-                hostMapView.removeAnnotations(hostMapView.annotations)
-                hostMapView.delegate = self
-                hostMapView.mapType = MKMapType.standard
-                hostMapView.showsUserLocation = true
-                
-                let CLLCoordType = CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long))
-                
-                let viewRegion = MKCoordinateRegion(center: CLLCoordType, latitudinalMeters: 50, longitudinalMeters: 50)
-                hostMapView.setRegion(viewRegion, animated: false)
-                let london = MKPointAnnotation()
-                //london.title = address//addressString
-                london.coordinate =  CLLCoordType // CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275)
-                hostMapView.addAnnotation(london)
-            }
+        let CLLCoordType = CLLocationCoordinate2D(latitude: Double(lat), longitude: Double(long))
         
+        let viewRegion = MKCoordinateRegion(center: CLLCoordType, latitudinalMeters: 50, longitudinalMeters: 50)
+        hostMapView.setRegion(viewRegion, animated: false)
+        let london = MKPointAnnotation()
+        //london.title = address//addressString
+        london.coordinate =  CLLCoordType // CLLocationCoordinate2D(latitude: 51.507222, longitude: -0.1275)
+        hostMapView.addAnnotation(london)
+    }
+    
         func getAddressFromLatLon(pdblLatitude: Double, pdblLongitude: Double) {
             var center : CLLocationCoordinate2D = CLLocationCoordinate2D()
             let lat: Double = Double("\(pdblLatitude)")!
