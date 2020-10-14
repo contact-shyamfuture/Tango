@@ -36,6 +36,7 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
         super.viewDidLoad()
 
         headerView.imgLogo.isHidden = true
+        tabBarView.isHidden = true
         headerView.btnBackAction.isHidden = false
         headerView.btnHeartOutlet.isHidden = false
         headerView.imgBackLogo.isHidden = false

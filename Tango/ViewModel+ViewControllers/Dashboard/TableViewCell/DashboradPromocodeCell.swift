@@ -50,7 +50,9 @@ extension DashboradPromocodeCell : UICollectionViewDelegate , UICollectionViewDa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PromoCollectionCell", for: indexPath as IndexPath) as! PromoCollectionCell
        
         cell.lblPromoCodeName.text = promoList[indexPath.row].promo_code!
-        cell.lblValid.text = promoList[indexPath.row].avail_from!
+        let dateForm = convertDateFormater(promoList[indexPath.row].avail_from!)
+        let dateTo = convertDateFormater(promoList[indexPath.row].expiration!)
+        cell.lblValid.text = "\(dateForm) - \(dateTo)"
         if promoList[indexPath.row].promocode_type == "percent" {
             cell.lbloffValue.text = "\(promoList[indexPath.row].discount ?? 0) % OFF"
         }else{
@@ -79,5 +81,15 @@ extension DashboradPromocodeCell : UICollectionViewDelegate , UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         //delegateSft?.navigateToSafetyDetails(id: safetyBanner[indexPath.row].id!)
+    }
+    
+    func convertDateFormater(_ date: String) -> String
+    {
+       
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.date(from: date)
+        dateFormatter.dateFormat = "dd-MMM"
+        return  dateFormatter.string(from: date!)
     }
 }

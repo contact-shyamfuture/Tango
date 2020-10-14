@@ -51,8 +51,12 @@ class ProfileVC: BaseViewController {
         userProfileImage.clipsToBounds = true
         
         configureUI()
-        getprifleDetails()
+        
         initializeViewModel()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getprifleDetails()
     }
     
     func getprifleDetails(){

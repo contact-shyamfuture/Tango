@@ -59,6 +59,7 @@ class SearchShopList: Mappable {
     var updated_at : String?
     var deleted_at : String?
     var ratings : String?
+    var shopstatus : String?
     
     init() {}
     required init?(map: Map) {
@@ -95,6 +96,7 @@ class SearchShopList: Mappable {
         updated_at <- map["updated_at"]
         deleted_at <- map["deleted_at"]
         ratings <- map["ratings"]
+        shopstatus <- map["shopstatus"]
     }
 }
 class SearchProductList: Mappable {

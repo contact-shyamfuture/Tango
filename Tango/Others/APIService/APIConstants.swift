@@ -37,6 +37,8 @@ class APIConstants: NSObject {
     static let favoritesListURL = "api/user/favorite"
     static let favoritesAddtURL = "api/user/favorite"
     static let checkLocationURL = "api/user/check-distance"
+    static let oderCompletedURL = "api/user/order"
+    
     
         
     static func logInApi() -> String {
@@ -79,6 +81,10 @@ class APIConstants: NSObject {
     
     static func orderListApi() -> String {
         return baseURL + orderListsURL
+    }
+    
+    static func orderCompletedListApi() -> String {
+        return baseURL + oderCompletedURL
     }
     
     static func searchApi() -> String {

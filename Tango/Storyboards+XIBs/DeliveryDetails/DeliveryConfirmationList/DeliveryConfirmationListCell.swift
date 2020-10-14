@@ -10,6 +10,8 @@ import UIKit
 
 class DeliveryConfirmationListCell: UITableViewCell {
 
+    @IBOutlet weak var orderDotedImage: UIImageView!
+    @IBOutlet weak var orderImageView: UIImageView!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblTitle: UILabel!
     static let identifier = "DeliveryConfirmationListCell"

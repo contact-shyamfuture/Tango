@@ -618,6 +618,7 @@
                         <viewLayoutGuide key="safeArea" id="qz4-VM-43D"/>
                     </view>
                     <connections>
+                        <outlet property="cancelBtnOutlet" destination="k39-W1-WeZ" id="iMj-sl-NyL"/>
                         <outlet property="disputePopUpView" destination="FyW-xB-nJJ" id="TcP-0P-WUE"/>
                         <outlet property="lblCancelPopupOrderID" destination="fbd-AZ-JUd" id="cOc-Oz-26q"/>
                         <outlet property="lblDisputePopUpCategory" destination="3Bn-Jm-Llx" id="eA0-L5-crq"/>

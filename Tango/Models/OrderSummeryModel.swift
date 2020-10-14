@@ -72,6 +72,7 @@ class OrderSummeryModel: Mappable {
         shopList <- map["shop"]
         userCart <- map["items"]
         orderStatusList <- map["ordertiming"]
+        status <- map["status"]
     }
 }
 

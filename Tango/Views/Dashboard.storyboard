@@ -103,10 +103,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nHQ-Ut-4EF">
-                                        <rect key="frame" x="0.0" y="110" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="110" width="414" height="45"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5xp-T8-Mf7" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
-                                                <rect key="frame" x="304" y="12" width="100" height="36"/>
+                                                <rect key="frame" x="304" y="9" width="100" height="36"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3aI-qJ-jD0">
                                                         <rect key="frame" x="5" y="4" width="90" height="28"/>
@@ -135,13 +135,13 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="5xp-T8-Mf7" firstAttribute="centerY" secondItem="nHQ-Ut-4EF" secondAttribute="centerY" id="37C-hq-Wb6"/>
-                                            <constraint firstAttribute="height" constant="60" id="sze-jV-rzt"/>
+                                            <constraint firstAttribute="height" constant="45" id="sze-jV-rzt"/>
                                             <constraint firstAttribute="trailing" secondItem="5xp-T8-Mf7" secondAttribute="trailing" constant="10" id="xkQ-xR-omd"/>
+                                            <constraint firstItem="5xp-T8-Mf7" firstAttribute="top" secondItem="nHQ-Ut-4EF" secondAttribute="top" constant="9" id="xy4-Qh-lFo"/>
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="X0W-Tk-DQX">
-                                        <rect key="frame" x="0.0" y="170" width="414" height="686"/>
+                                        <rect key="frame" x="0.0" y="155" width="414" height="701"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableFooterView" contentMode="scaleToFill" id="Ugg-w2-rGd">
                                             <rect key="frame" x="0.0" y="100" width="414" height="79"/>
@@ -390,7 +390,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pEC-i1-mWd">
-                                        <rect key="frame" x="0.0" y="100" width="414" height="651"/>
+                                        <rect key="frame" x="0.0" y="100" width="414" height="736"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <view key="tableHeaderView" contentMode="scaleToFill" id="PMW-aw-YhP">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="253"/>
@@ -537,7 +537,7 @@
                                         </prototypes>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BWw-2r-zaP">
-                                        <rect key="frame" x="0.0" y="751" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="836" width="414" height="60"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="OxM-vx-y3h">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
@@ -645,7 +645,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="pEC-i1-mWd" secondAttribute="trailing" id="Cr9-b4-yZU"/>
                                     <constraint firstItem="BWw-2r-zaP" firstAttribute="top" secondItem="pEC-i1-mWd" secondAttribute="bottom" id="K8t-8y-7gl"/>
-                                    <constraint firstAttribute="bottom" secondItem="BWw-2r-zaP" secondAttribute="bottom" constant="85" id="QqP-AN-vc8"/>
+                                    <constraint firstAttribute="bottom" secondItem="BWw-2r-zaP" secondAttribute="bottom" id="QqP-AN-vc8"/>
                                     <constraint firstAttribute="trailing" secondItem="BWw-2r-zaP" secondAttribute="trailing" id="VoD-ds-emr"/>
                                     <constraint firstItem="BWw-2r-zaP" firstAttribute="leading" secondItem="tGq-ln-tf4" secondAttribute="leading" id="bj9-EA-bUW"/>
                                     <constraint firstItem="pEC-i1-mWd" firstAttribute="top" secondItem="tGq-ln-tf4" secondAttribute="top" constant="100" id="guf-G3-AIS"/>
@@ -1076,7 +1076,7 @@
     <resources>
         <image name="BannerImg" width="385" height="216"/>
         <image name="Header" width="375" height="80"/>
-        <image name="Logo" width="187" height="172"/>
+        <image name="Logo" width="280.5" height="258"/>
         <image name="ShareIcon" width="21.333333969116211" height="21.333333969116211"/>
         <image name="arrowDown" width="16" height="16"/>
         <image name="bike" width="26" height="26"/>

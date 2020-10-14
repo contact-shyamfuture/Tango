@@ -18,17 +18,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Custom Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQU-ic-9ND">
-                        <rect key="frame" x="88" y="15" width="145" height="21"/>
+                        <rect key="frame" x="96" y="15" width="129.5" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="145" id="0PM-Pm-GaP"/>
+                            <constraint firstAttribute="width" priority="250" constant="145" id="0PM-Pm-GaP"/>
                             <constraint firstAttribute="height" constant="21" id="kmn-er-fQP"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notes" translatesAutoresizingMaskIntoConstraints="NO" id="fUb-Cd-pMs">
-                        <rect key="frame" x="243" y="15.5" width="20" height="20"/>
+                        <rect key="frame" x="235.5" y="15.5" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="20" id="ntU-nR-U3n"/>
                             <constraint firstAttribute="height" constant="20" id="p7k-4Y-uqT"/>

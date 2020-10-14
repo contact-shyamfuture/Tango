@@ -49,7 +49,6 @@ class SearchVC: BaseViewController {
         initializeProfileViewModel()
         initializeCartViewModel()
         getprifleDetails()
-        
     }
     
     func getprifleDetails(){
@@ -96,9 +95,7 @@ class SearchVC: BaseViewController {
                     self?.removeLoaderView()
                 }
             }
-        }
-        
-        
+        }        
         viewProfileModel.refreshprofileViewClosure = {[weak self]() in
             DispatchQueue.main.async {
                 
@@ -385,16 +382,20 @@ extension SearchVC : UITableViewDelegate,UITableViewDataSource , UserDushCartPro
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isRestaurant == true {
-            let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
-            let resDic = RestaurantList()
-            resDic.name = self.shopList![indexPath.row].name
-            resDic.estimated_delivery_time = self.shopList![indexPath.row].estimated_delivery_time
-            resDic.avatar = self.shopList![indexPath.row].avatar
-            resDic.rating = self.shopList![indexPath.row].rating
-            vc!.categoryList = resDic
-            vc!.userdetails = userdetails
-            vc!.shopID = "\(self.shopList![indexPath.row].id ?? 0)"
-            self.navigationController?.pushViewController (vc!, animated: true)
+            
+            if self.shopList![indexPath.row].shopstatus == "OPEN" {
+                let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+                let resDic = RestaurantList()
+                resDic.name = self.shopList![indexPath.row].name
+                resDic.estimated_delivery_time = self.shopList![indexPath.row].estimated_delivery_time
+                resDic.avatar = self.shopList![indexPath.row].avatar
+                resDic.rating = self.shopList![indexPath.row].rating
+                vc!.categoryList = resDic
+                vc!.userdetails = userdetails
+                vc!.shopID = "\(self.shopList![indexPath.row].id ?? 0)"
+                self.navigationController?.pushViewController (vc!, animated: true)
+            }
+            
         }else{
             let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
             let resDic = RestaurantList()

@@ -35,7 +35,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Order Placed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-Qb-Jz0">
                                 <rect key="frame" x="0.0" y="0.0" width="247" height="26"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.2627450980392157" green="0.2627450980392157" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Lorem Ipsum textLorem Ipsum textLorem Ipsum textLorem Ipsum textLorem Ipsum text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tn2-fK-0cr">
@@ -69,6 +69,8 @@
             <connections>
                 <outlet property="lblDescription" destination="tn2-fK-0cr" id="3oR-bl-cqp"/>
                 <outlet property="lblTitle" destination="k4U-Qb-Jz0" id="HbI-0e-vl8"/>
+                <outlet property="orderDotedImage" destination="hGo-yU-Q6g" id="k0e-3Y-pkA"/>
+                <outlet property="orderImageView" destination="2Bg-FF-RTO" id="Var-Ib-pss"/>
             </connections>
             <point key="canvasLocation" x="136.95652173913044" y="148.32589285714286"/>
         </tableViewCell>

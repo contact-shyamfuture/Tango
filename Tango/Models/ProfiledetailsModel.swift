@@ -179,7 +179,7 @@ class ShopList: Mappable {
     var updated_at : String?
     var deleted_at : String?
     var distance : Double?
-    
+    var open_close : String?
     
     init() {}
     required init?(map: Map) {
@@ -215,6 +215,6 @@ class ShopList: Mappable {
         updated_at <- map["updated_at"]
         deleted_at <- map["deleted_at"]
         distance <- map["distance"]
-        
+        open_close <- map["open_close"]
     }
 }

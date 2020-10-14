@@ -9,6 +9,9 @@
 import UIKit
 import HCSStarRatingView
 class SearchRestaurantCell: UITableViewCell {
+    
+    @IBOutlet weak var percentaageImg: UIImageView!
+    @IBOutlet weak var closedView: RoundUIView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgRestaurant: UIImageView!
     @IBOutlet weak var lblPercentageOffer: UILabel!
@@ -30,9 +33,25 @@ class SearchRestaurantCell: UITableViewCell {
     func initializeCellDetails(cellDic : SearchShopList){
         lblName.text = cellDic.name
         imgRestaurant.sd_setImage(with: URL(string: cellDic.avatar!))
-        lblPercentageOffer.text = "Flat \(cellDic.offer_percent ?? 0) % offer on all order"
+        
         lblDetails.text = cellDic.description
         ratingView.value = CGFloat(cellDic.rating ?? 0)
         btnDistance.setTitle("\(cellDic.estimated_delivery_time ?? 0) mint", for: .normal)
+        
+        if cellDic.shopstatus == "OPEN" {
+            closedView.isHidden = true
+           // btnDeliveryCharge.isHidden = true
+        }else{
+            closedView.isHidden = false
+            //btnDeliveryCharge.isHidden = true
+        }
+        
+        if cellDic.offer_percent == 0 {
+            percentaageImg.isHidden = true
+            lblPercentageOffer.text = ""
+        }else{
+            percentaageImg.isHidden = false
+            lblPercentageOffer.text = "Flat \(cellDic.offer_percent ?? 0) % offer on all order"
+        }
     }
 }

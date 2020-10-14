@@ -51,6 +51,22 @@ class OrderListCell: UITableViewCell {
         }
     }
     
+    func cellConfigCompletedUI(with model : OrderListModel){
+        lblShopName.text = model.shopList?.name ?? ""
+        lblMapAddress.text = model.shopList?.maps_address ?? ""
+        guard let items = model.userCart else {return}
+        if items.count > 0{
+            lblItemName.text = "\(items[0].CartProduct?.name ?? "")(\(items[0].quantity ?? 0))"
+        }
+        lblOrderDate.text = getFormattedDate(string: model.created_at ?? "")
+        lblTotalAmount.text = "₹\(model.invoiceDetails?.payable ?? 0)"
+        if model.dispute == "NODISPUTE" {
+            vwDisputed.isHidden = true
+        }else{
+            vwDisputed.isHidden = false
+        }
+    }
+    
     func getFormattedDate(string: String) -> String{
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "yyyy-MM-dd HH:mm:ss"

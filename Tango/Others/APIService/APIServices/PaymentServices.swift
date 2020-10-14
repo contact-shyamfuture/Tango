@@ -21,6 +21,8 @@ class PaymentServices: PaymentServicesProtocol {
         //application/x-www-form-urlencoded  encoding: JSONEncoding.default,
         let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/json" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
         
+        print("param==>\(params)")
+        
         Alamofire.request(loginApi, method: .post, parameters: params, encoding: JSONEncoding.default, headers: header).responseObject {(response: DataResponse<OrderDetailsModel>) in
             print("loginApi==>\(loginApi)")
             

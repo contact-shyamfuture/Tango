@@ -133,10 +133,10 @@
                                         </state>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jgv-Kr-Xus" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
-                                        <rect key="frame" x="182" y="5" width="100" height="30"/>
+                                        <rect key="frame" x="197" y="5" width="70" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJf-ZU-qAh">
-                                                <rect key="frame" x="10" y="5" width="80" height="20"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJf-ZU-qAh">
+                                                <rect key="frame" x="0.0" y="5" width="70" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                 <color key="textColor" red="0.70196078429999997" green="0.20000000000000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -145,10 +145,10 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="dJf-ZU-qAh" firstAttribute="top" secondItem="jgv-Kr-Xus" secondAttribute="top" constant="5" id="57m-uJ-4A1"/>
-                                            <constraint firstAttribute="trailing" secondItem="dJf-ZU-qAh" secondAttribute="trailing" constant="10" id="ech-Dr-ngo"/>
+                                            <constraint firstAttribute="trailing" secondItem="dJf-ZU-qAh" secondAttribute="trailing" id="ech-Dr-ngo"/>
                                             <constraint firstAttribute="height" constant="30" id="hQS-R1-QUx"/>
-                                            <constraint firstItem="dJf-ZU-qAh" firstAttribute="leading" secondItem="jgv-Kr-Xus" secondAttribute="leading" constant="10" id="haN-dA-TZW"/>
-                                            <constraint firstAttribute="width" constant="100" id="l1W-tC-KNr"/>
+                                            <constraint firstItem="dJf-ZU-qAh" firstAttribute="leading" secondItem="jgv-Kr-Xus" secondAttribute="leading" id="haN-dA-TZW"/>
+                                            <constraint firstAttribute="width" constant="70" id="l1W-tC-KNr"/>
                                             <constraint firstAttribute="bottom" secondItem="dJf-ZU-qAh" secondAttribute="bottom" constant="5" id="zsK-OO-bQ9"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>

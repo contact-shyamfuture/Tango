@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vJU-8F-o2c">
-                                <rect key="frame" x="0.0" y="104" width="414" height="698"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="683"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoCart" translatesAutoresizingMaskIntoConstraints="NO" id="q4j-zZ-aGc">
@@ -147,7 +147,7 @@
                         <constraints>
                             <constraint firstItem="e50-0T-ROA" firstAttribute="centerY" secondItem="Yb4-Pl-lJS" secondAttribute="centerY" id="0hg-pT-E7y"/>
                             <constraint firstItem="q4j-zZ-aGc" firstAttribute="top" secondItem="gX8-FH-yUu" secondAttribute="top" constant="60" id="D6a-I5-EaU"/>
-                            <constraint firstItem="gX8-FH-yUu" firstAttribute="bottom" secondItem="vJU-8F-o2c" secondAttribute="bottom" constant="60" id="Jbx-CO-baU"/>
+                            <constraint firstItem="gX8-FH-yUu" firstAttribute="bottom" secondItem="vJU-8F-o2c" secondAttribute="bottom" constant="75" id="Jbx-CO-baU"/>
                             <constraint firstItem="gX8-FH-yUu" firstAttribute="trailing" secondItem="jvv-mP-i3C" secondAttribute="trailing" id="OgT-mB-q99"/>
                             <constraint firstItem="e50-0T-ROA" firstAttribute="leading" secondItem="gX8-FH-yUu" secondAttribute="leading" constant="20" id="OmT-H8-hlH"/>
                             <constraint firstItem="vJU-8F-o2c" firstAttribute="leading" secondItem="gX8-FH-yUu" secondAttribute="leading" id="S15-v4-O4C"/>

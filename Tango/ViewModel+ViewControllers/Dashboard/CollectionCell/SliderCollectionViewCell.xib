@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="296" height="197"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Aamantran-Bangla-Restaurant" translatesAutoresizingMaskIntoConstraints="NO" id="MCi-ZX-IJQ">
-                                <rect key="frame" x="10" y="10" width="276" height="127"/>
+                                <rect key="frame" x="10" y="0.0" width="276" height="137"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMe-wI-kC6">
                                 <rect key="frame" x="10" y="137" width="276" height="60"/>
@@ -77,7 +77,7 @@
                             <constraint firstAttribute="bottom" secondItem="gMe-wI-kC6" secondAttribute="bottom" id="VLY-9P-6Et"/>
                             <constraint firstItem="Jeb-aH-RgS" firstAttribute="centerY" secondItem="GZw-1F-2Sv" secondAttribute="centerY" id="Vnx-4b-7Yi"/>
                             <constraint firstItem="MCi-ZX-IJQ" firstAttribute="leading" secondItem="7R6-Ms-IQj" secondAttribute="leading" constant="10" id="emL-Nw-CGM"/>
-                            <constraint firstItem="MCi-ZX-IJQ" firstAttribute="top" secondItem="7R6-Ms-IQj" secondAttribute="top" constant="10" id="fgT-Mh-8o9"/>
+                            <constraint firstItem="MCi-ZX-IJQ" firstAttribute="top" secondItem="7R6-Ms-IQj" secondAttribute="top" id="fgT-Mh-8o9"/>
                             <constraint firstItem="gMe-wI-kC6" firstAttribute="leading" secondItem="7R6-Ms-IQj" secondAttribute="leading" constant="10" id="gv7-2x-wRJ"/>
                             <constraint firstAttribute="trailing" secondItem="gMe-wI-kC6" secondAttribute="trailing" constant="10" id="nY7-CZ-QMe"/>
                             <constraint firstAttribute="trailing" secondItem="MCi-ZX-IJQ" secondAttribute="trailing" constant="10" id="sbI-ox-9Aq"/>

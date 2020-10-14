@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="GXb-6N-HNm">
-                                <rect key="frame" x="0.0" y="149" width="414" height="663"/>
+                                <rect key="frame" x="0.0" y="159" width="414" height="653"/>
                                 <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="uR0-iJ-E9E">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="135"/>
@@ -152,7 +152,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xIM-Gy-9EZ">
-                                <rect key="frame" x="334" y="109" width="50" height="32"/>
+                                <rect key="frame" x="334" y="119" width="50" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="4Od-Aa-ZJV"/>
                                     <constraint firstAttribute="height" constant="32" id="cUp-YJ-5jf"/>
@@ -169,7 +169,7 @@
                         <color key="backgroundColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="lKE-is-VZX" firstAttribute="bottom" secondItem="GXb-6N-HNm" secondAttribute="bottom" constant="50" id="Dju-l8-T1v"/>
-                            <constraint firstItem="xIM-Gy-9EZ" firstAttribute="top" secondItem="lKE-is-VZX" secondAttribute="top" constant="65" id="HB6-os-78n"/>
+                            <constraint firstItem="xIM-Gy-9EZ" firstAttribute="top" secondItem="lKE-is-VZX" secondAttribute="top" constant="75" id="HB6-os-78n"/>
                             <constraint firstItem="lKE-is-VZX" firstAttribute="trailing" secondItem="GXb-6N-HNm" secondAttribute="trailing" id="YKb-0T-fyd"/>
                             <constraint firstItem="lKE-is-VZX" firstAttribute="trailing" secondItem="xIM-Gy-9EZ" secondAttribute="trailing" constant="30" id="aYh-qz-VgE"/>
                             <constraint firstItem="GXb-6N-HNm" firstAttribute="top" secondItem="xIM-Gy-9EZ" secondAttribute="bottom" constant="8" id="dRs-1b-64H"/>
@@ -617,7 +617,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8id-8A-IM1">
-                                        <rect key="frame" x="70" y="36.5" width="161.5" height="23.5"/>
+                                        <rect key="frame" x="70" y="36.5" width="164" height="23.5"/>
                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>

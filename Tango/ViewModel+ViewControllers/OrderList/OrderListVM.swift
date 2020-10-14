@@ -12,10 +12,12 @@ class OrderListVM {
     
     let apiService: OrderListProtocol
     var refreshViewClosure: (() -> ())?
+    var refreshViewCompletedClosure: (() -> ())?
     var showAlertClosure: (()->())?
     var updateLoadingStatus: (()->())?
 
     var orderList = [OrderListModel]()
+    var orderCompletedList = [OrderListModel]()
     
     var isLoading: Bool = false {
         didSet {
@@ -47,6 +49,29 @@ class OrderListVM {
                 if  let getUserDetails = responseData {
                     self?.orderList = getUserDetails
                     self?.refreshViewClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
+    
+    func getOrderCompletedList() {
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        self.isLoading = true
+        self.apiService.getCompletedOrderDetails(params: [:]) { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? [OrderListModel]
+                if  let getUserDetails = responseData {
+                    self?.orderCompletedList = getUserDetails
+                    self?.refreshViewCompletedClosure?()
                 } else {
                     self?.alertMessage = ""
                 }

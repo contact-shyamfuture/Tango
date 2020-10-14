@@ -62,4 +62,10 @@ public struct PreferencesKeys {
     static let currentLat = "currentLat"
     static let currentLong = "currentLong"
     static let cartCount = "cartCount"
+    
+    static let mapLat = "mapLat"
+    static let mapLong = "mapLong"
+    static let mapType = "mapType"
+    static let mapAddress = "mapAddress"
+    
 }

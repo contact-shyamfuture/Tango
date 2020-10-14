@@ -21,6 +21,7 @@ struct OrderOptions {
 class DeliveryDetailsVC: BaseViewController {
 
     //properties outlet
+    @IBOutlet weak var cancelBtnOutlet: UIButton!
     @IBOutlet weak var tblVw: UITableView!
     @IBOutlet weak var tblFooterVw: UIView!
     @IBOutlet weak var lblOrderId : UILabel!
@@ -48,6 +49,9 @@ class DeliveryDetailsVC: BaseViewController {
     }()
     var itemscart = [ProfileCartModel]()
     var orderID = ""
+    
+    var orderDetails = OrderSummeryModel()
+    var isHistory : Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,12 +118,22 @@ class DeliveryDetailsVC: BaseViewController {
         
         viewModel.refreshViewClosure = {[weak self]() in
             DispatchQueue.main.async {
-                self?.lblOrderId.text = "Order ID : #\(self?.viewModel.orderDetails.id ?? 0)"
-                let quantity = self?.viewModel.orderDetails.invoiceDetails?.quantity
-                let totalPrice = self?.viewModel.orderDetails.invoiceDetails?.payable
-                self?.lblNoItem.text = "\(quantity ?? 0)Item, ₹\(totalPrice ?? 0)"
-                self?.itemscart = self?.viewModel.orderDetails.userCart ?? []
-                self?.tblVw.reloadData()
+                if self?.viewModel.orderDetails.id != nil {
+                   
+                    if self?.viewModel.orderDetails.status == "RECEIVED" || self?.viewModel.orderDetails.status == "ASSIGNED" || self?.viewModel.orderDetails.status == "PROCESSING" || self?.viewModel.orderDetails.status == "REACHED" || self?.viewModel.orderDetails.status == "PICKEDUP" || self?.viewModel.orderDetails.status == "ARRIVED" || self?.viewModel.orderDetails.status == "COMPLETED"{
+                        self!.cancelBtnOutlet.isHidden = true
+                    
+                    }else{
+                        self!.cancelBtnOutlet.isHidden = false
+                    }
+                    self?.lblOrderId.text = "Order ID : #\(self?.viewModel.orderDetails.id ?? 0)"
+                    let quantity = self?.viewModel.orderDetails.invoiceDetails?.quantity
+                    let totalPrice = self?.viewModel.orderDetails.invoiceDetails?.payable
+                    self?.lblNoItem.text = "\(quantity ?? 0)Item, ₹\(totalPrice ?? 0)"
+                    self?.itemscart = self?.viewModel.orderDetails.userCart ?? []
+                    self?.orderDetails = (self?.viewModel.orderDetails)!
+                    self?.tblVw.reloadData()
+                }
             }
         }
         viewModel.refreshOrderDisputeViewClosure = {[weak self]() in
@@ -193,7 +207,11 @@ extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1{
-            return 5
+            if isHistory == true {
+                return 2
+            }else{
+                return 5
+            }
         }else if section == 3{
             return self.itemscart.count
         }
@@ -208,11 +226,78 @@ extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
             }
             return Cell
         case 1:
+            
+            //("ORDERED", "RECEIVED", "ASSIGNED", "PROCESSING", "REACHED", "PICKEDUP", "ARRIVED", "COMPLETED");
             let Cell = tableView.dequeueReusableCell(withIdentifier: DeliveryConfirmationListCell.identifier) as! DeliveryConfirmationListCell
             
-            Cell.lblTitle.text = OrderOptions.addData()[indexPath.row].title
-            Cell.lblDescription.text = OrderOptions.addData()[indexPath.row].description
-            
+            if isHistory == true {
+                
+                switch indexPath.row {
+                case 0:
+                    Cell.lblTitle.text = orderDetails.shopList?.name
+                    Cell.lblDescription.text = orderDetails.shopList?.address
+                    Cell.orderImageView.image = UIImage(named: "location")
+                    Cell.orderDotedImage.isHidden = false
+                case 1:
+                    Cell.lblTitle.text = orderDetails.address?.type
+                    Cell.lblDescription.text = orderDetails.address?.map_address
+                    Cell.orderImageView.image = UIImage(named: "Home")
+                    Cell.orderDotedImage.isHidden = true
+                default:
+                    Cell.lblTitle.text = ""
+                    Cell.lblDescription.text = ""
+                    Cell.orderImageView.image = UIImage(named: "location")
+                    Cell.orderDotedImage.isHidden = true
+                }
+                
+            }else{
+                Cell.lblTitle.text = OrderOptions.addData()[indexPath.row].title
+                Cell.lblDescription.text = OrderOptions.addData()[indexPath.row].description
+                switch indexPath.row {
+                case 0:
+                    Cell.orderImageView.image = UIImage(named: "OrderPlaced")
+                    Cell.orderDotedImage.isHidden = false
+                    if orderDetails.status == "ORDERED" || orderDetails.status == "RECEIVED" || orderDetails.status == "ASSIGNED" || orderDetails.status == "PROCESSING" || orderDetails.status == "REACHED" || orderDetails.status == "PICKEDUP" || orderDetails.status == "ARRIVED" || orderDetails.status == "COMPLETED"{
+                        Cell.lblTitle.textColor = UIColor.init(red: 251/255, green: 141/255, blue: 12/255, alpha: 1)
+                    }else{
+                        Cell.lblTitle.textColor = UIColor.darkGray
+                    }
+                case 1:
+                    Cell.orderImageView.image = UIImage(named: "myorderConfirm")
+                    Cell.orderDotedImage.isHidden = false
+                    if orderDetails.status == "RECEIVED" || orderDetails.status == "ASSIGNED" || orderDetails.status == "PROCESSING" || orderDetails.status == "REACHED" || orderDetails.status == "PICKEDUP" || orderDetails.status == "ARRIVED" || orderDetails.status == "COMPLETED"{
+                        Cell.lblTitle.textColor = UIColor.init(red: 251/255, green: 141/255, blue: 12/255, alpha: 1)
+                    }else{
+                        Cell.lblTitle.textColor = UIColor.darkGray
+                    }
+                case 2:
+                    Cell.orderImageView.image = UIImage(named: "order_process")
+                    Cell.orderDotedImage.isHidden = false
+                    if orderDetails.status == "PROCESSING" || orderDetails.status == "REACHED" || orderDetails.status == "PICKEDUP" || orderDetails.status == "ARRIVED" || orderDetails.status == "COMPLETED"{
+                        Cell.lblTitle.textColor = UIColor.init(red: 251/255, green: 141/255, blue: 12/255, alpha: 1)
+                    }else{
+                        Cell.lblTitle.textColor = UIColor.darkGray
+                    }
+                case 3:
+                    Cell.orderImageView.image = UIImage(named: "order_pickup")
+                    Cell.orderDotedImage.isHidden = false
+                    if orderDetails.status == "PICKEDUP" || orderDetails.status == "ARRIVED" || orderDetails.status == "COMPLETED"{
+                        Cell.lblTitle.textColor = UIColor.init(red: 251/255, green: 141/255, blue: 12/255, alpha: 1)
+                    }else{
+                        Cell.lblTitle.textColor = UIColor.darkGray
+                    }
+                case 4:
+                    Cell.orderImageView.image = UIImage(named: "order_delivered")
+                    Cell.orderDotedImage.isHidden = true
+                    if orderDetails.status == "ARRIVED" || orderDetails.status == "COMPLETED"{
+                        Cell.lblTitle.textColor = UIColor.init(red: 251/255, green: 141/255, blue: 12/255, alpha: 1)
+                    }else{
+                        Cell.lblTitle.textColor = UIColor.darkGray
+                    }
+                default:
+                    Cell.lblTitle.textColor = UIColor.darkGray
+                }
+            }
             return Cell
         case 2:
             let Cell = tableView.dequeueReusableCell(withIdentifier: DeliveryInformationCell.identifier) as! DeliveryInformationCell
@@ -238,10 +323,15 @@ extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case 0:
-            return 250
+            if isHistory == true {
+                return 0
+            }else{
+                return 250
+            }
         case 1:
             return UITableView.automaticDimension
         case 2:

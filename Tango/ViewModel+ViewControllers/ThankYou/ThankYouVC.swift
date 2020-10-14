@@ -20,7 +20,7 @@ class ThankYouVC: BaseViewController {
         configureUI()
         headerView.btnHeartOutlet.isHidden = true
         tabBarView.isHidden = true
-        headerView.imgLogo.isHidden = false
+        headerView.imgLogo.isHidden = true
         headerView.btnBackAction.isHidden = true
         lblOrderID.text = "\(orderDetails.invoiceDetails?.order_id ?? 0)"
         lblAmount.text = "\(orderDetails.invoiceDetails?.payable ?? 0)"

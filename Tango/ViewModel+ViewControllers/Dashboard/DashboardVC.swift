@@ -135,6 +135,12 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
     func getDeliveryLocation(Address : String, addressID : Int , adddic : AddressListModel ){
         self.lblLocation.text = adddic.map_address
         self.lbNearLocation.text = adddic.type
+        
+        AppPreferenceService.setString(String((adddic.map_address)!), key: PreferencesKeys.mapAddress)
+        AppPreferenceService.setString(String((adddic.type!)), key: PreferencesKeys.mapType)
+        AppPreferenceService.setString(String((adddic.latitude!)), key: PreferencesKeys.mapLat)
+        AppPreferenceService.setString(String((adddic.longitude!)), key: PreferencesKeys.mapLong)
+        
         viewModel.getDashboardToAPIService(lat: "\(adddic.latitude ?? 0)", long: "\(adddic.longitude ?? 0)", id: "", offset: offset)
         
         viewModel.getDashboardNearByFalseToAPIService(lat: "\(adddic.latitude ?? 0)", long: "\(adddic.longitude ?? 0)", id: "", offset: offset)
@@ -232,7 +238,12 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
             DispatchQueue.main.async {
                 
                 if  (self?.viewModel.topBanner) != nil {
-                    self?.topBanner = (self?.viewModel.topBanner)!
+                    
+                    if (self?.viewModel.topBanner.count)! > 0 {
+                        self?.topBanner = (self?.viewModel.topBanner.filter {
+                        $0.shopList!.offer_percent != 0
+                        })!
+                    }
                     self?.dashboradTableView.reloadData()
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Profile", okButtonText: okText, completion: nil)
@@ -444,7 +455,13 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 60
+            return 50
+        }else if section == 1{
+            if topBanner != nil && topBanner.count > 0 {
+                return 50
+            }else{
+                return 0
+            }
         }else if section == 3 {
             if resObj2 != nil {
                 if resObj2!.total_shops! > 0 {
@@ -456,13 +473,17 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
                 return 0
             }
         }else{
-            return 60
+            return 50
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1 {
-            return 200
+            if topBanner != nil && topBanner.count > 0 {
+                return 200
+            }else{
+                return 0
+            }
         }else if indexPath.section == 4{
             return 150
         }else {
@@ -510,49 +531,62 @@ extension DashboardVC : CLLocationManagerDelegate {
         //72.833770
         latValue = pdblLatitude
         longValue = pdblLongitude
-        viewModel.getDashboardToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
         
-        viewModel.getDashboardNearByFalseToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
-        
-        //getDashboardNearList()
-        let ceo: CLGeocoder = CLGeocoder()
-        center.latitude = lat
-        center.longitude = lon
+        if AppPreferenceService.getString(PreferencesKeys.mapLat) != nil {
+            let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+            let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+            
+            self.lblLocation.text = AppPreferenceService.getString(PreferencesKeys.mapAddress)
+            self.lbNearLocation.text = AppPreferenceService.getString(PreferencesKeys.mapType)
+            
+            viewModel.getDashboardToAPIService(lat: "\(mapLat ?? "0")", long: "\(mapLong ?? "0")", id: "", offset: offset)
+            
+            viewModel.getDashboardNearByFalseToAPIService(lat: "\(mapLat ?? "0")", long: "\(mapLong ?? "0")", id: "", offset: offset)
+        }else{
+            viewModel.getDashboardToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
+            
+            viewModel.getDashboardNearByFalseToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
+            
+            //getDashboardNearList()
+            let ceo: CLGeocoder = CLGeocoder()
+            center.latitude = lat
+            center.longitude = lon
 
-        let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
-        ceo.reverseGeocodeLocation(loc, completionHandler:
-            {(placemarks, error) in
-                if (error != nil)
-                {
-                    print("reverse geodcode fail: \(error!.localizedDescription)")
-                }
-                if let pm = placemarks {
-                    if pm.count > 0 {
-                          let pm = placemarks![0]
-                         
-                          var addressString : String = ""
-                          if pm.subLocality != nil {
-                              addressString = addressString + pm.subLocality! + ", "
-                          }
-                          if pm.thoroughfare != nil {
-                              addressString = addressString + pm.thoroughfare! + ", "
-                            self.lbNearLocation.text = pm.thoroughfare!
-                          }
-                          if pm.locality != nil {
-                              addressString = addressString + pm.locality! + ", "
-                           // self.lbNearLocation.text = pm.locality
-                          }
-                          if pm.country != nil {
-                              addressString = addressString + pm.country! + ", "
-                          }
-                          if pm.postalCode != nil {
-                              addressString = addressString + pm.postalCode! + " "
-                          }
-                        self.lblLocation.text = addressString
-                          print(addressString)
+            let loc: CLLocation = CLLocation(latitude:center.latitude, longitude: center.longitude)
+            ceo.reverseGeocodeLocation(loc, completionHandler:
+                {(placemarks, error) in
+                    if (error != nil)
+                    {
+                        print("reverse geodcode fail: \(error!.localizedDescription)")
                     }
-                }
-        })
+                    if let pm = placemarks {
+                        if pm.count > 0 {
+                              let pm = placemarks![0]
+                             
+                              var addressString : String = ""
+                              if pm.subLocality != nil {
+                                  addressString = addressString + pm.subLocality! + ", "
+                              }
+                              if pm.thoroughfare != nil {
+                                  addressString = addressString + pm.thoroughfare! + ", "
+                                self.lbNearLocation.text = pm.thoroughfare!
+                              }
+                              if pm.locality != nil {
+                                  addressString = addressString + pm.locality! + ", "
+                               // self.lbNearLocation.text = pm.locality
+                              }
+                              if pm.country != nil {
+                                  addressString = addressString + pm.country! + ", "
+                              }
+                              if pm.postalCode != nil {
+                                  addressString = addressString + pm.postalCode! + " "
+                              }
+                            self.lblLocation.text = addressString
+                              print(addressString)
+                        }
+                    }
+            })
+        }
     }
 }
 class KeychainAccess {
