@@ -58,12 +58,7 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         
         //print(obj.access_token!)
         initializeViewModel()
-        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
-        if loggedInStatus == IS_LOGGED_IN {
-            getprifleDetails()
-        }else{
-            
-        }
+        
         
         //getDashboardList()
         
@@ -75,14 +70,19 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
-        
-        getTopBanner()
-        getSafetyBanner()
-        getPromoDetails()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            getprifleDetails()
+            getPromoDetails()
+            getTopBanner()
+            getSafetyBanner()
+        }else{
+            
+        }
     }
     
     @IBAction func btnShareAction(_ sender: Any) {
@@ -353,7 +353,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
             if self.shopList != nil && self.shopList.count > 0 {
                 return self.shopList.count
             }else{
-                return 0
+                return 1
             }
         }else if section == 3{
             if self.shopNearList != nil && self.shopNearList.count > 0 {
@@ -383,9 +383,19 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
             Cell.initializeCellDetails(cellDic: topBanner)
             return Cell
         }else if indexPath.section == 2{
-            let Cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
-            Cell.initializeCellDetails(cellDic: self.shopList[indexPath.row])
-            return Cell
+            if self.shopList != nil && self.shopList.count > 0 {
+                let Cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
+                Cell.noRestaurantImageView.isHidden = true
+                Cell.initializeCellDetails(cellDic: self.shopList[indexPath.row])
+                return Cell
+            }else{
+                let Cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
+                Cell.noRestaurantImageView.isHidden = false
+               // Cell.initializeCellDetails(cellDic: self.shopList[indexPath.row])
+                return Cell
+            }
+            
+            
         }else if indexPath.section == 3{
             let Cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
             Cell.initializeCellNearDetails(cellDic: self.shopNearList[indexPath.row])
@@ -455,7 +465,12 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 50
+            if safetyBanner != nil && safetyBanner.count > 0 {
+                return 50
+            }else{
+                return 0
+            }
+            
         }else if section == 1{
             if topBanner != nil && topBanner.count > 0 {
                 return 50
@@ -472,6 +487,12 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
             }else{
                 return 0
             }
+        }else if section == 4 {
+            if promoList != nil && promoList.count > 0 {
+                return 50
+            }else{
+                return 0
+            }
         }else{
             return 50
         }
@@ -481,6 +502,12 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
         if indexPath.section == 1 {
             if topBanner != nil && topBanner.count > 0 {
                 return 200
+            }else{
+                return 0
+            }
+        }else if indexPath.section == 0 {
+            if safetyBanner != nil && safetyBanner.count > 0 {
+                return 210
             }else{
                 return 0
             }

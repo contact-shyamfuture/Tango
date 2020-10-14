@@ -29,6 +29,10 @@ class OrderListVC: BaseViewController {
         headerView.imgBackLogo.isHidden = false
         tabBarView.isHidden = true
         initializeViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         viewModel.getOrderList()
         viewModel.getOrderCompletedList()
     }
@@ -106,7 +110,11 @@ extension OrderListVC : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 50
+            if self.orderList != nil && self.orderList.count > 0 {
+                return 50
+            }else{
+                return 0
+            }
         }else{
             if self.orderCompletedList != nil && self.orderCompletedList.count > 0 {
                 return 50

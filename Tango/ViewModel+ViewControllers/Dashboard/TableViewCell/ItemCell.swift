@@ -12,6 +12,7 @@ import SDWebImage
 class ItemCell: UITableViewCell {
     @IBOutlet weak var imgOffer: UIImageView!
     
+    @IBOutlet weak var noRestaurantImageView: UIImageView!
     @IBOutlet weak var closedView: RoundUIView!
     @IBOutlet weak var btnDeliveryCharge: UIButton!
     @IBOutlet weak var btnDistanceTime: UIButton!

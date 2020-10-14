@@ -22,7 +22,7 @@ class DeliveryTipCell: UITableViewCell {
         
         self.tipCollectionView.delegate = self
         self.tipCollectionView.dataSource = self
-        priceArray = ["₹10", "₹15", "₹20" , "₹25" , "Other"]
+        priceArray = ["₹10", "₹15", "₹20" , "Other"]
         let value = TipModel()
         value.amount = "10"
         value.isSelect = false
@@ -38,10 +38,10 @@ class DeliveryTipCell: UITableViewCell {
         value2.isSelect = false
         amountArray.append(value2)
         
-        let value3 = TipModel()
-        value3.amount = "25"
-        value3.isSelect = false
-        amountArray.append(value3)
+//        let value3 = TipModel()
+//        value3.amount = "25"
+//        value3.isSelect = false
+//        amountArray.append(value3)
         
         let value5 = TipModel()
         value5.amount = "Other"

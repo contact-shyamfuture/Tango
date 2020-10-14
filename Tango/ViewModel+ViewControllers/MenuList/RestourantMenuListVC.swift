@@ -92,8 +92,19 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
         self.tabBarView.uiColorArray = [UIColor(red: 255/255.0, green: 133/255.0, blue: 0/255.0, alpha: CGFloat(1)),UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1)) , UIColor(red: 67/255.0, green: 67/255.0, blue: 67/255.0, alpha: CGFloat(1))]
         
         initializeViewModel()
+       // getcategoryList()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            getFavorites()
+        }else{
+            
+        }
         getcategoryList()
-        getFavorites()
     }
     
     func getFavorites(){
@@ -111,10 +122,14 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
     }
     
     func getcategoryList(){
-       // AppPreferenceService.setString(String((self!.userdetails.id!)), key: PreferencesKeys.userID)
+       let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+       if loggedInStatus == IS_LOGGED_IN {
         let userID = AppPreferenceService.getString(PreferencesKeys.userID)
         viewModel.getCategoryListToAPIService(shopID : shopID, user_id : userID!)
+       }else{
+        viewModel.getCategoryListToAPIService(shopID : shopID, user_id : "0")
     }
+}
     
     func initializeViewModel() {
         

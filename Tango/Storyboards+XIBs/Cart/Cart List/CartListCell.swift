@@ -15,6 +15,7 @@ protocol UserCartProtocol {
 
 class CartListCell: UITableViewCell {
     
+    @IBOutlet weak var lblPriceSecond: UILabel!
     @IBOutlet weak var lblPriceTwo: UILabel!
     @IBOutlet weak var imgFoodType: UIImageView!
     @IBOutlet weak var cartPlusBtnOulet: UIButton!
@@ -64,7 +65,9 @@ class CartListCell: UITableViewCell {
         }else{
             imgFoodType.image = UIImage(named: "nonVegFoodIcon")
         }
-        lblPriceTwo.text = "\(cellDic.pricescurrency ?? "") \(cellDic.pricesprice!)"
+        lblPriceTwo.text = "\(cellDic.pricescurrency ?? "")"
+        lblPriceSecond.text = "\(cellDic.pricesprice!)"
+        
         lblPrice.text = ""
         cartAddView.isHidden = false
         if let cartList = cartDetails.userCart {

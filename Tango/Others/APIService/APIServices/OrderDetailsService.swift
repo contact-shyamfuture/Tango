@@ -90,7 +90,7 @@ class OrderDetailsServices: OrderDetailsProtocol {
         print("Header: ",header)
         print("parameter==> ",params)
         
-        Alamofire.request(Api, method: .get, parameters: params, headers: header).responseObject {(response: DataResponse<OrderCancelModel>) in
+        Alamofire.request(Api, method: .delete, parameters: params, headers: header).responseObject {(response: DataResponse<OrderCancelModel>) in
             print("loginApi==>\(Api)")
             
             let loginApiResponse : Response!

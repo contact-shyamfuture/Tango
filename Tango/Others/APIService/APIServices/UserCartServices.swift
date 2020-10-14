@@ -87,10 +87,14 @@ class UserCartServices: UserCartServicesProtocol {
     
     func getCategoryDetails(shopID : String, user_id : String,completion: RequestCompletionHandler?) {
         let loginApi = APIConstants.getCategoryApi() + "\(shopID)&user_id=\(user_id)"
+        var header : [String: Any]
+        if UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken) != nil {
+            header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
+        }else{
+            header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded"]
+        }
         
-        let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
-        
-        Alamofire.request(loginApi, method: .get, parameters: nil, headers: header).responseObject {(response: DataResponse<RestaurantList>) in
+        Alamofire.request(loginApi, method: .get, parameters: nil, headers: (header as! HTTPHeaders)).responseObject {(response: DataResponse<RestaurantList>) in
             print("loginApi==>\(loginApi)")
             let loginApiResponse : Response!
             

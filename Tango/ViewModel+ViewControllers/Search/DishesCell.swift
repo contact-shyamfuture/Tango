@@ -56,13 +56,15 @@ class DishesCell: UITableViewCell {
         }
         addView.isHidden = false
         plusMinusView.isHidden = true
-        if let cartList = cartDetails.userCart {
-            for obj in cartList {
-                if cellDic.id == obj.product_id {
-                    addView.isHidden = true
-                    plusMinusView.isHidden = false
-                    lblQuantity.text = "\(obj.quantity ?? 0)"
-                    break
+        if cartDetails.userCart != nil && cartDetails.userCart!.count > 0 {
+            if let cartList = cartDetails.userCart {
+                for obj in cartList {
+                    if cellDic.id == obj.product_id {
+                        addView.isHidden = true
+                        plusMinusView.isHidden = false
+                        lblQuantity.text = "\(obj.quantity ?? 0)"
+                        break
+                    }
                 }
             }
         }

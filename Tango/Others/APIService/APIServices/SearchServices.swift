@@ -16,12 +16,15 @@ class SearchServices: SearchServicesProtocol {
     
     func getSearchresultDetails(searchValue : String ,userID : String, completion: RequestCompletionHandler?) {
         let Api = APIConstants.searchApi() + "\(userID)&name=\(searchValue)&latitude=22.486785&nearBy=false&longitude=88.360054"
+        var header : [String: Any]
+        if UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken) != nil {
+            header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
+        }else{
+            header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded"]
+        }
         
-        let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
-        print("Header: ",header)
         
-        
-        Alamofire.request(Api, method: .get, parameters: nil, headers: header).responseObject {(response: DataResponse<SearchModel>) in
+        Alamofire.request(Api, method: .get, parameters: nil, headers: (header as! HTTPHeaders)).responseObject {(response: DataResponse<SearchModel>) in
             print("loginApi==>\(Api)")
             let loginApiResponse : Response!
             

@@ -48,7 +48,17 @@ class SearchVC: BaseViewController {
         initializeViewModel()
         initializeProfileViewModel()
         initializeCartViewModel()
-        getprifleDetails()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            getprifleDetails()
+        }else{
+            
+        }
     }
     
     func getprifleDetails(){
@@ -58,8 +68,14 @@ class SearchVC: BaseViewController {
     }
     
     func searchRestaurantAndDishes(searchValue : String){
-        let userID = AppPreferenceService.getString(PreferencesKeys.userID)
-        viewModel.getSearchToAPIService(searchString: searchValue, userID: userID!)
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            let userID = AppPreferenceService.getString(PreferencesKeys.userID)
+            viewModel.getSearchToAPIService(searchString: searchValue, userID: userID!)
+        }else{
+            let userID = AppPreferenceService.getString(PreferencesKeys.userID)
+            viewModel.getSearchToAPIService(searchString: searchValue, userID: "0")
+        }
     }
     
     @IBAction func resturantBtnAction(_ sender: Any) {
@@ -232,79 +248,109 @@ class SearchVC: BaseViewController {
         present(refreshAlert, animated: true, completion: nil)
     }
     
+    func commonAllertLoginView(){
+        let refreshAlert = UIAlertController(title: "Tango", message: "Do you need to login", preferredStyle: UIAlertController.Style.alert)
+
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
+          let appDelegate = UIApplication.shared.delegate as! AppDelegate
+          appDelegate.openSignInViewController()
+          }))
+
+        refreshAlert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (action: UIAlertAction!) in
+          
+          }))
+
+        present(refreshAlert, animated: true, completion: nil)
+    }
+    
     func userAddToCart(cell : DishesCell) {
-        let indexPath = self.SearchTableView.indexPath(for: cell)
-        if  userdetails.userCart != nil && userdetails.userCart!.count > 0 {
-            let shop_id = userdetails.userCart![0].CartProduct?.shop_id
-            let productDetails = searchProductList![indexPath!.row]
-            if shop_id == productDetails.shop_id  {
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            let indexPath = self.SearchTableView.indexPath(for: cell)
+            if  userdetails.userCart != nil && userdetails.userCart!.count > 0 {
+                let shop_id = userdetails.userCart![0].CartProduct?.shop_id
+                let productDetails = searchProductList![indexPath!.row]
+                if shop_id == productDetails.shop_id  {
+                    let param = CartParam()
+                    param.latitude = 22.4705668
+                    param.longitude = 88.3524203
+                    param.quantity = 1
+                    param.product_id = productDetails.id
+                    viewCartModel.sendUserCartToAPIService(user: param)
+                }else{
+                    commonAllertView()
+                }
+            }else{
+                let productDetails = searchProductList![indexPath!.row]
                 let param = CartParam()
                 param.latitude = 22.4705668
                 param.longitude = 88.3524203
                 param.quantity = 1
                 param.product_id = productDetails.id
                 viewCartModel.sendUserCartToAPIService(user: param)
-            }else{
-                commonAllertView()
             }
         }else{
-            let productDetails = searchProductList![indexPath!.row]
-            let param = CartParam()
-            param.latitude = 22.4705668
-            param.longitude = 88.3524203
-            param.quantity = 1
-            param.product_id = productDetails.id
-            viewCartModel.sendUserCartToAPIService(user: param)
+            commonAllertLoginView()
         }
     }
     
     func userAddToCartPlus(cell : DishesCell) {
-        let indexPath = self.SearchTableView.indexPath(for: cell)
-        var quantity : Int?
-        let param = CartParam()
-        let shop_id = userdetails.userCart![0].CartProduct?.shop_id
-        let productDetails = searchProductList![indexPath!.row]
-        for obj in userdetails.userCart! {
-            if productDetails.id == obj.product_id {
-                quantity = obj.quantity
-                param.cart_id = obj.id
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            let indexPath = self.SearchTableView.indexPath(for: cell)
+            var quantity : Int?
+            let param = CartParam()
+            let shop_id = userdetails.userCart![0].CartProduct?.shop_id
+            let productDetails = searchProductList![indexPath!.row]
+            for obj in userdetails.userCart! {
+                if productDetails.id == obj.product_id {
+                    quantity = obj.quantity
+                    param.cart_id = obj.id
+                }
             }
-        }
-        
-        if shop_id == productDetails.shop_id  {
             
-            param.latitude = 22.4705668
-            param.longitude = 88.3524203
-            param.quantity = quantity! + 1
-            param.product_id = productDetails.id
-            viewCartModel.sendUserCartToAPIService(user: param)
+            if shop_id == productDetails.shop_id  {
+                
+                param.latitude = 22.4705668
+                param.longitude = 88.3524203
+                param.quantity = quantity! + 1
+                param.product_id = productDetails.id
+                viewCartModel.sendUserCartToAPIService(user: param)
+            }else{
+                commonAllertView()
+            }
         }else{
-            commonAllertView()
+            commonAllertLoginView()
         }
     }
     
     func userAddToCartMinus(cell : DishesCell){
-        let indexPath = self.SearchTableView.indexPath(for: cell)
-        var quantity : Int?
-        let param = CartParam()
-        let shop_id = userdetails.userCart![0].CartProduct?.shop_id
-        let productDetails = searchProductList![indexPath!.row]
-        for obj in userdetails.userCart! {
-            if productDetails.id == obj.product_id {
-                quantity = obj.quantity
-                param.cart_id = obj.id
+        let loggedInStatus = AppPreferenceService.getInteger(PreferencesKeys.loggedInStatus)
+        if loggedInStatus == IS_LOGGED_IN {
+            let indexPath = self.SearchTableView.indexPath(for: cell)
+            var quantity : Int?
+            let param = CartParam()
+            let shop_id = userdetails.userCart![0].CartProduct?.shop_id
+            let productDetails = searchProductList![indexPath!.row]
+            for obj in userdetails.userCart! {
+                if productDetails.id == obj.product_id {
+                    quantity = obj.quantity
+                    param.cart_id = obj.id
+                }
             }
-        }
-        
-        if shop_id == productDetails.shop_id  {
             
-            param.latitude = 22.4705668
-            param.longitude = 88.3524203
-            param.quantity = quantity! - 1
-            param.product_id = productDetails.id
-            viewCartModel.sendUserCartToAPIService(user: param)
+            if shop_id == productDetails.shop_id  {
+                
+                param.latitude = 22.4705668
+                param.longitude = 88.3524203
+                param.quantity = quantity! - 1
+                param.product_id = productDetails.id
+                viewCartModel.sendUserCartToAPIService(user: param)
+            }else{
+                commonAllertView()
+            }
         }else{
-            commonAllertView()
+            commonAllertLoginView()
         }
     }
 }

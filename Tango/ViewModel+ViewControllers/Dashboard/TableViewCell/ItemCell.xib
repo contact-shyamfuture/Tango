@@ -217,12 +217,20 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoRes" translatesAutoresizingMaskIntoConstraints="NO" id="946-IO-fHN">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="197"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Liu-g0-jok" secondAttribute="bottom" constant="5" id="7u7-GQ-vWZ"/>
+                    <constraint firstAttribute="trailing" secondItem="946-IO-fHN" secondAttribute="trailing" id="9ob-lF-Oco"/>
+                    <constraint firstAttribute="bottom" secondItem="946-IO-fHN" secondAttribute="bottom" id="LUS-M7-tI6"/>
                     <constraint firstAttribute="trailing" secondItem="Liu-g0-jok" secondAttribute="trailing" constant="10" id="Op7-UA-neN"/>
                     <constraint firstItem="Liu-g0-jok" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="S67-u6-Cku"/>
+                    <constraint firstItem="946-IO-fHN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="bGJ-pI-aeB"/>
                     <constraint firstItem="Liu-g0-jok" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="hWA-QU-wYN"/>
+                    <constraint firstItem="946-IO-fHN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="iaw-ax-LTf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -236,6 +244,7 @@
                 <outlet property="lblMenuNAme" destination="tRz-Lx-cGi" id="1Nj-IQ-ZB3"/>
                 <outlet property="lblTiming" destination="gOU-nH-vEo" id="Ixn-oB-2Lj"/>
                 <outlet property="menuImage" destination="49T-8K-GIp" id="uDI-6g-yZj"/>
+                <outlet property="noRestaurantImageView" destination="946-IO-fHN" id="mGa-Ac-gg0"/>
                 <outlet property="ratingView" destination="adJ-gP-Ncb" id="kgX-XE-Ugf"/>
             </connections>
             <point key="canvasLocation" x="266.66666666666669" y="169.08482142857142"/>
@@ -244,6 +253,7 @@
     <resources>
         <image name="07-513" width="12" height="12"/>
         <image name="Aamantran-Bangla-Restaurant" width="67" height="51.333332061767578"/>
+        <image name="NoRes" width="239.66667175292969" height="163"/>
         <image name="bike" width="26" height="26"/>
         <image name="rupeesmall-1" width="17" height="17"/>
         <image name="time_icon" width="13" height="13"/>
