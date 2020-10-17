@@ -11,12 +11,14 @@ class SearchVM {
     
     let apiService: SearchServicesProtocol
     var refreshViewClosure: (() -> ())?
+    var refreshViewNearFalseClosure: (() -> ())?
     var refreshprofileViewClosure: (() -> ())?
     var refreshForgotpasswordViewClosure: (() -> ())?
     var showAlertClosure: (()->())?
     var updateLoadingStatus: (()->())?
 
     var searchDetails = SearchModel()
+    var searchNearFarDetails = SearchModel()
     
     var isLoading: Bool = false {
         didSet {
@@ -49,6 +51,30 @@ class SearchVM {
                 if  let getUserDetails = responseData {
                     self?.searchDetails = getUserDetails
                     self?.refreshViewClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
+    
+    func getSearchresultNearByMeDetails(searchString: String, userID : String){
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        
+        self.isLoading = true
+        self.apiService.getSearchresultNearByMeDetails(searchValue : searchString ,userID : userID) { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? SearchModel
+                if  let getUserDetails = responseData {
+                    self?.searchNearFarDetails = getUserDetails
+                    self?.refreshViewNearFalseClosure?()
                 } else {
                     self?.alertMessage = ""
                 }

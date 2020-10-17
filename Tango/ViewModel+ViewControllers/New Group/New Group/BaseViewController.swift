@@ -100,10 +100,18 @@ class BaseViewController: UIViewController {
         self.view.addSubview(headerView)
         self.view.addSubview(tabBarView)
         
-        
-        
         headerView.onClickSideMenuButtonAction = {() -> Void in
-            self.navigationController?.popViewController(animated: true)
+            if self.headerView.btnBackAction.tag == 10 {
+                
+                for controller in self.navigationController!.viewControllers as Array {
+                    if controller.isKind(of: DashboardVC.self) {
+                        _ =  self.navigationController!.popToViewController(controller, animated: true)
+                        break
+                    }
+                }
+            }else{
+                self.navigationController?.popViewController(animated: true)
+            }
         }
                 
         tabBarView.onClickHomeButtonAction = {() -> Void in

@@ -56,7 +56,14 @@ class ItemCell: UITableViewCell {
     func initializeCellNearDetails(cellDic : RestaurantList){
         lblMenuNAme.text = cellDic.name
         lblDesrciptiuon.text = cellDic.description
-        lblDiscount.text = "\(cellDic.offer_percent ?? 0) % off"
+        if cellDic.offer_percent == 0 {
+            imgOffer.isHidden = true
+            lblDiscount.text = ""
+        }else{
+            imgOffer.isHidden = false
+            lblDiscount.text = "\(cellDic.offer_percent ?? 0) % off"
+        }
+        //lblDiscount.text = "\(cellDic.offer_percent ?? 0) % off"
         ratingView.value = CGFloat(cellDic.rating ?? 0)
         btnDistanceTime.setTitle("\(cellDic.estimated_delivery_time ?? 0) mint", for: .normal)
         menuImage.sd_setImage(with: URL(string: cellDic.avatar!))

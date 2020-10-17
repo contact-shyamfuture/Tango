@@ -224,9 +224,14 @@ class DashboradServices: DashboradServicesProtocol {
        
         let loginApi = APIConstants.filterApi()
         
-        let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
+        var header : [String: Any]
+        if UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken) != nil {
+            header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
+        }else{
+            header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded"]
+        }
         
-        Alamofire.request(loginApi, method: .get, parameters: nil, headers: header).responseArray {(response: DataResponse<[FilterModel]>) in
+        Alamofire.request(loginApi, method: .get, parameters: nil, headers: (header as! HTTPHeaders)).responseArray {(response: DataResponse<[FilterModel]>) in
             print("loginApi==>\(loginApi)")
             let loginApiResponse : Response!
             

@@ -80,6 +80,7 @@ class PaymentVC: BaseViewController {
                 }
             }
         }
+        
     }
     
     private func configureUI(){
@@ -108,7 +109,7 @@ class PaymentVC: BaseViewController {
         let param = OrderParam()
         param.note = orderSave.note
         param.payment_mode = "payu"
-        param.wallet = ""//String(orderSave.wallet)
+        param.wallet = "0"//String(orderSave.wallet)
         param.delivery_charge = String(userCartList.delivery_charges!)
         param.packaging_charge = String(userCartList.packaging_charge!)
         param.user_address_id = String(orderSave.user_address_id!)
@@ -152,6 +153,10 @@ class PaymentVC: BaseViewController {
          param.temp_order_id = self.tempOder.temp_order_id //"\(self.tempOder.temp_order_id ?? 0)"
          viewModel.postOnlineOrderToAPIService(user: param)
         //
+    }
+    func tempOrderDelete(){
+        
+        viewModel.deleteTmpToAPIService(id : "\(self.tempOder.temp_order_id ?? 0)" )
     }
     
     func initializeViewModel() {
@@ -202,6 +207,12 @@ class PaymentVC: BaseViewController {
                 }
             }
         }
+        viewModel.refreshViewTmpDeleteClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                
+            }
+        }
     }
     
     func selectOption(index : Int){
@@ -230,18 +241,28 @@ class PaymentVC: BaseViewController {
     }
     
     func payuNavigationHashKeyGeneration(){
+        
+        
+//        merchant_Key:  1BwlZcMQ
+//        merchant_ID:7173853
+//        salt: ALMUq21a0n
+
+
+
+        
+        
         let txnId =  "Tango" + String(Int.random(in: 1...100)) + ""
         print("txnId==>\(txnId)")
         let paymentParams = PUMTxnParam()
-        paymentParams.key = "266Medoj"
-        paymentParams.merchantid = "6891096"
+        paymentParams.key = "1BwlZcMQ"//"266Medoj"
+        paymentParams.merchantid = "7173853"//"6891096"
         paymentParams.txnID = txnId
         paymentParams.amount = "\(orderSave.totalAmount)"
         paymentParams.productInfo = "Tango"
         paymentParams.firstname = userdetails.name
         paymentParams.email = userdetails.email
         paymentParams.phone = userdetails.phone
-        paymentParams.environment = PUMEnvironment.test
+        paymentParams.environment = PUMEnvironment.production
         paymentParams.surl = "https://www.payumoney.com/mobileapp/payumoney/success.php"
         paymentParams.furl = "https://www.payumoney.com/mobileapp/payumoney/failure.php"
         paymentParams.udf1 = "udf1"
@@ -259,6 +280,7 @@ class PaymentVC: BaseViewController {
         PlugNPlay.presentPaymentViewController(withTxnParams: paymentParams, on: self, withCompletionBlock: { paymentResponse, error, extraParam in
             if error != nil {
                 print("Success==>\(error?.localizedDescription)")
+                self.tempOrderDelete()
             } else {
                 var message = ""
                 if paymentResponse?["result"] != nil && (paymentResponse?["result"] is [AnyHashable : Any]) {
@@ -276,7 +298,7 @@ class PaymentVC: BaseViewController {
     }
     
     func getHashForPaymentParams(_ txnParam: PUMTxnParam?) -> String? {
-        let salt = "Q2oX5MqAdn"
+        let salt = "ALMUq21a0n"//"Q2oX5MqAdn"
         var hashSequence: String? = nil
         if let key = txnParam?.key, let txnID = txnParam?.txnID, let amount = txnParam?.amount, let productInfo = txnParam?.productInfo, let firstname = txnParam?.firstname, let email = txnParam?.email, let udf1 = txnParam?.udf1, let udf2 = txnParam?.udf2, let udf3 = txnParam?.udf3, let udf4 = txnParam?.udf4, let udf5 = txnParam?.udf5, let udf6 = txnParam?.udf6, let udf7 = txnParam?.udf7, let udf8 = txnParam?.udf8, let udf9 = txnParam?.udf9, let udf10 = txnParam?.udf10
         {

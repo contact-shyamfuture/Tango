@@ -90,8 +90,10 @@ class OrderDetailsServices: OrderDetailsProtocol {
         print("Header: ",header)
         print("parameter==> ",params)
         
-        Alamofire.request(Api, method: .delete, parameters: params, headers: header).responseObject {(response: DataResponse<OrderCancelModel>) in
-            print("loginApi==>\(Api)")
+        let urlString = Api.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        Alamofire.request(urlString!, method: .delete, parameters: params, headers: header).responseObject {(response: DataResponse<OrderCancelModel>) in
+            print("loginApi==>\(urlString ?? "")")
             
             let loginApiResponse : Response!
             

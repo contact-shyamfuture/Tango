@@ -7,6 +7,15 @@
 //
 
 import UIKit
+
+struct FilterOptions {
+    var title : String, isSelect : Bool
+    static func addData() -> [FilterOptions]{
+        return[FilterOptions(title: "Offers", isSelect: false),
+        FilterOptions(title: "Pure veg", isSelect: false)
+        ]
+    }
+}
 protocol filterValuesDelegates {
     func filterValues(value : String)
 }
@@ -18,6 +27,7 @@ class FilterVC: BaseViewController {
     }()
     var filterDel : filterValuesDelegates?
     var FilterList = [FilterModel]()
+    var filterFirstList = NSArray()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +40,7 @@ class FilterVC: BaseViewController {
         self.filterTableView.delegate = self
         self.filterTableView.dataSource = self
         self.filterTableView.register(UINib(nibName: "FilterCell", bundle: Bundle.main), forCellReuseIdentifier: "FilterCell")
+       
         initializeViewModel()
         viewModel.getFilterListAPIService()
     }
@@ -99,13 +110,12 @@ extension FilterVC : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let Cell = tableView.dequeueReusableCell(withIdentifier: "FilterCell") as! FilterCell
-            switch indexPath.row {
-            case 0:
-                Cell.lblItemName.text = "Offers"
-            case 1:
-                Cell.lblItemName.text = "Pure veg"
-            default:
-                Cell.lblItemName.text = ""
+            
+            Cell.lblItemName.text = FilterOptions.addData()[indexPath.row].title
+            if FilterOptions.addData()[indexPath.row].isSelect == true {
+                Cell.radioCheck.image = UIImage(named: "check")
+            }else{
+               Cell.radioCheck.image = UIImage(named: "redRadio")
             }
             return Cell
         }else{

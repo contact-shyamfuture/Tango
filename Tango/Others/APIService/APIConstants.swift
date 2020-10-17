@@ -11,7 +11,8 @@ class APIConstants: NSObject {
     
     static let imgBaseURL = ""
     static let imgprescriptionBase = ""
-    static let baseURL = "http://166.62.54.122/swiggy/public/"
+   // static let baseURL = "http://166.62.54.122/swiggy/public/"
+    static let baseURL = "http://tangoeateries.com/"
     
     static let loginURL = "oauth/token"
     static let otpURL = "api/user/otp"
@@ -38,6 +39,7 @@ class APIConstants: NSObject {
     static let favoritesAddtURL = "api/user/favorite"
     static let checkLocationURL = "api/user/check-distance"
     static let oderCompletedURL = "api/user/order"
+    static let deleteTmpURL = "api/user/temp-order/"
     
     
         
@@ -136,5 +138,9 @@ class APIConstants: NSObject {
     
     static func checkLocationApi() -> String {
         return baseURL + checkLocationURL
+    }
+    
+    static func deleteTempApi() -> String {
+        return baseURL + deleteTmpURL
     }
 }

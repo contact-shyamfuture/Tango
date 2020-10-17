@@ -24,6 +24,7 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
     var resObj : RestaurantModel?
     var resObj2 : RestaurantNearModel?
     var shopList = [RestaurantList]()
+    var shopListTop = [RestaurantList]()
     var shopNearList = [RestaurantList]()
     var topBanner = [TopBannerModel]()
     var safetyBanner = [SafetyModel]()
@@ -199,6 +200,15 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
                 if  (self?.viewModel.restaurantModel.shopList) != nil {
                     self?.resObj = self?.viewModel.restaurantModel
                     self?.shopList += (self?.viewModel.restaurantModel.shopList)!
+                    
+                    
+                    
+                    if (self?.viewModel.restaurantModel.shopList?.count)! > 0 {
+                        self?.shopListTop = (self?.viewModel.restaurantModel.shopList!.filter {
+                        $0.offer_percent != 0
+                        })!
+                    }
+                    
                     self?.dashboradTableView.reloadData()
                 }else{
                     self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
@@ -336,9 +346,21 @@ class DashboardVC: BaseViewController , filterValuesDelegates , UIScrollViewDele
         vc!.id = "\(id)"
         self.navigationController?.pushViewController (vc!, animated: true)
     }
+    
+    func topPic(index : Int){
+        if self.shopListTop[index].shopstatus == "OPEN" {
+            let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+            vc!.categoryList = self.shopListTop[index]
+            vc!.userdetails = userdetails
+            vc!.shopID = "\(self.shopListTop[index].id ?? 0)"
+            self.navigationController?.pushViewController (vc!, animated: true)
+        }else{
+            self.showAlertWithSingleButton(title: commonAlertTitle, message: "Shop closed", okButtonText: okText, completion: nil)
+        }
+    }
 }
 
-extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetails{
+extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetails , topPicForYouDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
@@ -380,7 +402,8 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
             
         }else if indexPath.section == 1{
             let Cell = tableView.dequeueReusableCell(withIdentifier: "SliderCell") as! SliderCell
-            Cell.initializeCellDetails(cellDic: topBanner)
+            Cell.initializeCellDetails(cellDic: shopListTop)
+            Cell.topDele = self
             return Cell
         }else if indexPath.section == 2{
             if self.shopList != nil && self.shopList.count > 0 {
@@ -472,7 +495,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
             }
             
         }else if section == 1{
-            if topBanner != nil && topBanner.count > 0 {
+            if shopListTop != nil && shopListTop.count > 0 {
                 return 50
             }else{
                 return 0
@@ -500,7 +523,7 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1 {
-            if topBanner != nil && topBanner.count > 0 {
+            if shopListTop != nil && shopListTop.count > 0 {
                 return 200
             }else{
                 return 0
@@ -536,6 +559,16 @@ extension DashboardVC : UITableViewDelegate, UITableViewDataSource , safetyDetai
             vc!.userdetails = userdetails
             vc!.shopID = "\(self.shopList[indexPath.row].id ?? 0)"
             self.navigationController?.pushViewController (vc!, animated: true) */
+        }else if indexPath.section == 3 {
+            if self.shopNearList[indexPath.row].shopstatus == "OPEN" {
+                let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+                vc!.categoryList = self.shopNearList[indexPath.row]
+                vc!.userdetails = userdetails
+                vc!.shopID = "\(self.shopNearList[indexPath.row].id ?? 0)"
+                self.navigationController?.pushViewController (vc!, animated: true)
+            }else{
+                self.showAlertWithSingleButton(title: commonAlertTitle, message: "Shop closed", okButtonText: okText, completion: nil)
+            }
         }
     }
 }
@@ -559,7 +592,7 @@ extension DashboardVC : CLLocationManagerDelegate {
         latValue = pdblLatitude
         longValue = pdblLongitude
         
-        if AppPreferenceService.getString(PreferencesKeys.mapLat) != nil {
+        if AppPreferenceService.getString(PreferencesKeys.mapType) != nil {
             let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
             let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
             
@@ -570,6 +603,10 @@ extension DashboardVC : CLLocationManagerDelegate {
             
             viewModel.getDashboardNearByFalseToAPIService(lat: "\(mapLat ?? "0")", long: "\(mapLong ?? "0")", id: "", offset: offset)
         }else{
+            
+            AppPreferenceService.setString(String((pdblLatitude)), key: PreferencesKeys.mapLat)
+            AppPreferenceService.setString(String((pdblLongitude)), key: PreferencesKeys.mapLong)
+            
             viewModel.getDashboardToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)
             
             viewModel.getDashboardNearByFalseToAPIService(lat: "\(pdblLatitude)", long: "\(pdblLongitude)", id: "", offset: offset)

@@ -164,7 +164,7 @@ extension ProfileEditVC : UINavigationControllerDelegate,UIImagePickerController
 }
 extension ProfileEditVC {
     func requestWith(endUrl: String, imageData: Data?, parameters: [String : Any], onCompletion: ((Any?) -> Void)? = nil, onError: ((Error?) -> Void)? = nil){
-        let url = "http://166.62.54.122/swiggy/public/api/user/profile"
+        let url = "http://tangoeateries.com/api/user/profile"
         let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/json" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
         self.addLoaderView()
         Alamofire.upload(multipartFormData: { (multipartFormData) in

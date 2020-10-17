@@ -87,8 +87,16 @@ class CartListCell: UITableViewCell {
         if cellDic.CartProduct!.categoriesProductsImages != nil && cellDic.CartProduct!.categoriesProductsImages!.count > 0 {
             imgItemView.sd_setImage(with: URL(string: cellDic.CartProduct!.categoriesProductsImages![0].url!))
         }
+        
+        if cellDic.CartProduct!.food_type == "veg" {
+            imgFoodType.image = UIImage(named: "vegFoodIcon")
+        }else{
+            imgFoodType.image = UIImage(named: "nonVegFoodIcon")
+        }
+        
         lblPrice.text = " \(cellDic.CartProduct!.cartItemPrice!.currency ?? "")\(cellDic.CartProduct!.cartItemPrice!.price! * cellDic.quantity!)"
         lblPriceTwo.text = ""//" \(cellDic.CartProduct!.cartItemPrice!.currency ?? "")\(cellDic.CartProduct!.cartItemPrice!.price! * cellDic.quantity!)"
+        lblPriceSecond.text = ""
         
        // cartAddView.isHidden = false
         cartAddView.isHidden = true

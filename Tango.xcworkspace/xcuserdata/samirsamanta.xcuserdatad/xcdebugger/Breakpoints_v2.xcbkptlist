@@ -7,16 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1B86B85A-C916-4BD2-8F58-05DD4CE1A8D9"
+            uuid = "BF2A4469-848D-45BF-8021-275480CCB99D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Tango/Others/APIService/APIServices/UserCartServices.swift"
+            filePath = "Tango/ViewModel+ViewControllers/Payment/PaymentVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "getCategoryDetails(shopID:user_id:completion:)"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "payuNavigationHashKeyGeneration()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "91183334-1B2C-403C-907B-B6C7B288BB07"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tango/ViewModel+ViewControllers/Payment/PaymentVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "284"
+            endingLineNumber = "284"
+            landmarkName = "payuNavigationHashKeyGeneration()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

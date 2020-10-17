@@ -15,6 +15,7 @@ class ThankYouVC: BaseViewController {
     @IBOutlet weak var lblAmount: UILabel!
     @IBOutlet weak var lblOrderID: UILabel!
     var orderDetails = OrderDetailsModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -39,7 +40,18 @@ class ThankYouVC: BaseViewController {
     }
     
     @IBAction func btnTrackOrderAction(_ sender: Any) {
+        for controller in self.navigationController!.viewControllers as Array {
+            if controller.isKind(of: DeliveryDetailsVC.self) {
+                _ =  self.navigationController!.popToViewController(controller, animated: true)
+                break
+            }
+        }
         
+        let vc = UIStoryboard.init(name: "Other", bundle: Bundle.main).instantiateViewController(withIdentifier: "DeliveryDetailsVC") as? DeliveryDetailsVC
+        vc?.orderID = "\(orderDetails.id ?? 0)"
+        vc?.isHistory = false
+        vc?.isComingFromThankyou = true
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @IBAction func btnDashboardAction(_ sender: Any) {

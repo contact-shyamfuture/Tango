@@ -259,8 +259,10 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
             quantity = obj.quantity
             param.cart_id = obj.id
         }
-        param.latitude = 22.4705668
-        param.longitude = 88.3524203
+        let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+        let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+        param.latitude = Double(mapLat!)
+        param.longitude = Double(mapLong!)
         param.quantity = quantity! + 1
         param.product_id = productDetails.product_id
         viewModel.sendUserCartToAPIService(user: param)
@@ -276,8 +278,10 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
            quantity = obj.quantity
             param.cart_id = obj.id
         }
-        param.latitude = 22.4705668
-        param.longitude = 88.3524203
+        let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+        let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+        param.latitude = Double(mapLat!)
+        param.longitude = Double(mapLong!)
         param.quantity = quantity! - 1
         param.product_id = productDetails.product_id
         viewModel.sendUserCartToAPIService(user: param)

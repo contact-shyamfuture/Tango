@@ -67,6 +67,34 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iei-im-75y" customClass="RoundUIView" customModule="Tango" customModuleProvider="target">
+                                <rect key="frame" x="113" y="63.5" width="70" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Closed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELw-9e-lRk">
+                                        <rect key="frame" x="0.0" y="5" width="70" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                        <color key="textColor" red="0.70196078429999997" green="0.20000000000000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="h2K-hV-XCe"/>
+                                    <constraint firstAttribute="height" constant="30" id="zNq-F1-8zS"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.70196078429999997" green="0.20000000000000001" blue="0.20392156859999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -79,8 +107,10 @@
                             <constraint firstItem="MCi-ZX-IJQ" firstAttribute="leading" secondItem="7R6-Ms-IQj" secondAttribute="leading" constant="10" id="emL-Nw-CGM"/>
                             <constraint firstItem="MCi-ZX-IJQ" firstAttribute="top" secondItem="7R6-Ms-IQj" secondAttribute="top" id="fgT-Mh-8o9"/>
                             <constraint firstItem="gMe-wI-kC6" firstAttribute="leading" secondItem="7R6-Ms-IQj" secondAttribute="leading" constant="10" id="gv7-2x-wRJ"/>
+                            <constraint firstItem="iei-im-75y" firstAttribute="centerY" secondItem="7R6-Ms-IQj" secondAttribute="centerY" constant="-20" id="ht1-CI-WqT"/>
                             <constraint firstAttribute="trailing" secondItem="gMe-wI-kC6" secondAttribute="trailing" constant="10" id="nY7-CZ-QMe"/>
                             <constraint firstAttribute="trailing" secondItem="MCi-ZX-IJQ" secondAttribute="trailing" constant="10" id="sbI-ox-9Aq"/>
+                            <constraint firstItem="iei-im-75y" firstAttribute="centerX" secondItem="7R6-Ms-IQj" secondAttribute="centerX" id="soI-8n-p4k"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -105,6 +135,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="296" height="197"/>
             <connections>
+                <outlet property="closedView" destination="iei-im-75y" id="lkE-7k-CA0"/>
                 <outlet property="imgSlider" destination="MCi-ZX-IJQ" id="X1y-d1-F2R"/>
                 <outlet property="lblName" destination="AmZ-fQ-IW8" id="gkk-n4-QrM"/>
                 <outlet property="lblOffer" destination="Jeb-aH-RgS" id="CVA-AG-Djo"/>

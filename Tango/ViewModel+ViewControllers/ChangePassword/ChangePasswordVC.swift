@@ -99,7 +99,7 @@ class ChangePasswordVC: BaseViewController {
     func loginMethod(param : [String: Any]){
         
         addLoaderView()
-        let url = "http://166.62.54.122/swiggy/public/api/user/reset/password"
+        let url = "http://tangoeateries.com/api/user/reset/password"
         //let header = ["Content-Type" : "text/html]
         Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default , headers: nil).responseString { response in
             self.removeLoaderView()

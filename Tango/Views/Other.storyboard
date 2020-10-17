@@ -8,6 +8,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
         <array key="Roboto-Regular.ttf">
             <string>Roboto-Regular</string>
         </array>
@@ -549,21 +552,21 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="80"/>
                                 <subviews>
                                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back" translatesAutoresizingMaskIntoConstraints="NO" id="puO-x3-Y0y">
-                                        <rect key="frame" x="30" y="30" width="20" height="20"/>
+                                        <rect key="frame" x="0.0" y="30" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="4NF-jS-WUK"/>
                                             <constraint firstAttribute="width" constant="20" id="xHB-Ju-jvN"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID : 021458" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqo-1E-zRU">
-                                        <rect key="frame" x="70" y="30" width="131.5" height="20"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ORDER : 021458" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqo-1E-zRU">
+                                        <rect key="frame" x="40" y="30" width="125" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                                         <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3Item 550" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNQ-eG-l4k">
-                                        <rect key="frame" x="70" y="55" width="76" height="20"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                        <rect key="frame" x="40" y="55" width="77.5" height="20"/>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="17"/>
                                         <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -583,20 +586,30 @@
                                             <action selector="btnCancelOrderAction:" destination="mvN-5u-7us" eventType="touchUpInside" id="Be2-cr-Tdu"/>
                                         </connections>
                                     </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tbY-OS-5YA">
+                                        <rect key="frame" x="20" y="78.5" width="374" height="1.5"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1.5" id="RYS-jq-cpz"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="tbY-OS-5YA" secondAttribute="trailing" constant="20" id="7qj-3K-ngM"/>
+                                    <constraint firstAttribute="bottom" secondItem="tbY-OS-5YA" secondAttribute="bottom" id="DxH-cj-PzM"/>
                                     <constraint firstItem="k39-W1-WeZ" firstAttribute="centerY" secondItem="Tqo-1E-zRU" secondAttribute="centerY" id="EjE-iM-pNp"/>
                                     <constraint firstItem="Tqo-1E-zRU" firstAttribute="centerY" secondItem="puO-x3-Y0y" secondAttribute="centerY" id="NsG-vi-r3y"/>
                                     <constraint firstItem="HuP-T9-Dg1" firstAttribute="top" secondItem="yTR-TT-D3S" secondAttribute="top" constant="8" id="O71-Yk-Sfa"/>
                                     <constraint firstAttribute="trailing" secondItem="k39-W1-WeZ" secondAttribute="trailing" constant="10" id="Q3v-5c-kKH"/>
                                     <constraint firstItem="puO-x3-Y0y" firstAttribute="centerY" secondItem="yTR-TT-D3S" secondAttribute="centerY" id="R3B-RV-4M6"/>
                                     <constraint firstItem="Tqo-1E-zRU" firstAttribute="leading" secondItem="puO-x3-Y0y" secondAttribute="trailing" constant="20" id="ReW-ln-gEN"/>
+                                    <constraint firstItem="tbY-OS-5YA" firstAttribute="leading" secondItem="yTR-TT-D3S" secondAttribute="leading" constant="20" id="Wz6-ZH-5bd"/>
                                     <constraint firstItem="BNQ-eG-l4k" firstAttribute="leading" secondItem="Tqo-1E-zRU" secondAttribute="leading" id="dWt-kz-rYS"/>
                                     <constraint firstAttribute="bottom" secondItem="HuP-T9-Dg1" secondAttribute="bottom" constant="8" id="fKX-zH-GXA"/>
                                     <constraint firstItem="HuP-T9-Dg1" firstAttribute="leading" secondItem="yTR-TT-D3S" secondAttribute="leading" constant="8" id="jgZ-7X-1mK"/>
                                     <constraint firstAttribute="height" constant="80" id="mmp-zh-236"/>
-                                    <constraint firstItem="puO-x3-Y0y" firstAttribute="leading" secondItem="yTR-TT-D3S" secondAttribute="leading" constant="30" id="qx0-px-qGG"/>
+                                    <constraint firstItem="puO-x3-Y0y" firstAttribute="leading" secondItem="yTR-TT-D3S" secondAttribute="leading" id="qx0-px-qGG"/>
                                     <constraint firstItem="BNQ-eG-l4k" firstAttribute="top" secondItem="Tqo-1E-zRU" secondAttribute="bottom" constant="5" id="sk7-C9-mya"/>
                                 </constraints>
                             </view>

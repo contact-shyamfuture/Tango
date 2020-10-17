@@ -23,6 +23,7 @@ class SearchVC: BaseViewController {
     var userdetails = ProfiledetailsModel()
     
     var shopList : [SearchShopList]?
+    var shopNearFarList : [SearchShopList]?
     var searchProductList : [SearchProductList]?
     
     lazy var viewCartModel: UserCratVM = {
@@ -40,6 +41,10 @@ class SearchVC: BaseViewController {
         self.SearchTableView.register(UINib(nibName: "SearchRestaurantCell", bundle: Bundle.main), forCellReuseIdentifier: "SearchRestaurantCell")
         
         self.SearchTableView.register(UINib(nibName: "DishesCell", bundle: Bundle.main), forCellReuseIdentifier: "DishesCell")
+        
+        
+        self.SearchTableView.register(UINib(nibName: "DashboardHeaderCell", bundle: Bundle.main), forCellReuseIdentifier: "DashboardHeaderCell")
+        
         self.txtsearchField.delegate = self
         SearchTableView.delegate = self
         SearchTableView.dataSource = self
@@ -48,7 +53,6 @@ class SearchVC: BaseViewController {
         initializeViewModel()
         initializeProfileViewModel()
         initializeCartViewModel()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,9 +76,10 @@ class SearchVC: BaseViewController {
         if loggedInStatus == IS_LOGGED_IN {
             let userID = AppPreferenceService.getString(PreferencesKeys.userID)
             viewModel.getSearchToAPIService(searchString: searchValue, userID: userID!)
+            viewModel.getSearchresultNearByMeDetails(searchString: searchValue, userID: userID!)
         }else{
-            let userID = AppPreferenceService.getString(PreferencesKeys.userID)
             viewModel.getSearchToAPIService(searchString: searchValue, userID: "0")
+            viewModel.getSearchresultNearByMeDetails(searchString: searchValue, userID: "0")
         }
     }
     
@@ -127,6 +132,7 @@ class SearchVC: BaseViewController {
                 }
             }
         }
+        
     }
     
     func initializeViewModel() {
@@ -168,6 +174,18 @@ class SearchVC: BaseViewController {
                 }
             }
         }
+        
+        viewModel.refreshViewNearFalseClosure = {[weak self]() in
+            DispatchQueue.main.async {
+                
+                if  (self?.viewModel.searchNearFarDetails.shopList) != nil {
+                    self?.shopNearFarList = self?.viewModel.searchNearFarDetails.shopList
+                    self?.SearchTableView.reloadData()
+                }else{
+                    self?.showAlertWithSingleButton(title: commonAlertTitle, message: "Faild", okButtonText: okText, completion: nil)
+                }
+            }
+        }
     }
     
     func initializeCartViewModel() {
@@ -195,7 +213,6 @@ class SearchVC: BaseViewController {
             DispatchQueue.main.async {
                 
                 if  (self?.viewCartModel.userCartDetails.userCart) != nil {
-                    
                     
                     if self?.viewCartModel.userCartDetails.userCart != nil && (self?.viewCartModel.userCartDetails.userCart!.count)! > 0 {
                         self!.getprifleDetails()
@@ -272,8 +289,10 @@ class SearchVC: BaseViewController {
                 let productDetails = searchProductList![indexPath!.row]
                 if shop_id == productDetails.shop_id  {
                     let param = CartParam()
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = 1
                     param.product_id = productDetails.id
                     viewCartModel.sendUserCartToAPIService(user: param)
@@ -283,8 +302,10 @@ class SearchVC: BaseViewController {
             }else{
                 let productDetails = searchProductList![indexPath!.row]
                 let param = CartParam()
-                param.latitude = 22.4705668
-                param.longitude = 88.3524203
+                let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                param.latitude = Double(mapLat!)
+                param.longitude = Double(mapLong!)
                 param.quantity = 1
                 param.product_id = productDetails.id
                 viewCartModel.sendUserCartToAPIService(user: param)
@@ -311,8 +332,10 @@ class SearchVC: BaseViewController {
             
             if shop_id == productDetails.shop_id  {
                 
-                param.latitude = 22.4705668
-                param.longitude = 88.3524203
+               let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                param.latitude = Double(mapLat!)
+                param.longitude = Double(mapLong!)
                 param.quantity = quantity! + 1
                 param.product_id = productDetails.id
                 viewCartModel.sendUserCartToAPIService(user: param)
@@ -341,8 +364,10 @@ class SearchVC: BaseViewController {
             
             if shop_id == productDetails.shop_id  {
                 
-                param.latitude = 22.4705668
-                param.longitude = 88.3524203
+                let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                param.latitude = Double(mapLat!)
+                param.longitude = Double(mapLong!)
                 param.quantity = quantity! - 1
                 param.product_id = productDetails.id
                 viewCartModel.sendUserCartToAPIService(user: param)
@@ -358,7 +383,7 @@ class SearchVC: BaseViewController {
 extension SearchVC : UITableViewDelegate,UITableViewDataSource , UserDushCartProtocol{
     func numberOfSections(in tableView: UITableView) -> Int {
         if isRestaurant == true {
-            return 1
+            return 2
         }else{
             return 1
         }
@@ -366,10 +391,17 @@ extension SearchVC : UITableViewDelegate,UITableViewDataSource , UserDushCartPro
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isRestaurant == true {
-            if shopList != nil && shopList!.count > 0 {
-                return shopList!.count
+            if section == 0 {
+                if shopList != nil && shopList!.count > 0 {
+                    return shopList!.count
+                }
+                return 0
+            }else{
+                if shopNearFarList != nil && shopNearFarList!.count > 0 {
+                    return shopNearFarList!.count
+                }
+                return 0
             }
-            return 0
         }else{
             if searchProductList != nil && searchProductList!.count > 0 {
                 return searchProductList!.count
@@ -380,8 +412,14 @@ extension SearchVC : UITableViewDelegate,UITableViewDataSource , UserDushCartPro
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          if isRestaurant == true {
+            
             let Cell = tableView.dequeueReusableCell(withIdentifier: "SearchRestaurantCell") as! SearchRestaurantCell
-            Cell.initializeCellDetails(cellDic: shopList![indexPath.row])
+           // Cell.initializeCellDetails(cellDic: shopList![indexPath.row])
+            if indexPath.section == 0 {
+                Cell.initializeCellDetails(cellDic: shopList![indexPath.row])
+            }else{
+                Cell.initializeCellDetailsNearFalse(cellDic: shopNearFarList![indexPath.row])
+            }
             return Cell
             
          }else{
@@ -394,25 +432,34 @@ extension SearchVC : UITableViewDelegate,UITableViewDataSource , UserDushCartPro
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
-        let label = UILabel()
-        label.frame = CGRect.init(x: 30, y: 5, width: headerView.frame.width-10, height: headerView.frame.height-10)
-        
-        label.text = ""
-        
-        label.font = .systemFont(ofSize: 18) // my custom font
-        label.textColor = UIColor.black // my custom colour
-        headerView.backgroundColor = .white
-
-        headerView.addSubview(label)
-
-        return headerView
+        switch section {
+        case 0:
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboardHeaderCell") as! DashboardHeaderCell
+            Cell.lblTitle.text = "RESTAURANTS"
+            return Cell
+        case 1:
+            let Cell = tableView.dequeueReusableCell(withIdentifier: "DashboardHeaderCell") as! DashboardHeaderCell
+            Cell.lblTitle.text = "RESTAURANTS - LITTLE FUTURE AWAY"
+            return Cell
+        default:
+            return UITableViewCell(style: .value1, reuseIdentifier: "Cell")
+        }
     }
     
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if isRestaurant == true {
-            return 0
+            if section == 0 {
+                if shopList != nil && shopList!.count > 0 {
+                    return 50
+                }
+                return 0
+            }else{
+                if shopNearFarList != nil && shopNearFarList!.count > 0 {
+                    return 50
+                }
+                return 0
+            }
         }else{
           return 0
         }
@@ -428,18 +475,32 @@ extension SearchVC : UITableViewDelegate,UITableViewDataSource , UserDushCartPro
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isRestaurant == true {
-            
-            if self.shopList![indexPath.row].shopstatus == "OPEN" {
-                let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
-                let resDic = RestaurantList()
-                resDic.name = self.shopList![indexPath.row].name
-                resDic.estimated_delivery_time = self.shopList![indexPath.row].estimated_delivery_time
-                resDic.avatar = self.shopList![indexPath.row].avatar
-                resDic.rating = self.shopList![indexPath.row].rating
-                vc!.categoryList = resDic
-                vc!.userdetails = userdetails
-                vc!.shopID = "\(self.shopList![indexPath.row].id ?? 0)"
-                self.navigationController?.pushViewController (vc!, animated: true)
+            if indexPath.section == 0 {
+                if self.shopList![indexPath.row].shopstatus == "OPEN" {
+                    let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+                    let resDic = RestaurantList()
+                    resDic.name = self.shopList![indexPath.row].name
+                    resDic.estimated_delivery_time = self.shopList![indexPath.row].estimated_delivery_time
+                    resDic.avatar = self.shopList![indexPath.row].avatar
+                    resDic.rating = self.shopList![indexPath.row].rating
+                    vc!.categoryList = resDic
+                    vc!.userdetails = userdetails
+                    vc!.shopID = "\(self.shopList![indexPath.row].id ?? 0)"
+                    self.navigationController?.pushViewController (vc!, animated: true)
+                }
+            }else{
+                if self.shopNearFarList![indexPath.row].shopstatus == "OPEN" {
+                    let vc = UIStoryboard.init(name: "Dashboard", bundle: Bundle.main).instantiateViewController(withIdentifier: "RestourantMenuListVC") as? RestourantMenuListVC
+                    let resDic = RestaurantList()
+                    resDic.name = self.shopNearFarList![indexPath.row].name
+                    resDic.estimated_delivery_time = self.shopNearFarList![indexPath.row].estimated_delivery_time
+                    resDic.avatar = self.shopNearFarList![indexPath.row].avatar
+                    resDic.rating = self.shopNearFarList![indexPath.row].rating
+                    vc!.categoryList = resDic
+                    vc!.userdetails = userdetails
+                    vc!.shopID = "\(self.shopNearFarList![indexPath.row].id ?? 0)"
+                    self.navigationController?.pushViewController (vc!, animated: true)
+                }
             }
             
         }else{

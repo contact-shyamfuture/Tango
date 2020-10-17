@@ -174,3 +174,19 @@ class TempOrderSModel: Mappable {
         message <- map["message"]
     }
 }
+
+class TempDeleteModel: Mappable {
+
+    var status : Int?
+    var message : String?
+    
+    init() {}
+    required init?(map: Map) {
+        mapping(map: map)
+    }
+    
+    func mapping(map: Map) {
+        status <- map["status"]
+        message <- map["message"]
+    }
+}

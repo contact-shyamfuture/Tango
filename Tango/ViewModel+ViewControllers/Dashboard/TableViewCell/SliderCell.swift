@@ -7,11 +7,16 @@
 //
 
 import UIKit
-
+protocol topPicForYouDelegate {
+    func topPic(index : Int)
+}
 class SliderCell: UITableViewCell {
 
     @IBOutlet weak var sliderCollection: UICollectionView!
-    var topBanner = [TopBannerModel]()
+   // var topBanner = [TopBannerModel]()
+    
+    var topBanner = [RestaurantList]()
+    var topDele : topPicForYouDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,7 +31,7 @@ class SliderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
-    func initializeCellDetails(cellDic : [TopBannerModel]){
+    func initializeCellDetails(cellDic : [RestaurantList]){
         topBanner = cellDic
         sliderCollection.reloadData()
     }
@@ -43,18 +48,25 @@ extension SliderCell : UICollectionViewDelegate , UICollectionViewDataSource,UIC
         }
         return 0
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SliderCollectionViewCell", for: indexPath as IndexPath) as! SliderCollectionViewCell
-        cell.imgSlider.sd_setImage(with: URL(string: topBanner[indexPath.row].url!))
-        if topBanner[indexPath.row].shopList?.offer_percent == 0 {
+        cell.imgSlider.sd_setImage(with: URL(string: topBanner[indexPath.row].avatar!))
+        if topBanner[indexPath.row].offer_percent == 0 {
             cell.offerView.isHidden = true
             cell.lblOffer.text = ""
         }else{
             cell.offerView.isHidden = false
-            cell.lblOffer.text = "\(topBanner[indexPath.row].shopList?.offer_percent ?? 0)  % OFF"
+            cell.lblOffer.text = "\(topBanner[indexPath.row].offer_percent ?? 0)  % OFF"
         }
-        cell.lblName.text = "\(topBanner[indexPath.row].shopList?.name ?? "")"
+        cell.lblName.text = "\(topBanner[indexPath.row].name ?? "")"
+        
+        if topBanner[indexPath.row].shopstatus == "OPEN" {
+            cell.closedView.isHidden = true
+        }else{
+            cell.closedView.isHidden = false
+        }
         return cell
     }
     
@@ -73,5 +85,8 @@ extension SliderCell : UICollectionViewDelegate , UICollectionViewDataSource,UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        topDele?.topPic(index: indexPath.row)
     }
 }

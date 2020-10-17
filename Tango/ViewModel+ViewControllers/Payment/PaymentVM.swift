@@ -12,6 +12,7 @@ class PaymentVM {
     
     let apiService: PaymentServicesProtocol
     var refreshViewClosure: (() -> ())?
+    var refreshViewTmpDeleteClosure: (() -> ())?
     var refreshTempViewClosure: (() -> ())?
     var refreshprofileViewClosure: (() -> ())?
     var refreshForgotpasswordViewClosure: (() -> ())?
@@ -20,6 +21,7 @@ class PaymentVM {
 
     var orderDetails = OrderDetailsModel()
     var tempOder = TempOrderSModel()
+    var tmpDelete = TempDeleteModel()
     var isLoading: Bool = false {
         didSet {
             self.updateLoadingStatus?()
@@ -123,4 +125,30 @@ class PaymentVM {
      func validateUserInputs(user: OnlineOrderParam) -> [String: Any]? {
          return user.toJSON()
      }
+    
+    
+    
+    func deleteTmpToAPIService(id : String) {
+        
+        if !AppDelegate.appDelagate().isReachable() {
+            self.alertMessage = internetConnectionWarningMessage
+            return
+        }
+        
+        self.isLoading = true
+        self.apiService.deleteTemp(orderId: id) { [weak self] (response) in
+            self?.isLoading = false
+            if response.responseStatus == .success {
+                let responseData = response.data as? TempDeleteModel
+                if  let getUserDetails = responseData {
+                    self?.tmpDelete = getUserDetails
+                    self?.refreshViewTmpDeleteClosure?()
+                } else {
+                    self?.alertMessage = ""
+                }
+            } else {
+                self?.alertMessage = response.message
+            }
+        }
+    }
 }

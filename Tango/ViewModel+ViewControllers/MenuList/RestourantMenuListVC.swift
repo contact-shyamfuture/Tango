@@ -297,8 +297,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                     let productDetails = categoryList!.restaurantCategories![indexPath!.section - 1].categoriesProducts![indexPath!.row]
                     if shop_id == productDetails.shop_id  {
                         let param = CartParam()
-                        param.latitude = 22.4705668
-                        param.longitude = 88.3524203
+                        let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                        let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                        param.latitude = Double(mapLat!)
+                        param.longitude = Double(mapLong!)
                         param.quantity = 1
                         param.product_id = productDetails.id
                         viewModel.sendUserCartToAPIService(user: param)
@@ -308,8 +310,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                 }else{
                     let productDetails = categoryList!.restaurantCategories![indexPath!.section - 1].categoriesProducts![indexPath!.row]
                     let param = CartParam()
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = 1
                     param.product_id = productDetails.id
                     viewModel.sendUserCartToAPIService(user: param)
@@ -320,8 +324,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                     let productDetails = categoryList!.restaurantCategories![indexPath!.section].categoriesProducts![indexPath!.row]
                     if shop_id == productDetails.shop_id  {
                         let param = CartParam()
-                        param.latitude = 22.4705668
-                        param.longitude = 88.3524203
+                        let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                        let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                        param.latitude = Double(mapLat!)
+                        param.longitude = Double(mapLong!)
                         param.quantity = 1
                         param.product_id = productDetails.id
                         viewModel.sendUserCartToAPIService(user: param)
@@ -331,7 +337,7 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                         let refreshAlert = UIAlertController(title: "Replace cart item?", message: "Do you want to discard the selected dishes and add dishes from this restaurant", preferredStyle: UIAlertController.Style.alert)
 
                         refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-                          let url = "http://166.62.54.122/swiggy/public/api/user/clear/cart"
+                          let url = "http://tangoeateries.com/api/user/clear/cart"
                           let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/json" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
                            Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default , headers: header).responseString { response in
                               self.removeLoaderView()
@@ -340,8 +346,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                                 let statusCode = response.response?.statusCode
                                   if statusCode == 200 {
                                      let param = CartParam()
-                                     param.latitude = 22.4705668
-                                     param.longitude = 88.3524203
+                                     let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                                     let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                                     param.latitude = Double(mapLat!)
+                                     param.longitude = Double(mapLong!)
                                      param.quantity = 1
                                      param.product_id = productDetails.id
                                        self.viewModel.sendUserCartToAPIService(user: param)
@@ -360,8 +368,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                 }else{
                     let productDetails = categoryList!.restaurantCategories![indexPath!.section].categoriesProducts![indexPath!.row]
                     let param = CartParam()
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = 1
                     param.product_id = productDetails.id
                     viewModel.sendUserCartToAPIService(user: param)
@@ -390,8 +400,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                 }
                 if shop_id == productDetails.shop_id  {
                     
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = quantity! + 1
                     param.product_id = productDetails.id
                     viewModel.sendUserCartToAPIService(user: param)
@@ -409,8 +421,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                 
                 if shop_id == productDetails.shop_id  {
                     
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = quantity! + 1
                     param.product_id = productDetails.id
                     viewModel.sendUserCartToAPIService(user: param)
@@ -443,8 +457,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                 
                 if shop_id == productDetails.shop_id  {
                     
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = quantity! - 1
                     param.product_id = productDetails.id
                     viewModel.sendUserCartToAPIService(user: param)
@@ -462,8 +478,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                 
                 if shop_id == productDetails.shop_id  {
                     
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = quantity! - 1
                     param.product_id = productDetails.id
                     viewModel.sendUserCartToAPIService(user: param)
@@ -486,8 +504,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                 let productDetails = featureList![indexPath!.row]
                 if shop_id == productDetails.shop_id  {
                     let param = CartParam()
-                    param.latitude = 22.4705668
-                    param.longitude = 88.3524203
+                    let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                    let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                    param.latitude = Double(mapLat!)
+                    param.longitude = Double(mapLong!)
                     param.quantity = 1
                     param.product_id = productDetails.id
                     viewModel.sendUserCartToAPIService(user: param)
@@ -497,7 +517,7 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
 
                     refreshAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
                       
-                        let url = "http://166.62.54.122/swiggy/public/api/user/clear/cart"
+                        let url = "http://tangoeateries.com/api/user/clear/cart"
                         let header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/json" , "Authorization" : "Bearer " + UserDefaults.standard.string(forKey: PreferencesKeys.userAccessToken)!]
                          Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default , headers: header).responseString { response in
                             self.removeLoaderView()
@@ -506,8 +526,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
                               let statusCode = response.response?.statusCode
                                 if statusCode == 200 {
                                   let param = CartParam()
-                                   param.latitude = 22.4705668
-                                   param.longitude = 88.3524203
+                                   let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                                   let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                                   param.latitude = Double(mapLat!)
+                                   param.longitude = Double(mapLong!)
                                    param.quantity = 1
                                    param.product_id = productDetails.id
                                      self.viewModel.sendUserCartToAPIService(user: param)
@@ -524,8 +546,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
             }else{
                 let productDetails = featureList![indexPath!.row]
                 let param = CartParam()
-                param.latitude = 22.4705668
-                param.longitude = 88.3524203
+                let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+                let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+                param.latitude = Double(mapLat!)
+                param.longitude = Double(mapLong!)
                 param.quantity = 1
                 param.product_id = productDetails.id
                 viewModel.sendUserCartToAPIService(user: param)
@@ -551,8 +575,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
         }
         if shop_id == productDetails.shop_id  {
             
-            param.latitude = 22.4705668
-            param.longitude = 88.3524203
+            let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+            let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+            param.latitude = Double(mapLat!)
+            param.longitude = Double(mapLong!)
             param.quantity = quantity! + 1
             param.product_id = productDetails.id
             viewModel.sendUserCartToAPIService(user: param)
@@ -576,8 +602,10 @@ class RestourantMenuListVC: BaseViewController , AddFavoritesProtocal {
             }
         }
         if shop_id == productDetails.shop_id  {
-            param.latitude = 22.4705668
-            param.longitude = 88.3524203
+            let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
+            let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
+            param.latitude = Double(mapLat!)
+            param.longitude = Double(mapLong!)
             param.quantity = quantity! - 1
             param.product_id = productDetails.id
             viewModel.sendUserCartToAPIService(user: param)

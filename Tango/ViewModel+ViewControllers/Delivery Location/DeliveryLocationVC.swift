@@ -53,6 +53,11 @@ class DeliveryLocationVC: BaseViewController , MKMapViewDelegate{
             param.latitude = lat
             param.longitude = Long
             self.getAddressFromLatLon(pdblLatitude: lat!, pdblLongitude: Long!)
+        }else if googlePlace == "Edit"{
+            self.param.map_address = self.address
+            param.latitude = lat
+            param.longitude = Long
+            self.getAddressFromLatLon(pdblLatitude: lat!, pdblLongitude: Long!)
         }else{
             locationManager = CLLocationManager()
             locationManager.delegate = self;

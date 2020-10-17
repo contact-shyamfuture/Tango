@@ -52,6 +52,7 @@ class DeliveryDetailsVC: BaseViewController {
     
     var orderDetails = OrderSummeryModel()
     var isHistory : Bool?
+    var isComingFromThankyou : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +62,9 @@ class DeliveryDetailsVC: BaseViewController {
     }
     private func configureUI(){
        // topHeaderSet(vc: self)
-        
+        if isComingFromThankyou {
+            headerView.btnBackAction.tag = 10
+        }
         headerView.btnHeartOutlet.isHidden = true
         headerView.imgLogo.isHidden = true
         headerView.imgBackLogo.isHidden = false
@@ -155,9 +158,11 @@ class DeliveryDetailsVC: BaseViewController {
         disputePopUpView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.view.addSubview(disputePopUpView)
     }
+    
     @IBAction func disputePopUpCancelAction(_ sender: UIButton) {
         disputePopUpView.removeFromSuperview()
     }
+    
     @IBAction func disputePopUpSubmitAction(_ sender: UIButton) {
         if txtVwComplainDesc.text == "" || txtVwComplainDesc.text == "Enter Dispute Description.."{
             self.showAlertWithSingleButton(title: commonAlertTitle, message: "Please write some description", okButtonText: okText, completion: nil)
@@ -186,6 +191,7 @@ class DeliveryDetailsVC: BaseViewController {
         vwCancelPopUp.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         self.view.addSubview(vwCancelPopUp)
     }
+    
     @IBAction func btnCancelPopUpACtion(_ sender: UIButton) {
         vwCancelPopUp.removeFromSuperview()
     }
@@ -196,11 +202,9 @@ class DeliveryDetailsVC: BaseViewController {
             let orderId = self.viewModel.orderDetails.id ?? 0
             self.viewModel.getOrderCancel(id: "\(orderId)", reasondesc: txtVwCancelReason.text!)
         }
-        
     }
-    
-    
 }
+
 extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return sectionCount
@@ -208,7 +212,7 @@ extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 1{
             if isHistory == true {
-                return 2
+                return 3
             }else{
                 return 5
             }
@@ -234,14 +238,28 @@ extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
                 
                 switch indexPath.row {
                 case 0:
+                    Cell.lblTitle.textColor = UIColor.darkGray
                     Cell.lblTitle.text = orderDetails.shopList?.name
                     Cell.lblDescription.text = orderDetails.shopList?.address
                     Cell.orderImageView.image = UIImage(named: "location")
                     Cell.orderDotedImage.isHidden = false
                 case 1:
+                    Cell.lblTitle.textColor = UIColor.darkGray
                     Cell.lblTitle.text = orderDetails.address?.type
                     Cell.lblDescription.text = orderDetails.address?.map_address
                     Cell.orderImageView.image = UIImage(named: "Home")
+                    Cell.orderDotedImage.isHidden = true
+                case 2:
+                    if orderDetails.status == "COMPLETED" {
+                        Cell.lblTitle.text = "Order Completed"
+                        Cell.orderImageView.image = UIImage(named: "ic_circle_tick")
+                    }else{
+                        Cell.orderImageView.image = UIImage(named: "cancelIcon")
+                        Cell.lblTitle.text = "Order Cancelled"
+                    }                    
+                    Cell.lblTitle.textColor = UIColor.red
+                    Cell.lblDescription.text = ""
+                    
                     Cell.orderDotedImage.isHidden = true
                 default:
                     Cell.lblTitle.text = ""
@@ -313,7 +331,7 @@ extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
         case 4:
             let Cell = tableView.dequeueReusableCell(withIdentifier: DeliveryDetailsPriceCell.identifier) as! DeliveryDetailsPriceCell
             if let invoicelist = self.viewModel.orderDetails.invoiceDetails {
-                Cell.cellConfigUI(with: invoicelist)
+                Cell.cellConfigUI(with: invoicelist , itemData : self.itemscart)
             }
             return Cell
         default:
@@ -339,7 +357,7 @@ extension DeliveryDetailsVC : UITableViewDelegate,UITableViewDataSource{
         case 3:
             return 65
         case 4:
-            return 240
+            return 303
         default:
             return 44
         }

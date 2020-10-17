@@ -137,7 +137,14 @@ class AddressListVC: BaseViewController {
     }
     
     func manageAddressEdit(index : Int){
-        print("tap index path : \(index)")
+        
+       let dic = self.addressList[index]
+        let vc = UIStoryboard.init(name: "Other", bundle: Bundle.main).instantiateViewController(withIdentifier: "DeliveryLocationVC") as? DeliveryLocationVC
+        vc!.lat = dic.latitude
+        vc!.Long = dic.longitude
+        vc!.address = dic.map_address
+        vc!.googlePlace = "Edit"
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
 }
 
