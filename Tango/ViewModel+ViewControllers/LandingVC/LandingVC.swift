@@ -21,7 +21,7 @@ class LandingVC: UIViewController {
         btnSignOutlet.layer.cornerRadius = btnSignOutlet.frame.height/2
         btnRegisterOutlet.layer.cornerRadius = btnRegisterOutlet.frame.height/2
         
-        slideshow.slideshowInterval = 5.0
+        slideshow.slideshowInterval = 2.0
         slideshow.pageIndicatorPosition = .init(horizontal: .center, vertical: .under)
         slideshow.contentScaleMode = UIViewContentMode.scaleAspectFill
         

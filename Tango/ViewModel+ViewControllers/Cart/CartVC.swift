@@ -255,15 +255,16 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
         let param = CartParam()
         //let shop_id = userdetails.userCart![0].CartProduct?.shop_id
         let productDetails = self.userCart![indexPath!.row]
-        for obj in self.userCart! {
-            quantity = obj.quantity
-            param.cart_id = obj.id
-        }
+//        for obj in self.userCart! {
+//            quantity = obj.quantity
+//            param.cart_id = productDetails.id//obj.id
+//        }
+        param.cart_id = productDetails.id
         let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
         let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
         param.latitude = Double(mapLat!)
         param.longitude = Double(mapLong!)
-        param.quantity = quantity! + 1
+        param.quantity = productDetails.quantity! + 1
         param.product_id = productDetails.product_id
         viewModel.sendUserCartToAPIService(user: param)
     }
@@ -274,15 +275,16 @@ class CartVC: BaseViewController , DeliveryLocationSaved , PromoCodeApply{
         let param = CartParam()
         //let shop_id = userdetails.userCart![0].CartProduct?.shop_id
         let productDetails = self.userCart![indexPath!.row]
-        for obj in self.userCart! {
-           quantity = obj.quantity
-            param.cart_id = obj.id
-        }
+//        for obj in self.userCart! {
+//           quantity = obj.quantity
+//            param.cart_id = productDetails.id//obj.id
+//        }
+        param.cart_id = productDetails.id
         let mapLat = AppPreferenceService.getString(PreferencesKeys.mapLat)
         let mapLong = AppPreferenceService.getString(PreferencesKeys.mapLong)
         param.latitude = Double(mapLat!)
         param.longitude = Double(mapLong!)
-        param.quantity = quantity! - 1
+        param.quantity = productDetails.quantity! - 1
         param.product_id = productDetails.product_id
         viewModel.sendUserCartToAPIService(user: param)
     }

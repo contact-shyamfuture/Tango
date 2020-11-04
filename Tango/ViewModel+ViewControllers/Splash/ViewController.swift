@@ -23,7 +23,7 @@ class ViewController: UIViewController {
 //        logoAnimationView.pinEdgesToSuperView()
 //        logoAnimationView.logoGifImageView.delegate = self
         
-        let image = UIImage.gif(name: "splas_animation_page")
+        let image = UIImage.gif(name: "splash_animation")
         self.splashImageView.image = image
         // Do any additional setup after loading the view.
         splashImageView.animationDuration = image!.duration

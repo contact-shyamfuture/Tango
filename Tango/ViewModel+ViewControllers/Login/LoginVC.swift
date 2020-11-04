@@ -28,13 +28,16 @@ class LoginVC: UIViewController {
         self.loginTableView.dataSource = self
         self.loginTableView.register(UINib(nibName: "LoginCommonCell", bundle: Bundle.main), forCellReuseIdentifier: "LoginCommonCell")
         self.loginTableView.register(UINib(nibName: "CommonButtonCell", bundle: Bundle.main), forCellReuseIdentifier: "CommonButtonCell")
+        self.saveObj.countryCode = "+91"
+        saveObj.coutryFlag = "indiaFlags"
         initializeViewModel()
+        //self.addLoaderView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        // navigationController?.setNavigationBarHidden(true, animated: animated)
-        locationManager = CLLocationManager()
+      /*  locationManager = CLLocationManager()
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
@@ -54,6 +57,7 @@ class LoginVC: UIViewController {
             //will return the actual country code
             print("ISO country code is: " + carrier.isoCountryCode!);
         }
+ */
     }
     
     func getFlag(country:String) -> String {
@@ -168,7 +172,7 @@ extension LoginVC : UITableViewDelegate, UITableViewDataSource  , CommonButtonAc
             Cell.txtField.delegate = self
             Cell.codeConstraint.constant = 25
             if saveObj.coutryFlag != nil {
-                Cell.imgIcon.image = saveObj.coutryFlag!.image()
+                Cell.imgIcon.image = UIImage(named: saveObj.coutryFlag!)
             }
             Cell.lblCountryCode.text = saveObj.countryCode
             return Cell
@@ -287,6 +291,7 @@ extension LoginVC : CLLocationManagerDelegate {
                         print(s)
                         self.saveObj.coutryFlag = s
                         self.loginTableView.reloadData()
+                        self.removeLoaderView()
                     }
                 }
         })

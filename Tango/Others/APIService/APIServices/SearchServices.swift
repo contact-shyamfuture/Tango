@@ -23,9 +23,9 @@ class SearchServices: SearchServicesProtocol {
         }else{
             header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded"]
         }
+        let urlString = Api.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        
-        Alamofire.request(Api, method: .get, parameters: nil, headers: (header as! HTTPHeaders)).responseObject {(response: DataResponse<SearchModel>) in
+        Alamofire.request(urlString!, method: .get, parameters: nil, headers: (header as! HTTPHeaders)).responseObject {(response: DataResponse<SearchModel>) in
             print("loginApi==>\(Api)")
             let loginApiResponse : Response!
             
@@ -59,9 +59,9 @@ class SearchServices: SearchServicesProtocol {
         }else{
             header = ["X-Requested-With":"XMLHttpRequest" , "Content-Type": "application/x-www-form-urlencoded"]
         }
+        let urlString = Api.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         
-        
-        Alamofire.request(Api, method: .get, parameters: nil, headers: (header as! HTTPHeaders)).responseObject {(response: DataResponse<SearchModel>) in
+        Alamofire.request(urlString!, method: .get, parameters: nil, headers: (header as! HTTPHeaders)).responseObject {(response: DataResponse<SearchModel>) in
             print("loginApi==>\(Api)")
             let loginApiResponse : Response!
             

@@ -74,21 +74,21 @@ class BaseViewController: UIViewController {
             footerHeight = 90
             constantValue = 15
         case "iPhone X":
-            height = 120
+            height = 100
             footerHeight = 110
             constantValue = 30
         case "iPhone XS":
             constantValue = 30
             footerHeight = 110
-            height = 120
+            height = 100
         case "iPhone XS Max":
             constantValue = 30
             footerHeight = 110
-            height = 120
+            height = 100
         case "iPhone XR":
             constantValue = 30
             footerHeight = 110
-            height = 120
+            height = 100
         default:
             height = 100
             footerHeight = 90

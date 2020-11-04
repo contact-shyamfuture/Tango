@@ -27,32 +27,35 @@ class RegisterWithMobileVC: UIViewController {
         self.tbRegisterMobileNumber.dataSource = self
         self.tbRegisterMobileNumber.register(UINib(nibName: "LoginCommonCell", bundle: Bundle.main), forCellReuseIdentifier: "LoginCommonCell")
         self.tbRegisterMobileNumber.register(UINib(nibName: "CommonButtonCell", bundle: Bundle.main), forCellReuseIdentifier: "CommonButtonCell")
+        self.saveObj.countryCode = "+91"
+        saveObj.coutryFlag = "indiaFlags"
         initializeViewModel()
+        //self.addLoaderView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
        // navigationController?.setNavigationBarHidden(true, animated: animated)
-        locationManager = CLLocationManager()
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
-            print(countryCode)
-            let s = flag(country: countryCode)
-            print(s)
-        }
-        
-        let networkInfo = CTTelephonyNetworkInfo()
-
-        if let carrier = networkInfo.subscriberCellularProvider {
-            print("country code is: " + carrier.mobileCountryCode!);
-
-            //will return the actual country code
-            print("ISO country code is: " + carrier.isoCountryCode!);
-        }
+//        locationManager = CLLocationManager()
+//        locationManager.delegate = self;
+//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.startUpdatingLocation()
+//        
+//        if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
+//            print(countryCode)
+//            let s = flag(country: countryCode)
+//            print(s)
+//        }
+//        
+//        let networkInfo = CTTelephonyNetworkInfo()
+//
+//        if let carrier = networkInfo.subscriberCellularProvider {
+//            print("country code is: " + carrier.mobileCountryCode!);
+//
+//            //will return the actual country code
+//            print("ISO country code is: " + carrier.isoCountryCode!);
+//        }
     }
     
     func getFlag(country:String) -> String {
@@ -146,7 +149,7 @@ extension RegisterWithMobileVC : UITableViewDelegate, UITableViewDataSource , Co
             Cell.txtField.delegate = self
             Cell.codeConstraint.constant = 25
             if saveObj.coutryFlag != nil {
-                Cell.imgIcon.image = saveObj.coutryFlag!.image()
+                Cell.imgIcon.image = UIImage(named: saveObj.coutryFlag!)
             }
             Cell.lblCountryCode.text = saveObj.countryCode
             return Cell
@@ -261,6 +264,7 @@ extension RegisterWithMobileVC : CLLocationManagerDelegate {
                         print(s)
                         self.saveObj.coutryFlag = s
                         self.tbRegisterMobileNumber.reloadData()
+                        self.removeLoaderView()
                     }
                 }
         })
